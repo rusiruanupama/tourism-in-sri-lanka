@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  // =========================
+  // ELEMENTS
+  // =========================
   const body = document.body;
   const header = document.getElementById("header");
   const loader = document.getElementById("loader");
@@ -8,107 +12,111 @@ document.addEventListener("DOMContentLoaded", () => {
   const langToggle = document.getElementById("langToggle");
   const backToTop = document.getElementById("backToTop");
 
-  /* =========================
-     Loader
-  ========================== */
+  // =========================
+  // LOADER
+  // =========================
   window.addEventListener("load", () => {
-    if (loader) {
+    if (!loader) return;
+
+    setTimeout(() => {
+      loader.classList.add("hide");
+
       setTimeout(() => {
-        loader.classList.add("hide");
-
-        setTimeout(() => {
-          loader.style.display = "none";
-        }, 450);
-      }, 300);
-    }
+        loader.style.display = "none";
+      }, 400);
+    }, 300);
   });
 
-  /* =========================
-     Header scroll
-  ========================== */
-  const updateHeader = () => {
-    if (window.scrollY > 40) {
-      header?.classList.add("scrolled");
-    } else {
-      header?.classList.remove("scrolled");
+  // =========================
+  // HEADER + BACK TO TOP
+  // =========================
+  function handleScroll() {
+    if (header) {
+      header.classList.toggle("scrolled", window.scrollY > 40);
     }
 
-    if (window.scrollY > 500) {
-      backToTop?.classList.add("show");
-    } else {
-      backToTop?.classList.remove("show");
+    if (backToTop) {
+      backToTop.classList.toggle("show", window.scrollY > 500);
     }
-  };
+  }
 
-  window.addEventListener("scroll", updateHeader);
-  updateHeader();
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
 
-  /* =========================
-     Mobile menu
-  ========================== */
-  menuToggle?.addEventListener("click", () => {
-    nav?.classList.toggle("open");
-  });
-
-  nav?.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
+  // =========================
+  // MOBILE MENU
+  // =========================
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
     });
-  });
 
-  document.addEventListener("click", e => {
-    if (
-      nav &&
-      menuToggle &&
-      !nav.contains(e.target) &&
-      !menuToggle.contains(e.target)
-    ) {
-      nav.classList.remove("open");
-    }
-  });
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+      });
+    });
 
-  /* =========================
-     Dark mode
-  ========================== */
+    document.addEventListener("click", e => {
+      if (
+        !nav.contains(e.target) &&
+        !menuToggle.contains(e.target)
+      ) {
+        nav.classList.remove("open");
+      }
+    });
+  }
+
+  // =========================
+  // DARK MODE
+  // =========================
   const savedTheme = localStorage.getItem("tourism-theme");
 
   if (savedTheme === "dark") {
     body.classList.add("dark");
-    if (themeToggle) themeToggle.textContent = "☀️";
   }
 
-  themeToggle?.addEventListener("click", () => {
-    body.classList.toggle("dark");
+  function updateThemeButton() {
+    if (!themeToggle) return;
 
-    const isDark = body.classList.contains("dark");
+    themeToggle.textContent =
+      body.classList.contains("dark") ? "☀️" : "🌙";
+  }
 
-    themeToggle.textContent = isDark ? "☀️" : "🌙";
+  updateThemeButton();
 
-    localStorage.setItem(
-      "tourism-theme",
-      isDark ? "dark" : "light"
-    );
-  });
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark");
 
-  /* =========================
-     Language switch
-  ========================== */
+      localStorage.setItem(
+        "tourism-theme",
+        body.classList.contains("dark") ? "dark" : "light"
+      );
+
+      updateThemeButton();
+    });
+  }
+
+  // =========================
+  // LANGUAGE SWITCH
+  // =========================
   let currentLanguage =
     localStorage.getItem("tourism-language") || "en";
 
-  function applyLanguage(language) {
-    currentLanguage = language;
+  function applyLanguage(lang) {
+    currentLanguage = lang;
 
-    document.querySelectorAll("[data-en][data-si]").forEach(element => {
-      const text = element.getAttribute(`data-${language}`);
+    document.querySelectorAll("[data-en][data-si]").forEach(el => {
+      const value = el.getAttribute(`data-${lang}`);
 
-      if (text) {
-        element.textContent = text;
+      if (value) {
+        el.textContent = value;
       }
     });
 
     if (langToggle) {
-      langToggle.textContent = language === "en" ? "සිං" : "EN";
+      langToggle.textContent = lang === "en" ? "සිං" : "EN";
     }
 
     const destinationSearch =
@@ -119,107 +127,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (destinationSearch) {
       destinationSearch.placeholder =
-        language === "en"
+        lang === "en"
           ? "Search destinations..."
           : "ගමනාන්ත සොයන්න...";
     }
 
     if (districtSearch) {
       districtSearch.placeholder =
-        language === "en"
+        lang === "en"
           ? "Search a district..."
           : "දිස්ත්‍රික්කයක් සොයන්න...";
     }
 
-    localStorage.setItem("tourism-language", language);
+    localStorage.setItem("tourism-language", lang);
   }
 
   applyLanguage(currentLanguage);
 
-  langToggle?.addEventListener("click", () => {
-    applyLanguage(
-      currentLanguage === "en" ? "si" : "en"
-    );
-  });
-
-  /* =========================
-     Smooth scrolling
-  ========================== */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", e => {
-      const targetId = anchor.getAttribute("href");
-
-      if (!targetId || targetId === "#") return;
-
-      const target = document.querySelector(targetId);
-
-      if (target) {
-        e.preventDefault();
-
-        const offset = 70;
-
-        const targetPosition =
-          target.getBoundingClientRect().top +
-          window.pageYOffset -
-          offset;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth"
-        });
-      }
+  if (langToggle) {
+    langToggle.addEventListener("click", () => {
+      applyLanguage(currentLanguage === "en" ? "si" : "en");
     });
-  });
+  }
 
-  /* =========================
-     Destination search/filter
-  ========================== */
+  // =========================
+  // DESTINATION SEARCH + FILTER
+  // =========================
   const destinationSearch =
     document.getElementById("destinationSearch");
-
-  const filterButtons =
-    document.querySelectorAll(".filter-btn");
 
   const destinationCards =
     [...document.querySelectorAll(".destination-card")];
 
+  const filterButtons =
+    [...document.querySelectorAll(".filter-btn")];
+
   let activeFilter = "all";
 
   function filterDestinations() {
-    const searchText =
-      destinationSearch?.value
-        .toLowerCase()
-        .trim() || "";
+    const search =
+      destinationSearch?.value.toLowerCase().trim() || "";
 
     destinationCards.forEach(card => {
       const title =
-        card.dataset.title?.toLowerCase() || "";
+        (card.dataset.title || "").toLowerCase();
 
       const description =
-        card.dataset.description?.toLowerCase() || "";
+        (card.dataset.description || "").toLowerCase();
 
-      const categories =
-        card.dataset.category?.toLowerCase() || "";
+      const category =
+        (card.dataset.category || "").toLowerCase();
 
       const matchesSearch =
-        title.includes(searchText) ||
-        description.includes(searchText);
+        title.includes(search) ||
+        description.includes(search);
 
       const matchesFilter =
         activeFilter === "all" ||
-        categories.includes(activeFilter);
+        category.includes(activeFilter);
 
       card.style.display =
-        matchesSearch && matchesFilter
-          ? ""
-          : "none";
+        matchesSearch && matchesFilter ? "" : "none";
     });
   }
 
-  destinationSearch?.addEventListener(
-    "input",
-    filterDestinations
-  );
+  if (destinationSearch) {
+    destinationSearch.addEventListener(
+      "input",
+      filterDestinations
+    );
+  }
 
   filterButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -236,9 +213,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* =========================
-     Destination modal
-  ========================== */
+  // =========================
+  // DESTINATION MODAL
+  // =========================
   const destinationModal =
     document.getElementById("destinationModal");
 
@@ -255,73 +232,53 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("modalClose");
 
   function openDestinationModal(card) {
-    const title =
-      card.dataset.title || "Destination";
+    if (!destinationModal) return;
 
-    const description =
-      card.dataset.description || "";
+    const title = card.dataset.title || "Destination";
+    const description = card.dataset.description || "";
+    const image = card.querySelector("img")?.src || "";
 
-    const image =
-      card.querySelector("img")?.src || "";
-
-    if (modalTitle) {
-      modalTitle.textContent = title;
-    }
-
-    if (modalDescription) {
-      modalDescription.textContent =
-        description;
-    }
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalDescription) modalDescription.textContent = description;
 
     if (modalImage) {
       modalImage.src = image;
       modalImage.alt = title;
     }
 
-    destinationModal?.classList.add("active");
-    destinationModal?.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
+    destinationModal.classList.add("active");
     body.style.overflow = "hidden";
   }
 
   function closeDestinationModal() {
-    destinationModal?.classList.remove("active");
-    destinationModal?.setAttribute(
-      "aria-hidden",
-      "true"
-    );
+    if (!destinationModal) return;
 
+    destinationModal.classList.remove("active");
     body.style.overflow = "";
   }
 
   destinationCards.forEach(card => {
-    const detailsButton =
+    const button =
       card.querySelector(".details-btn");
 
-    detailsButton?.addEventListener(
-      "click",
-      () => openDestinationModal(card)
-    );
+    if (button) {
+      button.addEventListener("click", () => {
+        openDestinationModal(card);
+      });
+    }
   });
 
-  modalClose?.addEventListener(
-    "click",
-    closeDestinationModal
-  );
+  if (modalClose) {
+    modalClose.addEventListener("click", closeDestinationModal);
+  }
 
   document
     .querySelector("[data-close-modal]")
-    ?.addEventListener(
-      "click",
-      closeDestinationModal
-    );
+    ?.addEventListener("click", closeDestinationModal);
 
-  /* =========================
-     Favorites
-  ========================== */
+  // =========================
+  // FAVORITES
+  // =========================
   const favoritesGrid =
     document.getElementById("favoritesGrid");
 
@@ -330,9 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try {
     favorites =
       JSON.parse(
-        localStorage.getItem(
-          "tourism-favorites"
-        )
+        localStorage.getItem("tourism-favorites")
       ) || [];
   } catch {
     favorites = [];
@@ -345,6 +300,21 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+  function updateFavoriteButtons() {
+    destinationCards.forEach(card => {
+      const title = card.dataset.title || "";
+      const button = card.querySelector(".favorite-btn");
+
+      if (!button) return;
+
+      const exists =
+        favorites.some(item => item.title === title);
+
+      button.textContent = exists ? "♥" : "♡";
+      button.classList.toggle("active", exists);
+    });
+  }
+
   function renderFavorites() {
     if (!favoritesGrid) return;
 
@@ -355,382 +325,201 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>Add destinations to your favorites.</p>
         </div>
       `;
-
       return;
     }
 
-    favoritesGrid.innerHTML =
-      favorites
-        .map(
-          item => `
+    favoritesGrid.innerHTML = favorites
+      .map(item => `
         <article class="favorite-item">
-          <img
-            src="${item.image}"
-            alt="${item.title}"
-          />
+          <img src="${item.image}" alt="${item.title}">
 
           <div class="favorite-item-content">
             <h3>${item.title}</h3>
-
             <p>${item.description}</p>
 
             <button
               class="remove-favorite"
-              data-remove="${item.title}"
+              data-title="${item.title}"
             >
               Remove
             </button>
           </div>
         </article>
-      `
-        )
-        .join("");
+      `)
+      .join("");
 
     favoritesGrid
-      .querySelectorAll(
-        ".remove-favorite"
-      )
+      .querySelectorAll(".remove-favorite")
       .forEach(button => {
-        button.addEventListener(
-          "click",
-          () => {
-            const title =
-              button.dataset.remove;
+        button.addEventListener("click", () => {
+          const title = button.dataset.title;
 
-            favorites =
-              favorites.filter(
-                item =>
-                  item.title !== title
-              );
+          favorites =
+            favorites.filter(item => item.title !== title);
 
-            saveFavorites();
-            renderFavorites();
-            updateFavoriteButtons();
-          }
-        );
+          saveFavorites();
+          renderFavorites();
+          updateFavoriteButtons();
+        });
       });
-  }
-
-  function updateFavoriteButtons() {
-    destinationCards.forEach(card => {
-      const title =
-        card.dataset.title;
-
-      const button =
-        card.querySelector(
-          ".favorite-btn"
-        );
-
-      const isFavorite =
-        favorites.some(
-          item =>
-            item.title === title
-        );
-
-      if (button) {
-        button.classList.toggle(
-          "active",
-          isFavorite
-        );
-
-        button.textContent =
-          isFavorite ? "♥" : "♡";
-      }
-    });
   }
 
   destinationCards.forEach(card => {
     const favoriteButton =
-      card.querySelector(
-        ".favorite-btn"
-      );
+      card.querySelector(".favorite-btn");
 
-    favoriteButton?.addEventListener(
-      "click",
-      e => {
-        e.stopPropagation();
+    if (!favoriteButton) return;
 
-        const title =
-          card.dataset.title || "";
+    favoriteButton.addEventListener("click", () => {
+      const title = card.dataset.title || "";
+      const description = card.dataset.description || "";
+      const image = card.querySelector("img")?.src || "";
 
-        const description =
-          card.dataset.description || "";
+      const exists =
+        favorites.some(item => item.title === title);
 
-        const image =
-          card.querySelector("img")?.src || "";
-
-        const exists =
-          favorites.some(
-            item =>
-              item.title === title
-          );
-
-        if (exists) {
-          favorites =
-            favorites.filter(
-              item =>
-                item.title !== title
-            );
-        } else {
-          favorites.push({
-            title,
-            description,
-            image
-          });
-        }
-
-        saveFavorites();
-        renderFavorites();
-        updateFavoriteButtons();
+      if (exists) {
+        favorites =
+          favorites.filter(item => item.title !== title);
+      } else {
+        favorites.push({
+          title,
+          description,
+          image
+        });
       }
-    );
+
+      saveFavorites();
+      renderFavorites();
+      updateFavoriteButtons();
+    });
   });
 
   renderFavorites();
   updateFavoriteButtons();
 
-  /* =========================
-     District explorer
-  ========================== */
+  // =========================
+  // DISTRICT SEARCH + MODAL
+  // =========================
   const districtSearch =
-    document.getElementById(
-      "districtSearch"
-    );
+    document.getElementById("districtSearch");
 
   const districtCards =
-    [
-      ...document.querySelectorAll(
-        ".district-card"
-      )
-    ];
+    [...document.querySelectorAll(".district-card")];
 
   const districtModal =
-    document.getElementById(
-      "districtModal"
-    );
+    document.getElementById("districtModal");
 
   const districtModalTitle =
-    document.getElementById(
-      "districtModalTitle"
-    );
+    document.getElementById("districtModalTitle");
 
   const districtModalDescription =
-    document.getElementById(
-      "districtModalDescription"
-    );
+    document.getElementById("districtModalDescription");
 
   const districtModalClose =
-    document.getElementById(
-      "districtModalClose"
-    );
+    document.getElementById("districtModalClose");
 
   const districtInfo = {
-    Ampara:
-      "Known for eastern beaches, lagoons, wildlife areas and cultural diversity.",
-
-    Anuradhapura:
-      "An ancient capital famous for stupas, sacred sites and archaeological heritage.",
-
-    Badulla:
-      "A beautiful highland district featuring Ella, waterfalls and mountain scenery.",
-
-    Batticaloa:
-      "Known for lagoons, beaches and the cultural heritage of Sri Lanka’s eastern coast.",
-
-    Colombo:
-      "Sri Lanka’s commercial capital with shopping, dining, museums and modern city attractions.",
-
-    Galle:
-      "Home to the historic Galle Fort, beaches and beautiful southern coastal scenery.",
-
-    Gampaha:
-      "A western district with urban centres, wetlands, temples and easy access to Colombo.",
-
-    Hambantota:
-      "Known for national parks, coastal landscapes and wildlife experiences.",
-
-    Jaffna:
-      "A northern cultural centre known for historic sites, islands and unique local cuisine.",
-
-    Kalutara:
-      "A coastal district famous for beaches, rivers, temples and resort areas.",
-
-    Kandy:
-      "Sri Lanka’s cultural capital, home to the Temple of the Tooth and scenic hills.",
-
-    Kegalle:
-      "A green district known for plantations, waterfalls and elephant-related attractions.",
-
-    Kilinochchi:
-      "A northern district with peaceful landscapes, reservoirs and developing attractions.",
-
-    Kurunegala:
-      "Known for rocky landscapes, historic places and important cultural sites.",
-
-    Mannar:
-      "Famous for coastal scenery, historic ruins, islands and birdlife.",
-
-    Matale:
-      "Home to Dambulla, spice gardens, mountains and access to the Cultural Triangle.",
-
-    Matara:
-      "A southern coastal district with beaches, temples and scenic ocean views.",
-
-    Monaragala:
-      "A large southeastern district featuring forests, mountains and archaeological sites.",
-
-    Mullaitivu:
-      "A northeastern coastal district with beaches, lagoons and quiet natural landscapes.",
-
-    "Nuwara Eliya":
-      "Known for tea estates, cool weather, colonial architecture and highland beauty.",
-
-    Polonnaruwa:
-      "An ancient royal city with impressive ruins, monuments and archaeological sites.",
-
-    Puttalam:
-      "Known for lagoons, beaches, nature reserves and the Kalpitiya peninsula.",
-
-    Ratnapura:
-      "Sri Lanka’s gem-producing region and a gateway to forests, waterfalls and Adam’s Peak.",
-
-    Trincomalee:
-      "Famous for beautiful beaches, natural harbour, temples and marine activities.",
-
-    Vavuniya:
-      "A northern gateway district featuring cultural sites, reservoirs and local history."
+    Ampara: "Eastern beaches, lagoons, wildlife and cultural attractions.",
+    Anuradhapura: "Ancient city famous for stupas, temples and sacred sites.",
+    Badulla: "Highlands, waterfalls and beautiful mountain landscapes.",
+    Batticaloa: "Eastern beaches, lagoons and cultural attractions.",
+    Colombo: "Sri Lanka's commercial capital with shopping, food and city attractions.",
+    Galle: "Historic Galle Fort and beautiful southern beaches.",
+    Gampaha: "Urban centres, wetlands and easy access to Colombo.",
+    Hambantota: "Wildlife parks and southern coastal scenery.",
+    Jaffna: "Northern culture, historic sites, islands and unique food.",
+    Kalutara: "Beaches, rivers, temples and coastal resorts.",
+    Kandy: "Cultural capital and home of the Temple of the Tooth.",
+    Kegalle: "Green landscapes, plantations and waterfalls.",
+    Kilinochchi: "Reservoirs and peaceful northern landscapes.",
+    Kurunegala: "Rocky landscapes and historic attractions.",
+    Mannar: "Coastal scenery, islands and birdlife.",
+    Matale: "Dambulla, spice gardens and mountain scenery.",
+    Matara: "Southern beaches and coastal attractions.",
+    Monaragala: "Forests, mountains and archaeological locations.",
+    Mullaitivu: "Quiet beaches, lagoons and natural scenery.",
+    "Nuwara Eliya": "Tea estates, cool climate and highland scenery.",
+    Polonnaruwa: "Ancient royal city with historic ruins.",
+    Puttalam: "Kalpitiya, lagoons, beaches and nature reserves.",
+    Ratnapura: "Gem city, waterfalls and gateway to Adam's Peak.",
+    Trincomalee: "Beaches, natural harbour and marine attractions.",
+    Vavuniya: "Northern cultural sites and reservoirs."
   };
 
-  districtSearch?.addEventListener(
-    "input",
-    () => {
-      const searchText =
-        districtSearch.value
-          .toLowerCase()
-          .trim();
+  if (districtSearch) {
+    districtSearch.addEventListener("input", () => {
+      const search =
+        districtSearch.value.toLowerCase().trim();
 
       districtCards.forEach(card => {
         const name =
-          card.textContent
-            .toLowerCase();
+          card.textContent.toLowerCase();
 
         card.style.display =
-          name.includes(searchText)
-            ? ""
-            : "none";
+          name.includes(search) ? "" : "none";
       });
-    }
-  );
+    });
+  }
 
-  function openDistrictModal(name) {
+  function openDistrict(name) {
+    if (!districtModal) return;
+
     if (districtModalTitle) {
-      districtModalTitle.textContent =
-        name;
+      districtModalTitle.textContent = name;
     }
 
-    if (
-      districtModalDescription
-    ) {
+    if (districtModalDescription) {
       districtModalDescription.textContent =
         districtInfo[name] ||
         `Explore ${name} District in Sri Lanka.`;
     }
 
-    districtModal?.classList.add(
-      "active"
-    );
-
-    districtModal?.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
+    districtModal.classList.add("active");
     body.style.overflow = "hidden";
   }
 
-  function closeDistrictModal() {
-    districtModal?.classList.remove(
-      "active"
-    );
+  function closeDistrict() {
+    if (!districtModal) return;
 
-    districtModal?.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
+    districtModal.classList.remove("active");
     body.style.overflow = "";
   }
 
   districtCards.forEach(card => {
-    card.addEventListener(
-      "click",
-      () => {
-        openDistrictModal(
-          card.textContent.trim()
-        );
-      }
-    );
+    card.addEventListener("click", () => {
+      openDistrict(card.textContent.trim());
+    });
   });
 
-  districtModalClose?.addEventListener(
-    "click",
-    closeDistrictModal
-  );
+  if (districtModalClose) {
+    districtModalClose.addEventListener("click", closeDistrict);
+  }
 
   document
-    .querySelector(
-      "[data-close-district]"
-    )
-    ?.addEventListener(
-      "click",
-      closeDistrictModal
-    );
+    .querySelector("[data-close-district]")
+    ?.addEventListener("click", closeDistrict);
 
-  /* =========================
-     Close modal with ESC
-  ========================== */
-  document.addEventListener(
-    "keydown",
-    e => {
-      if (e.key === "Escape") {
-        closeDestinationModal();
-        closeDistrictModal();
-      }
-    }
-  );
-
-  /* =========================
-     Trip planner
-  ========================== */
+  // =========================
+  // TRIP PLANNER
+  // =========================
   const daysRange =
-    document.getElementById(
-      "daysRange"
-    );
+    document.getElementById("daysRange");
 
   const daysOutput =
-    document.getElementById(
-      "daysOutput"
-    );
+    document.getElementById("daysOutput");
 
   const travelStyle =
-    document.getElementById(
-      "travelStyle"
-    );
+    document.getElementById("travelStyle");
 
   const budgetLevel =
-    document.getElementById(
-      "budgetLevel"
-    );
+    document.getElementById("budgetLevel");
 
   const generateTrip =
-    document.getElementById(
-      "generateTrip"
-    );
+    document.getElementById("generateTrip");
 
   const plannerResult =
-    document.getElementById(
-      "plannerResult"
-    );
+    document.getElementById("plannerResult");
 
   const routes = {
     classic: [
@@ -750,8 +539,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Ella",
       "Horton Plains",
       "Nuwara Eliya",
-      "Yala",
-      "Knuckles"
+      "Yala"
     ],
 
     beach: [
@@ -759,7 +547,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "Bentota",
       "Hikkaduwa",
       "Galle",
-      "Unawatuna",
       "Mirissa",
       "Arugam Bay",
       "Trincomalee"
@@ -780,105 +567,62 @@ document.addEventListener("DOMContentLoaded", () => {
       "Ella",
       "Horton Plains",
       "Arugam Bay",
-      "Yala",
-      "Sinharaja"
+      "Yala"
     ]
   };
 
-  const styleTitles = {
-    classic:
-      "Classic Highlights",
-
-    nature:
-      "Nature & Wildlife",
-
-    beach:
-      "Beaches & Coast",
-
-    culture:
-      "History & Culture",
-
-    adventure:
-      "Adventure"
+  const styleNames = {
+    classic: "Classic Highlights",
+    nature: "Nature & Wildlife",
+    beach: "Beaches & Coast",
+    culture: "History & Culture",
+    adventure: "Adventure"
   };
 
-  const budgetDescriptions = {
-    value:
-      "Budget-friendly stays, public transport and local dining.",
-
-    comfort:
-      "Comfortable hotels, a mix of private and public transport, and flexible dining.",
-
-    premium:
-      "Premium hotels, private transport and higher-end travel experiences."
+  const budgets = {
+    value: "Budget-friendly accommodation and local transport.",
+    comfort: "Comfortable hotels and flexible transport.",
+    premium: "Premium hotels and private transport."
   };
 
-  function updateDaysOutput() {
-    if (!daysRange || !daysOutput)
-      return;
+  function updateDays() {
+    if (!daysRange || !daysOutput) return;
 
-    const days =
-      Number(daysRange.value);
+    const days = Number(daysRange.value);
 
     daysOutput.textContent =
-      `${days} ${
-        days === 1
-          ? "Day"
-          : "Days"
-      }`;
+      `${days} ${days === 1 ? "Day" : "Days"}`;
   }
 
-  daysRange?.addEventListener(
-    "input",
-    updateDaysOutput
-  );
+  if (daysRange) {
+    daysRange.addEventListener("input", updateDays);
+  }
 
-  updateDaysOutput();
+  updateDays();
 
-  generateTrip?.addEventListener(
-    "click",
-    () => {
+  if (generateTrip) {
+    generateTrip.addEventListener("click", () => {
       if (
         !daysRange ||
         !travelStyle ||
         !budgetLevel ||
         !plannerResult
-      )
-        return;
+      ) return;
 
-      const days =
-        Number(daysRange.value);
-
-      const style =
-        travelStyle.value;
-
-      const budget =
-        budgetLevel.value;
+      const days = Number(daysRange.value);
+      const style = travelStyle.value;
+      const budget = budgetLevel.value;
 
       const route =
-        routes[style] ||
-        routes.classic;
+        routes[style] || routes.classic;
 
-      let itineraryHTML = "";
+      let html = "";
 
-      for (
-        let day = 1;
-        day <= days;
-        day++
-      ) {
+      for (let day = 1; day <= days; day++) {
         const place =
-          route[
-            (day - 1) %
-              route.length
-          ];
+          route[(day - 1) % route.length];
 
-        const nextPlace =
-          route[
-            day %
-              route.length
-          ];
-
-        itineraryHTML += `
+        html += `
           <div class="itinerary-day">
             <div class="day-number">
               Day ${day}
@@ -886,17 +630,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <div>
               <h4>${place}</h4>
-
               <p>
-                Explore ${place},
-                enjoy local attractions
-                and prepare for the
-                next part of your trip
-                ${
-                  day < days
-                    ? `towards ${nextPlace}.`
-                    : "."
-                }
+                Explore ${place}, visit local attractions
+                and enjoy your Sri Lanka journey.
               </p>
             </div>
           </div>
@@ -906,131 +642,52 @@ document.addEventListener("DOMContentLoaded", () => {
       plannerResult.innerHTML = `
         <div class="itinerary-summary">
           <h3>
-            ${days}-Day
-            ${styleTitles[style]}
-            Trip
+            ${days}-Day ${styleNames[style]} Trip
           </h3>
 
-          <p>
-            ${
-              budgetDescriptions[
-                budget
-              ]
-            }
-          </p>
+          <p>${budgets[budget]}</p>
         </div>
 
         <div class="itinerary-list">
-          ${itineraryHTML}
+          ${html}
         </div>
       `;
-    }
-  );
-
-  /* =========================
-     Reveal animations
-  ========================== */
-  const revealTargets =
-    document.querySelectorAll(
-      ".section-head, .destination-card, .district-card, .experience-card, .season-card, .info-card, .emergency-card, .quick-card, .resource-box"
-    );
-
-  revealTargets.forEach(
-    element =>
-      element.classList.add(
-        "reveal"
-      )
-  );
-
-  if (
-    "IntersectionObserver"
-      in window
-  ) {
-    const revealObserver =
-      new IntersectionObserver(
-        entries => {
-          entries.forEach(
-            entry => {
-              if (
-                entry.isIntersecting
-              ) {
-                entry.target.classList.add(
-                  "visible"
-                );
-
-                revealObserver.unobserve(
-                  entry.target
-                );
-              }
-            }
-          );
-        },
-        {
-          threshold: 0.12
-        }
-      );
-
-    revealTargets.forEach(
-      element =>
-        revealObserver.observe(
-          element
-        )
-    );
-  } else {
-    revealTargets.forEach(
-      element =>
-        element.classList.add(
-          "visible"
-        )
-    );
+    });
   }
 
-  /* =========================
-     Back to top
-  ========================== */
-  backToTop?.addEventListener(
-    "click",
-    () => {
+  // =========================
+  // BACK TO TOP
+  // =========================
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
-    }
-  );
+    });
+  }
 
-  /* =========================
-     Current year
-  ========================== */
+  // =========================
+  // ESC CLOSE MODALS
+  // =========================
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      closeDestinationModal();
+      closeDistrict();
+    }
+  });
+
+  // =========================
+  // YEAR
+  // =========================
   const currentYear =
-    document.getElementById(
-      "currentYear"
-    );
+    document.getElementById("currentYear");
 
   if (currentYear) {
     currentYear.textContent =
       new Date().getFullYear();
   }
 
-  /* =========================
-     Image fallback
-  ========================== */
-  document
-    .querySelectorAll("img")
-    .forEach(image => {
-      image.addEventListener(
-        "error",
-        () => {
-          image.style.background =
-            "linear-gradient(135deg, #d9eee5, #f3e8c9)";
+  console.log("Tourism In Sri Lanka V4 READY 🇱🇰");
 
-          image.alt =
-            image.alt ||
-            "Sri Lanka";
-        }
-      );
-    });
-
-  console.log(
-    "Tourism In Sri Lanka V4 loaded 🇱🇰"
-  );
 });
