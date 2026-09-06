@@ -3,168 +3,961 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tourism In Sri Lanka — a modern guide to destinations, experiences, trip planning, transport, safety and useful travel information.">
-  <meta name="theme-color" content="#0c2d22">
-  <title>Tourism In Sri Lanka | Discover • Plan • Explore</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <title>Tourism In Sri Lanka | Discover the Pearl of the Indian Ocean</title>
+
+  <meta name="description" content="Discover Sri Lanka's best destinations, beaches, wildlife, heritage sites, food, transport and travel information. Plan your perfect Sri Lankan journey.">
+  <meta name="keywords" content="Sri Lanka tourism, travel Sri Lanka, Sri Lanka destinations, Sigiriya, Ella, Kandy, Galle, Mirissa">
+  <meta name="theme-color" content="#087f5b">
+
+  <link rel="preconnect" href="https://commons.wikimedia.org">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="loader" id="loader"><div class="loader-mark">🇱🇰</div><div class="loader-bar"><span></span></div><p>Discovering Sri Lanka</p></div>
 
-<header class="navbar" id="navbar">
-  <a class="logo" href="#home"><span>🌴</span><strong>Tourism<small>In Sri Lanka</small></strong></a>
-  <nav id="navLinks">
-    <a class="active" href="#home">Home</a>
-    <a href="#explore">Explore</a>
-    <a href="#planner">Plan a Trip</a>
-    <a href="#experiences">Experiences</a>
-    <a href="#guide">Travel Info</a>
-  </nav>
-  <div class="nav-actions">
-    <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">☾</button>
-    <a class="nav-cta" href="#planner">Plan My Trip ↗</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i></i><i></i><i></i></button>
-  </div>
-</header>
-
-<main>
-<section class="hero" id="home">
-  <div class="hero-media"></div><div class="hero-shade"></div>
-  <div class="hero-content">
-    <span class="eyebrow glass">THE PEARL OF THE INDIAN OCEAN</span>
-    <h1>One island.<br><em>Endless</em> stories.</h1>
-    <p>Discover ancient cities, misty mountains, wild national parks and tropical shores — then plan your journey in one place.</p>
-    <div class="hero-actions">
-      <a class="btn primary" href="#explore">Explore Sri Lanka <b>→</b></a>
-      <a class="btn ghost" href="#planner">Build my itinerary</a>
-    </div>
-    <div class="hero-search">
-      <span>⌕</span><input id="heroSearch" type="search" placeholder="Search Sigiriya, Ella, Yala..."><button id="heroSearchBtn">Search</button>
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-icon">🇱🇰</div>
+      <h2>Tourism In Sri Lanka</h2>
+      <div class="loader-line"></div>
     </div>
   </div>
-  <div class="hero-meta"><span>📍 Indian Ocean · South Asia</span><span>Scroll to explore ↓</span><span>8 UNESCO World Heritage properties</span></div>
-</section>
 
-<section class="intro section">
-  <div><span class="eyebrow">A BETTER WAY TO DISCOVER THE ISLAND</span><h2>Travel with <em>more context.</em></h2></div>
-  <p>Tourism In Sri Lanka is designed to be useful, not just beautiful. Find a destination, understand what to do there, check the best season, estimate your trip style and keep essential travel information close at hand.</p>
-</section>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <nav class="navbar container">
 
-<section class="stats">
-  <div><strong>8</strong><span>UNESCO World Heritage properties</span></div>
-  <div><strong>25</strong><span>Districts to explore</span></div>
-  <div><strong>9</strong><span>Provinces</span></div>
-  <div><strong>1912</strong><span>Tourism information hotline</span></div>
-</section>
+      <a href="#home" class="logo">
+        <span class="logo-icon">🇱🇰</span>
+        <div>
+          <strong>Tourism</strong>
+          <small>In Sri Lanka</small>
+        </div>
+      </a>
 
-<section class="section explore" id="explore">
-  <div class="section-head">
-    <div><span class="eyebrow">EXPLORE THE ISLAND</span><h2>Find your <em>place.</em></h2></div>
-    <p>Search and filter destinations by the kind of trip you want.</p>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#planner">Trip Planner</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#travel-guide">Travel Guide</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Change theme">
+          <span class="sun">☀️</span>
+          <span class="moon">🌙</span>
+        </button>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content container">
+
+        <span class="hero-badge">
+          🇱🇰 Welcome to Sri Lanka
+        </span>
+
+        <h1>
+          Discover the
+          <span>Wonder of Sri Lanka</span>
+        </h1>
+
+        <p>
+          Ancient kingdoms, tropical beaches, misty mountains,
+          wildlife, unforgettable train journeys and a culture
+          shaped by thousands of years of history.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#destinations" class="btn primary-btn">
+            Explore Sri Lanka
+          </a>
+
+          <a href="#planner" class="btn glass-btn">
+            Plan My Trip
+          </a>
+        </div>
+
+        <div class="hero-stats">
+
+          <div>
+            <strong>8</strong>
+            <span>UNESCO Sites</span>
+          </div>
+
+          <div>
+            <strong>9</strong>
+            <span>Provinces</span>
+          </div>
+
+          <div>
+            <strong>25</strong>
+            <span>Districts</span>
+          </div>
+
+          <div>
+            <strong>∞</strong>
+            <span>Adventures</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <a href="#destinations" class="scroll-down" aria-label="Scroll down">
+        ↓
+      </a>
+
+    </section>
+
+    <!-- QUICK TOOLS -->
+    <section class="quick-tools">
+      <div class="container quick-grid">
+
+        <a href="#planner" class="quick-card">
+          <span>🗓️</span>
+          <div>
+            <strong>Trip Planner</strong>
+            <small>Create your route</small>
+          </div>
+        </a>
+
+        <a href="#season-guide" class="quick-card">
+          <span>🌤️</span>
+          <div>
+            <strong>Best Time</strong>
+            <small>Season guide</small>
+          </div>
+        </a>
+
+        <a href="#transport" class="quick-card">
+          <span>🚆</span>
+          <div>
+            <strong>Transport</strong>
+            <small>Move around Sri Lanka</small>
+          </div>
+        </a>
+
+        <a href="#emergency" class="quick-card">
+          <span>🆘</span>
+          <div>
+            <strong>Emergency</strong>
+            <small>Important numbers</small>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- DESTINATIONS -->
+    <section class="section destinations" id="destinations">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">EXPLORE</span>
+          <h2>Top Destinations</h2>
+          <p>
+            From ancient cities to tropical beaches,
+            discover some of Sri Lanka's most memorable places.
+          </p>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="destination-tools">
+
+          <div class="search-box">
+            <span>🔎</span>
+            <input
+              type="search"
+              id="destinationSearch"
+              placeholder="Search destinations..."
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="heritage">Heritage</button>
+            <button class="filter-btn" data-filter="nature">Nature</button>
+            <button class="filter-btn" data-filter="beach">Beaches</button>
+            <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+            <button class="filter-btn" data-filter="adventure">Adventure</button>
+          </div>
+
+        </div>
+
+        <div class="destination-grid" id="destinationGrid">
+
+          <!-- SIGIRIYA -->
+          <article
+            class="destination-card"
+            data-category="heritage nature"
+            data-title="Sigiriya"
+            data-description="Explore the ancient rock fortress of Sigiriya, famous for its dramatic landscape, archaeological remains and panoramic views."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya%20Sri%20lanka.jpg"
+                alt="Sigiriya rock fortress in Sri Lanka"
+                loading="lazy"
+              >
+              <span class="card-tag">Heritage</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 Central Province</div>
+              <h3>Sigiriya</h3>
+              <p>
+                One of Sri Lanka's most iconic ancient
+                archaeological landscapes.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+          <!-- ELLA -->
+          <article
+            class="destination-card"
+            data-category="nature adventure"
+            data-title="Ella"
+            data-description="Ella is a beautiful hill-country destination known for green mountains, hiking, waterfalls and the famous Nine Arches Bridge."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Nine%20Arches%20Bridge%20in%20Ella.jpg"
+                alt="Nine Arches Bridge Ella"
+                loading="lazy"
+              >
+              <span class="card-tag">Nature</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 Uva Province</div>
+              <h3>Ella</h3>
+              <p>
+                Mountains, tea country, waterfalls and
+                unforgettable railway scenery.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+          <!-- KANDY -->
+          <article
+            class="destination-card"
+            data-category="heritage culture"
+            data-title="Kandy"
+            data-description="Discover Kandy, Sri Lanka's historic hill capital and home to the Sacred City of Kandy."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20tooth%20sri%20lanka.jpg"
+                alt="Temple of the Tooth Kandy"
+                loading="lazy"
+              >
+              <span class="card-tag">Culture</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 Central Province</div>
+              <h3>Kandy</h3>
+              <p>
+                Sacred heritage, hill-country scenery and
+                centuries of Sri Lankan history.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+          <!-- GALLE -->
+          <article
+            class="destination-card"
+            data-category="heritage beach"
+            data-title="Galle"
+            data-description="Walk through the historic streets and fortifications of Galle Fort beside Sri Lanka's southern coast."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/GALLE%20FORT.jpg"
+                alt="Galle Fort Sri Lanka"
+                loading="lazy"
+              >
+              <span class="card-tag">Heritage</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 Southern Province</div>
+              <h3>Galle</h3>
+              <p>
+                Historic fortifications, ocean views and
+                atmospheric old streets.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+          <!-- MIRISSA -->
+          <article
+            class="destination-card"
+            data-category="beach"
+            data-title="Mirissa"
+            data-description="Enjoy the tropical coastline of Mirissa, one of the best-known beach destinations on Sri Lanka's south coast."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Mirissa%20beach,%20Srilanka.jpg"
+                alt="Mirissa Beach Sri Lanka"
+                loading="lazy"
+              >
+              <span class="card-tag">Beach</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 Southern Province</div>
+              <h3>Mirissa</h3>
+              <p>
+                Tropical beaches, ocean scenery and a
+                relaxed southern-coast atmosphere.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+          <!-- NUWARA ELIYA -->
+          <article
+            class="destination-card"
+            data-category="nature"
+            data-title="Nuwara Eliya"
+            data-description="Experience Sri Lanka's cool central highlands, tea country and mountain scenery around Nuwara Eliya."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Nuwara-Eliya.jpg"
+                alt="Nuwara Eliya Sri Lanka"
+                loading="lazy"
+              >
+              <span class="card-tag">Highlands</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 Central Province</div>
+              <h3>Nuwara Eliya</h3>
+              <p>
+                Cool mountain air, tea estates and
+                beautiful highland landscapes.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+          <!-- YALA -->
+          <article
+            class="destination-card"
+            data-category="wildlife nature adventure"
+            data-title="Yala National Park"
+            data-description="Explore Yala National Park and experience Sri Lanka's remarkable wildlife and natural landscapes."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Yala%20National%20Park,%20Sri%20Lanka.jpg"
+                alt="Yala National Park Sri Lanka"
+                loading="lazy"
+              >
+              <span class="card-tag">Wildlife</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 Southern / Uva</div>
+              <h3>Yala National Park</h3>
+              <p>
+                Safari landscapes and some of Sri Lanka's
+                most famous wildlife experiences.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+          <!-- ANURADHAPURA -->
+          <article
+            class="destination-card"
+            data-category="heritage culture"
+            data-title="Anuradhapura"
+            data-description="Explore the ancient sacred city of Anuradhapura and discover one of Sri Lanka's great historic capitals."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Anuradhapura%20in%20Sri%20Lanka.jpg"
+                alt="Anuradhapura Sri Lanka"
+                loading="lazy"
+              >
+              <span class="card-tag">Ancient City</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 North Central Province</div>
+              <h3>Anuradhapura</h3>
+              <p>
+                Ancient monuments, sacred sites and
+                thousands of years of history.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+          <!-- POLONNARUWA -->
+          <article
+            class="destination-card"
+            data-category="heritage culture"
+            data-title="Polonnaruwa"
+            data-description="Discover the archaeological remains of Polonnaruwa, another of Sri Lanka's extraordinary ancient capitals."
+          >
+
+            <div class="card-image">
+              <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Polonnaruwa.jpg"
+                alt="Polonnaruwa Sri Lanka"
+                loading="lazy"
+              >
+              <span class="card-tag">Heritage</span>
+            </div>
+
+            <div class="card-content">
+              <div class="location">📍 North Central Province</div>
+              <h3>Polonnaruwa</h3>
+              <p>
+                Explore remarkable ruins from one of
+                Sri Lanka's ancient kingdoms.
+              </p>
+              <button class="explore-btn">Explore →</button>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TRIP PLANNER -->
+    <section class="section planner-section" id="planner">
+
+      <div class="container planner-wrapper">
+
+        <div class="planner-intro">
+          <span class="eyebrow">SMART PLANNER</span>
+
+          <h2>Build Your Sri Lanka Trip</h2>
+
+          <p>
+            Choose your trip length, travel style and
+            budget to create a simple suggested route.
+          </p>
+
+          <div class="planner-features">
+            <span>✓ Custom duration</span>
+            <span>✓ Different travel styles</span>
+            <span>✓ Instant itinerary</span>
+          </div>
+        </div>
+
+        <div class="planner-box">
+
+          <div class="form-group">
+            <label for="tripDays">
+              Number of Days:
+              <strong><span id="daysOutput">7</span> days</strong>
+            </label>
+
+            <input
+              type="range"
+              id="tripDays"
+              min="2"
+              max="14"
+              value="7"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="travelStyle">Travel Style</label>
+
+            <select id="travelStyle">
+              <option value="classic">Classic Highlights</option>
+              <option value="nature">Nature & Wildlife</option>
+              <option value="beach">Beaches & Coast</option>
+              <option value="culture">History & Culture</option>
+              <option value="adventure">Adventure</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budgetLevel">Budget Level</label>
+
+            <select id="budgetLevel">
+              <option value="value">Value</option>
+              <option value="comfort" selected>Comfort</option>
+              <option value="premium">Premium</option>
+            </select>
+          </div>
+
+          <button class="btn primary-btn full-btn" id="generateTrip">
+            ✨ Generate My Trip
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="container">
+        <div id="itineraryResult"></div>
+      </div>
+
+    </section>
+
+    <!-- EXPERIENCES -->
+    <section class="section" id="experiences">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">EXPERIENCES</span>
+          <h2>More Than a Destination</h2>
+          <p>
+            Explore the experiences that make a journey
+            through Sri Lanka unforgettable.
+          </p>
+        </div>
+
+        <div class="experience-grid">
+
+          <div class="experience-card">
+            <div class="experience-icon">🐘</div>
+            <h3>Wildlife</h3>
+            <p>
+              Discover national parks, forests and
+              Sri Lanka's extraordinary biodiversity.
+            </p>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-icon">🏄</div>
+            <h3>Surf & Beaches</h3>
+            <p>
+              Explore tropical coastlines from the
+              southwest to the famous eastern surf towns.
+            </p>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-icon">🚆</div>
+            <h3>Scenic Railways</h3>
+            <p>
+              Travel through tea country, valleys and
+              mist-covered mountains.
+            </p>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-icon">🏛️</div>
+            <h3>Ancient Heritage</h3>
+            <p>
+              Discover ancient capitals, temples,
+              fortresses and archaeological sites.
+            </p>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-icon">🍛</div>
+            <h3>Sri Lankan Food</h3>
+            <p>
+              Experience rice and curry, hoppers,
+              kottu and regional flavours.
+            </p>
+          </div>
+
+          <div class="experience-card">
+            <div class="experience-icon">🥾</div>
+            <h3>Adventure</h3>
+            <p>
+              Hiking, rafting, surfing and outdoor
+              experiences across the island.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEASON GUIDE -->
+    <section class="section season-section" id="season-guide">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">WHEN TO VISIT</span>
+          <h2>Sri Lanka Season Guide</h2>
+          <p>
+            Weather varies across the island, so the best
+            coast or region depends on the time of year.
+          </p>
+        </div>
+
+        <div class="season-grid">
+
+          <div class="season-card">
+            <span>🌤️</span>
+            <h3>December – February</h3>
+            <p>
+              Northeast monsoon period. Conditions can
+              differ significantly between regions.
+            </p>
+          </div>
+
+          <div class="season-card">
+            <span>🌦️</span>
+            <h3>March – April</h3>
+            <p>
+              First inter-monsoon period, with changing
+              weather patterns around the island.
+            </p>
+          </div>
+
+          <div class="season-card">
+            <span>🌧️</span>
+            <h3>May – September</h3>
+            <p>
+              Southwest monsoon period, particularly
+              important when planning coastal travel.
+            </p>
+          </div>
+
+          <div class="season-card">
+            <span>⛈️</span>
+            <h3>October – November</h3>
+            <p>
+              Second inter-monsoon period with rainfall
+              possible across many areas.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TRAVEL GUIDE -->
+    <section class="section travel-guide" id="travel-guide">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">TRAVEL ESSENTIALS</span>
+          <h2>Know Before You Go</h2>
+        </div>
+
+        <div class="info-grid">
+
+          <div class="info-card">
+            <span>🛂</span>
+            <h3>Visa & Entry</h3>
+            <p>
+              Check the latest official immigration and
+              tourism information before travelling.
+            </p>
+          </div>
+
+          <div class="info-card" id="transport">
+            <span>🚆</span>
+            <h3>Transport</h3>
+            <p>
+              Trains, buses, taxis and other transport
+              options connect destinations around the island.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <span>💵</span>
+            <h3>Currency</h3>
+            <p>
+              Sri Lanka uses the Sri Lankan Rupee (LKR).
+            </p>
+          </div>
+
+          <div class="info-card">
+            <span>📱</span>
+            <h3>Connectivity</h3>
+            <p>
+              Mobile connectivity is widely available,
+              though coverage varies by location.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EMERGENCY -->
+    <section class="section emergency-section" id="emergency">
+
+      <div class="container">
+
+        <div class="section-heading light-heading">
+          <span class="eyebrow">TRAVEL SAFETY</span>
+          <h2>Important Numbers</h2>
+          <p>Keep these numbers available while travelling.</p>
+        </div>
+
+        <div class="emergency-grid">
+
+          <a href="tel:1912" class="emergency-card">
+            <span>🇱🇰</span>
+            <small>Tourism Hotline</small>
+            <strong>1912</strong>
+          </a>
+
+          <a href="tel:119" class="emergency-card">
+            <span>👮</span>
+            <small>Police Emergency</small>
+            <strong>119</strong>
+          </a>
+
+          <a href="tel:1990" class="emergency-card">
+            <span>🚑</span>
+            <small>Ambulance</small>
+            <strong>1990</strong>
+          </a>
+
+          <a href="tel:110" class="emergency-card">
+            <span>🚒</span>
+            <small>Fire & Rescue</small>
+            <strong>110</strong>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section gallery-section" id="gallery">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">GALLERY</span>
+          <h2>Beautiful Sri Lanka</h2>
+          <p>
+            A glimpse of the landscapes, heritage and
+            coastlines waiting across the island.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya%20Sri%20lanka.jpg"
+            alt="Sigiriya"
+            loading="lazy"
+          >
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Nine%20Arches%20Bridge%20in%20Ella.jpg"
+            alt="Ella"
+            loading="lazy"
+          >
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/GALLE%20FORT.jpg"
+            alt="Galle"
+            loading="lazy"
+          >
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Mirissa%20beach,%20Srilanka.jpg"
+            alt="Mirissa"
+            loading="lazy"
+          >
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Nuwara-Eliya.jpg"
+            alt="Nuwara Eliya"
+            loading="lazy"
+          >
+
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:FilePath/Yala%20National%20Park,%20Sri%20Lanka.jpg"
+            alt="Yala National Park"
+            loading="lazy"
+          >
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OFFICIAL RESOURCES -->
+    <section class="section resources-section">
+
+      <div class="container">
+
+        <div class="resources-box">
+
+          <div>
+            <span class="eyebrow">PLAN RESPONSIBLY</span>
+            <h2>Official Travel Resources</h2>
+            <p>
+              For visas, current travel information and
+              official tourism services, always confirm
+              details through official Sri Lankan authorities.
+            </p>
+          </div>
+
+          <div class="resource-buttons">
+
+            <a
+              href="https://www.srilanka.travel/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn primary-btn"
+            >
+              Sri Lanka Tourism
+            </a>
+
+            <a
+              href="https://www.sltda.gov.lk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn outline-btn"
+            >
+              SLTDA
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- DESTINATION MODAL -->
+  <div class="destination-modal" id="destinationModal">
+
+    <div class="modal-box">
+
+      <button class="modal-close" aria-label="Close">
+        ×
+      </button>
+
+      <img id="modalImage" src="" alt="">
+
+      <div class="modal-content">
+        <span class="eyebrow">DISCOVER SRI LANKA</span>
+        <h2 id="modalTitle">Destination</h2>
+        <p id="modalDescription"></p>
+      </div>
+
+    </div>
+
   </div>
-  <div class="filterbar">
-    <input id="destinationSearch" type="search" placeholder="Search destinations...">
-    <button class="filter active" data-filter="all">All</button>
-    <button class="filter" data-filter="heritage">Heritage</button>
-    <button class="filter" data-filter="nature">Nature</button>
-    <button class="filter" data-filter="beach">Beach</button>
-    <button class="filter" data-filter="adventure">Adventure</button>
-  </div>
-  <div class="destination-grid" id="destinationGrid"></div>
-</section>
 
-<section class="planner section" id="planner">
-  <div class="planner-copy">
-    <span class="eyebrow">TRIP PLANNER</span>
-    <h2>Build a trip that fits <em>you.</em></h2>
-    <p>Choose your days, travel style and budget level. The planner creates a simple starting itinerary — you can adjust it afterwards.</p>
-    <div class="planner-note">Tip: use this as a planning starting point, then confirm current prices, opening times and transport before travelling.</div>
-  </div>
-  <div class="planner-card">
-    <div class="field"><label>How many days?</label><div class="range-row"><input id="days" type="range" min="2" max="14" value="5"><strong><span id="daysValue">5</span> days</strong></div></div>
-    <div class="field"><label>Travel style</label><select id="style"><option value="classic">Classic highlights</option><option value="nature">Nature & wildlife</option><option value="beach">Beaches & coast</option><option value="heritage">History & culture</option><option value="adventure">Adventure</option></select></div>
-    <div class="field"><label>Budget level</label><select id="budget"><option value="value">Value</option><option value="comfort">Comfort</option><option value="premium">Premium</option></select></div>
-    <button class="btn primary full" id="planBtn">Create my itinerary →</button>
-    <div class="itinerary" id="itinerary"></div>
-  </div>
-</section>
+  <!-- FOOTER -->
+  <footer class="footer">
 
-<section class="section experiences" id="experiences">
-  <div class="section-head centered"><span class="eyebrow">LIVE THE ISLAND</span><h2>Experiences worth <em>the journey.</em></h2><p>From wildlife and rail journeys to food, surf and living heritage.</p></div>
-  <div class="experience-grid">
-    <article><span>01</span><b>🐘</b><h3>Wildlife Safari</h3><p>Look for elephants, birds and Sri Lankan wildlife in protected landscapes.</p></article>
-    <article><span>02</span><b>🚂</b><h3>Hill Country Train</h3><p>Travel through tea country, valleys and mountain scenery around the central highlands.</p></article>
-    <article><span>03</span><b>🏄</b><h3>Surf & Coast</h3><p>Choose a coast that suits the season and discover beaches from quiet coves to surf towns.</p></article>
-    <article><span>04</span><b>🍛</b><h3>Local Food</h3><p>Try rice and curry, hoppers, kottu, string hoppers and tropical fruit.</p></article>
-    <article><span>05</span><b>🛕</b><h3>Living Heritage</h3><p>Explore sacred sites, ancient cities, architecture, festivals and local traditions.</p></article>
-    <article><span>06</span><b>🌿</b><h3>Tea Country</h3><p>Slow down among highland tea estates, waterfalls and cool mountain air.</p></article>
-  </div>
-</section>
+    <div class="container footer-grid">
 
-<section class="feature">
-  <div class="feature-bg"></div><div class="feature-overlay"></div>
-  <div class="feature-content"><span class="eyebrow">THE JOURNEY</span><h2>Let the road<br>tell the <em>story.</em></h2><p>Not every great Sri Lankan experience is a landmark. Sometimes it is a train window, a roadside tea, a village road or a sunset you did not plan for.</p><a class="btn primary" href="#gallery">Open visual guide →</a></div>
-</section>
+      <div>
+        <a href="#home" class="footer-logo">
+          🇱🇰 Tourism In Sri Lanka
+        </a>
 
-<section class="section guide" id="guide">
-  <div class="section-head"><div><span class="eyebrow">TRAVEL INFORMATION</span><h2>Useful before you <em>go.</em></h2></div><p>Quick guidance for planning, moving around and staying prepared.</p></div>
-  <div class="guide-grid">
-    <article><span>01</span><h3>Best time to visit</h3><p>Sri Lanka can be travelled year-round, but the best coast depends on the season. Check the regional weather before choosing your route.</p></article>
-    <article><span>02</span><h3>Getting around</h3><p>Trains, buses, tuk-tuks, taxis and private vehicles are common options. Travel time can be longer than the map distance suggests.</p></article>
-    <article><span>03</span><h3>Respect & culture</h3><p>Dress appropriately at religious sites, follow photography rules and respect local customs and communities.</p></article>
-    <article><span>04</span><h3>Money & planning</h3><p>Keep some local currency available and confirm current attraction fees, transport fares and accommodation prices before booking.</p></article>
-  </div>
-</section>
+        <p>
+          Discover the Pearl of the Indian Ocean and
+          plan unforgettable journeys across Sri Lanka.
+        </p>
+      </div>
 
-<section class="section emergency">
-  <div><div><span class="eyebrow">SAVE THIS</span><h2>Important numbers.</h2><p>Keep these official contacts accessible while travelling.</p></div>
-  <div class="emergency-grid">
-    <a href="tel:1912"><strong>1912</strong><span>Tourism information</span></a>
-    <a href="tel:1990"><strong>1990</strong><span>Suwa Seriya ambulance</span></a>
-    <a href="tel:118"><strong>118 / 119</strong><span>Police emergency</span></a>
-    <a href="tel:110"><strong>110</strong><span>Ambulance / fire & rescue</span></a>
-  </div></div>
-</section>
+      <div>
+        <h4>Explore</h4>
+        <a href="#destinations">Destinations</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#gallery">Gallery</a>
+      </div>
 
-<section class="section gallery" id="gallery">
-  <div class="section-head centered"><span class="eyebrow">REAL PLACES</span><h2>Sri Lanka, <em>in pictures.</em></h2><p>Photo sources are credited in the site footer.</p></div>
-  <div class="gallery-grid">
-    <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya_Sri_lanka.jpg" alt="Sigiriya Rock"><figcaption>Sigiriya</figcaption></figure>
-    <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Nine_Arches_Bridge_in_Ella.jpg" alt="Nine Arch Bridge in Ella"><figcaption>Ella</figcaption></figure>
-    <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Temple_of_tooth_sri_lanka.jpg" alt="Temple of the Tooth"><figcaption>Kandy</figcaption></figure>
-    <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/GALLE_FORT.jpg" alt="Galle Fort"><figcaption>Galle Fort</figcaption></figure>
-    <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mirissa_beach,_Srilanka.jpg" alt="Mirissa Beach"><figcaption>Mirissa</figcaption></figure>
-    <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Yala_National_Park,_Sri_Lanka.jpg" alt="Yala National Park"><figcaption>Yala</figcaption></figure>
-  </div>
-</section>
+      <div>
+        <h4>Plan</h4>
+        <a href="#planner">Trip Planner</a>
+        <a href="#season-guide">Best Time</a>
+        <a href="#travel-guide">Travel Guide</a>
+      </div>
 
-<section class="section links">
-  <div class="section-head"><div><span class="eyebrow">OFFICIAL RESOURCES</span><h2>Go to the <em>source.</em></h2></div><p>For time-sensitive information, use official services and verify before travelling.</p></div>
-  <div class="official-grid">
-    <a href="https://www.srilanka.travel/" target="_blank" rel="noopener"><b>Sri Lanka Tourism</b><span>Official tourism portal ↗</span></a>
-    <a href="https://www.srilanka.travel/tourist-attractions" target="_blank" rel="noopener"><b>Tourist Attractions</b><span>Places and themes ↗</span></a>
-    <a href="https://www.srilanka.travel/tourist-map/tourist-guides" target="_blank" rel="noopener"><b>Tourist Map</b><span>Roads, sites and travel map ↗</span></a>
-    <a href="https://www.srilanka.travel/emergency-services" target="_blank" rel="noopener"><b>Emergency Services</b><span>Official emergency contacts ↗</span></a>
-  </div>
-</section>
-</main>
+      <div>
+        <h4>Safety</h4>
+        <a href="#emergency">Emergency Numbers</a>
+        <a href="tel:1912">Tourism Hotline 1912</a>
+      </div>
 
-<footer>
-  <div class="footer-main">
-    <a class="logo" href="#home"><span>🌴</span><strong>Tourism<small>In Sri Lanka</small></strong></a>
-    <p>Discover • Plan • Explore Sri Lanka</p>
-  </div>
-  <div class="credits">
-    <span>Built with HTML • CSS • JavaScript</span>
-    <span>Photo credits: Wikimedia Commons contributors. Check each source page for license/attribution requirements.</span>
-  </div>
-</footer>
+    </div>
 
-<div class="modal" id="modal"><div class="modal-box"><button class="modal-close" id="modalClose">×</button><img id="modalImage" alt=""><div class="modal-body"><span id="modalType"></span><h2 id="modalTitle"></h2><p id="modalText"></p><div class="modal-facts" id="modalFacts"></div></div></div></div>
-<button class="top-btn" id="backTop">↑</button>
-<script src="script.js"></script>
+    <div class="container footer-bottom">
+
+      <p>
+        © <span id="currentYear"></span>
+        Tourism In Sri Lanka.
+      </p>
+
+      <p>
+        Travel information should be verified with
+        official authorities before your journey.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" aria-label="Back to top">
+    ↑
+  </button>
+
+  <script src="script.js"></script>
+
 </body>
 </html>
