@@ -1,28 +1,66 @@
-// Tourism In Sri Lanka - script.js
-
 document.addEventListener("DOMContentLoaded", () => {
-
-  // =========================
-  // PAGE LOADER
-  // =========================
+  const body = document.body;
+  const header = document.querySelector(".header");
+  const navLinks = document.querySelector(".nav-links");
+  const menuBtn = document.querySelector(".menu-btn");
+  const themeToggle = document.querySelector(".theme-toggle");
   const loader = document.querySelector(".loader");
+  const backToTop = document.querySelector(".back-to-top");
 
-  if (loader) {
-    window.addEventListener("load", () => {
+  const searchInput = document.querySelector("#destinationSearch");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const destinationCards = document.querySelectorAll(".destination-card");
+
+  const modal = document.querySelector("#destinationModal");
+  const modalTitle = document.querySelector("#modalTitle");
+  const modalDescription = document.querySelector("#modalDescription");
+  const modalImage = document.querySelector("#modalImage");
+  const modalClose = document.querySelector(".modal-close");
+
+  const daysInput = document.querySelector("#tripDays");
+  const daysOutput = document.querySelector("#daysOutput");
+  const travelStyle = document.querySelector("#travelStyle");
+  const budgetLevel = document.querySelector("#budgetLevel");
+  const generateTripBtn = document.querySelector("#generateTrip");
+  const itineraryResult = document.querySelector("#itineraryResult");
+  const currentYear = document.querySelector("#currentYear");
+
+  /* =========================
+     LOADER
+  ========================= */
+
+  window.addEventListener("load", () => {
+    if (!loader) return;
+
+    setTimeout(() => {
       loader.classList.add("loader-hidden");
 
       setTimeout(() => {
         loader.style.display = "none";
       }, 500);
-    });
+    }, 350);
+  });
+
+  /* =========================
+     HEADER SCROLL
+  ========================= */
+
+  function handleHeaderScroll() {
+    if (!header) return;
+
+    if (window.scrollY > 40) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
   }
 
+  handleHeaderScroll();
+  window.addEventListener("scroll", handleHeaderScroll);
 
-  // =========================
-  // MOBILE MENU
-  // =========================
-  const menuBtn = document.querySelector(".menu-btn");
-  const navLinks = document.querySelector(".nav-links");
+  /* =========================
+     MOBILE MENU
+  ========================= */
 
   if (menuBtn && navLinks) {
     menuBtn.addEventListener("click", () => {
@@ -30,53 +68,60 @@ document.addEventListener("DOMContentLoaded", () => {
       menuBtn.classList.toggle("active");
     });
 
-    document.querySelectorAll(".nav-links a").forEach(link => {
+    navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("active");
         menuBtn.classList.remove("active");
       });
     });
+
+    document.addEventListener("click", (event) => {
+      const clickedInsideMenu =
+        navLinks.contains(event.target) || menuBtn.contains(event.target);
+
+      if (!clickedInsideMenu) {
+        navLinks.classList.remove("active");
+        menuBtn.classList.remove("active");
+      }
+    });
   }
 
-
-  // =========================
-  // DARK MODE
-  // =========================
-  const themeToggle = document.querySelector(".theme-toggle");
+  /* =========================
+     DARK MODE
+  ========================= */
 
   const savedTheme = localStorage.getItem("tourism-theme");
 
   if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
+    body.classList.add("dark-mode");
   }
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
+      body.classList.toggle("dark-mode");
 
-      const currentTheme =
-        document.body.classList.contains("dark-mode")
-          ? "dark"
-          : "light";
+      const currentTheme = body.classList.contains("dark-mode")
+        ? "dark"
+        : "light";
 
       localStorage.setItem("tourism-theme", currentTheme);
     });
   }
 
+  /* =========================
+     SMOOTH SCROLL
+  ========================= */
 
-  // =========================
-  // SMOOTH SCROLL
-  // =========================
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-      const id = this.getAttribute("href");
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", function (event) {
+      const targetId = this.getAttribute("href");
 
-      if (!id || id === "#") return;
+      if (!targetId || targetId === "#") return;
 
-      const target = document.querySelector(id);
+      const target = document.querySelector(targetId);
 
       if (target) {
-        e.preventDefault();
+        event.preventDefault();
 
         target.scrollIntoView({
           behavior: "smooth",
@@ -86,24 +131,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* =========================
+     DESTINATION SEARCH + FILTER
+  ========================= */
 
-  // =========================
-  // DESTINATION SEARCH
-  // =========================
-  const searchInput = document.querySelector("#destinationSearch");
-  const destinationCards = document.querySelectorAll(".destination-card");
+  let activeFilter = "all";
 
-  function filterDestinations() {
-    if (!searchInput) return;
+  function updateDestinationCards() {
+    const searchText = searchInput
+      ? searchInput.value.toLowerCase().trim()
+      : "";
 
-    const searchValue = searchInput.value
-      .toLowerCase()
-      .trim();
+    destinationCards.forEach((card) => {
+      const title = card.dataset.title?.toLowerCase() || "";
+      const category = card.dataset.category?.toLowerCase() || "";
+      const cardText = card.textContent.toLowerCase();
 
-    destinationCards.forEach(card => {
-      const text = card.textContent.toLowerCase();
+      const matchesSearch =
+        title.includes(searchText) || cardText.includes(searchText);
 
-      if (text.includes(searchValue)) {
+      const matchesFilter =
+        activeFilter === "all" || category.includes(activeFilter);
+
+      if (matchesSearch && matchesFilter) {
         card.style.display = "";
       } else {
         card.style.display = "none";
@@ -112,122 +162,253 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (searchInput) {
-    searchInput.addEventListener("input", filterDestinations);
+    searchInput.addEventListener("input", updateDestinationCards);
   }
 
-
-  // =========================
-  // DESTINATION FILTERS
-  // =========================
-  const filterButtons = document.querySelectorAll(".filter-btn");
-
-  filterButtons.forEach(button => {
+  filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
-
-      filterButtons.forEach(btn => {
-        btn.classList.remove("active");
-      });
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
 
       button.classList.add("active");
 
-      const filter = button.dataset.filter;
+      activeFilter = button.dataset.filter || "all";
 
-      destinationCards.forEach(card => {
-        const category = card.dataset.category || "";
-
-        if (
-          filter === "all" ||
-          category.toLowerCase().includes(filter.toLowerCase())
-        ) {
-          card.style.display = "";
-        } else {
-          card.style.display = "none";
-        }
-      });
+      updateDestinationCards();
     });
   });
 
+  /* =========================
+     DESTINATION MODAL
+  ========================= */
 
-  // =========================
-  // DESTINATION MODAL
-  // =========================
-  const modal = document.querySelector("#destinationModal");
-  const modalTitle = document.querySelector("#modalTitle");
-  const modalDescription = document.querySelector("#modalDescription");
-  const modalImage = document.querySelector("#modalImage");
-  const modalClose = document.querySelector(".modal-close");
+  function openDestinationModal(card) {
+    if (!modal) return;
 
-  destinationCards.forEach(card => {
+    const title =
+      card.dataset.title ||
+      card.querySelector("h3")?.textContent ||
+      "Sri Lanka";
 
-    card.addEventListener("click", () => {
+    const description =
+      card.dataset.description ||
+      card.querySelector("p")?.textContent ||
+      "Discover this beautiful Sri Lankan destination.";
 
-      if (!modal) return;
+    const image = card.querySelector("img");
 
-      const title =
-        card.dataset.title ||
-        card.querySelector("h3")?.textContent ||
-        "Sri Lanka";
+    if (modalTitle) {
+      modalTitle.textContent = title;
+    }
 
-      const description =
-        card.dataset.description ||
-        card.querySelector("p")?.textContent ||
-        "Discover one of Sri Lanka's unforgettable destinations.";
+    if (modalDescription) {
+      modalDescription.textContent = description;
+    }
 
-      const image =
-        card.dataset.image ||
-        card.querySelector("img")?.src ||
-        "";
+    if (modalImage && image) {
+      modalImage.src = image.src;
+      modalImage.alt = title;
+    }
 
-      if (modalTitle) {
-        modalTitle.textContent = title;
-      }
+    modal.classList.add("active");
+    body.style.overflow = "hidden";
+  }
 
-      if (modalDescription) {
-        modalDescription.textContent = description;
-      }
-
-      if (modalImage && image) {
-        modalImage.src = image;
-        modalImage.alt = title;
-      }
-
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-
-  function closeModal() {
+  function closeDestinationModal() {
     if (!modal) return;
 
     modal.classList.remove("active");
-    document.body.style.overflow = "";
+    body.style.overflow = "";
   }
 
+  destinationCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      openDestinationModal(card);
+    });
+  });
+
   if (modalClose) {
-    modalClose.addEventListener("click", closeModal);
+    modalClose.addEventListener("click", closeDestinationModal);
   }
 
   if (modal) {
-    modal.addEventListener("click", e => {
-      if (e.target === modal) {
-        closeModal();
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeDestinationModal();
       }
     });
   }
 
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-      closeModal();
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeDestinationModal();
     }
   });
 
+  /* =========================
+     TRIP PLANNER
+  ========================= */
 
-  // =========================
-  // TRIP PLANNER
-  // =========================
-  const daysInput = document.querySelector("#tripDays");
-  const daysOutput = document.querySelector("#daysOutput");
+  const tripRoutes = {
+    classic: [
+      {
+        place: "Colombo",
+        activity: "Arrival, city highlights and local food."
+      },
+      {
+        place: "Sigiriya",
+        activity: "Explore the Cultural Triangle and Sigiriya area."
+      },
+      {
+        place: "Kandy",
+        activity: "Discover hill-country culture and heritage."
+      },
+      {
+        place: "Nuwara Eliya",
+        activity: "Enjoy tea country and cool mountain scenery."
+      },
+      {
+        place: "Ella",
+        activity: "Explore hiking trails and famous railway scenery."
+      },
+      {
+        place: "Yala",
+        activity: "Experience a wildlife-focused southern journey."
+      },
+      {
+        place: "Galle",
+        activity: "Walk through historic Galle Fort."
+      },
+      {
+        place: "Mirissa",
+        activity: "Relax along the southern coastline."
+      }
+    ],
+
+    nature: [
+      {
+        place: "Sinharaja",
+        activity: "Experience Sri Lanka's tropical rainforest environment."
+      },
+      {
+        place: "Udawalawe",
+        activity: "Explore wildlife and open landscapes."
+      },
+      {
+        place: "Yala",
+        activity: "Enjoy a national park safari experience."
+      },
+      {
+        place: "Ella",
+        activity: "Hike through beautiful mountain scenery."
+      },
+      {
+        place: "Horton Plains",
+        activity: "Explore cool highland grasslands and walking trails."
+      },
+      {
+        place: "Nuwara Eliya",
+        activity: "Discover tea estates and highland landscapes."
+      }
+    ],
+
+    beach: [
+      {
+        place: "Negombo",
+        activity: "Begin with a relaxed coastal experience."
+      },
+      {
+        place: "Bentota",
+        activity: "Enjoy beaches and water-based activities."
+      },
+      {
+        place: "Hikkaduwa",
+        activity: "Explore the southwest coast."
+      },
+      {
+        place: "Unawatuna",
+        activity: "Spend time on a popular southern beach."
+      },
+      {
+        place: "Mirissa",
+        activity: "Enjoy tropical scenery and coastal relaxation."
+      },
+      {
+        place: "Tangalle",
+        activity: "Explore quieter beaches further south."
+      },
+      {
+        place: "Arugam Bay",
+        activity: "Experience one of Sri Lanka's best-known surf areas."
+      },
+      {
+        place: "Trincomalee",
+        activity: "Discover the northeastern coastline."
+      }
+    ],
+
+    culture: [
+      {
+        place: "Anuradhapura",
+        activity: "Explore one of Sri Lanka's ancient capitals."
+      },
+      {
+        place: "Polonnaruwa",
+        activity: "Discover extraordinary archaeological remains."
+      },
+      {
+        place: "Sigiriya",
+        activity: "Visit the historic rock fortress landscape."
+      },
+      {
+        place: "Dambulla",
+        activity: "Explore important cultural and religious heritage."
+      },
+      {
+        place: "Kandy",
+        activity: "Discover Sri Lanka's historic hill capital."
+      },
+      {
+        place: "Galle",
+        activity: "Walk through the historic fortified old town."
+      }
+    ],
+
+    adventure: [
+      {
+        place: "Kitulgala",
+        activity: "Enjoy outdoor adventure activities and tropical scenery."
+      },
+      {
+        place: "Ella",
+        activity: "Hike through mountain landscapes."
+      },
+      {
+        place: "Knuckles",
+        activity: "Explore rugged highland trails."
+      },
+      {
+        place: "Horton Plains",
+        activity: "Walk through dramatic highland scenery."
+      },
+      {
+        place: "Arugam Bay",
+        activity: "Experience Sri Lanka's eastern surf culture."
+      },
+      {
+        place: "Yala",
+        activity: "Add a wildlife adventure to your journey."
+      }
+    ]
+  };
+
+  const budgetDescriptions = {
+    value:
+      "Focus on guesthouses, public transport and affordable local meals.",
+    comfort:
+      "Mix comfortable hotels, private transfers and local experiences.",
+    premium:
+      "Choose higher-end stays, private transport and premium experiences."
+  };
 
   if (daysInput && daysOutput) {
     daysOutput.textContent = daysInput.value;
@@ -237,234 +418,115 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
-  const generateTripBtn =
-    document.querySelector("#generateTrip");
-
-  const itineraryResult =
-    document.querySelector("#itineraryResult");
-
-
-  const itineraries = {
-
-    classic: [
-      "Colombo",
-      "Sigiriya",
-      "Dambulla",
-      "Kandy",
-      "Nuwara Eliya",
-      "Ella",
-      "Yala",
-      "Galle",
-      "Mirissa"
-    ],
-
-    nature: [
-      "Sinharaja",
-      "Udawalawe",
-      "Yala",
-      "Ella",
-      "Horton Plains",
-      "Nuwara Eliya",
-      "Knuckles"
-    ],
-
-    beach: [
-      "Negombo",
-      "Bentota",
-      "Hikkaduwa",
-      "Unawatuna",
-      "Mirissa",
-      "Tangalle",
-      "Arugam Bay",
-      "Trincomalee"
-    ],
-
-    culture: [
-      "Anuradhapura",
-      "Polonnaruwa",
-      "Sigiriya",
-      "Dambulla",
-      "Kandy",
-      "Galle"
-    ],
-
-    adventure: [
-      "Kitulgala",
-      "Ella",
-      "Knuckles",
-      "Horton Plains",
-      "Arugam Bay",
-      "Yala"
-    ]
-  };
-
-
-  if (generateTripBtn) {
-
-    generateTripBtn.addEventListener("click", () => {
-
-      const days =
-        parseInt(daysInput?.value || "5", 10);
-
-      const style =
-        document.querySelector("#travelStyle")?.value ||
-        "classic";
-
-      const budget =
-        document.querySelector("#budgetLevel")?.value ||
-        "comfort";
-
-      const route =
-        itineraries[style] ||
-        itineraries.classic;
-
-
-      let html = `
-        <div class="generated-trip">
-          <h3>Your ${days}-Day Sri Lanka Adventure</h3>
-
-          <p>
-            Travel style:
-            <strong>${formatText(style)}</strong>
-          </p>
-
-          <p>
-            Budget:
-            <strong>${formatText(budget)}</strong>
-          </p>
-
-          <div class="trip-days">
-      `;
-
-
-      for (let day = 1; day <= days; day++) {
-
-        const destination =
-          route[(day - 1) % route.length];
-
-        html += `
-          <div class="trip-day">
-            <span>Day ${day}</span>
-
-            <div>
-              <h4>${destination}</h4>
-              <p>
-                Explore the highlights, local culture,
-                food and scenery of ${destination}.
-              </p>
-            </div>
-          </div>
-        `;
-      }
-
-
-      html += `
-          </div>
-
-          <p class="planner-note">
-            This itinerary is a planning guide.
-            Always check current transport,
-            weather and official travel information
-            before travelling.
-          </p>
-        </div>
-      `;
-
-
-      if (itineraryResult) {
-        itineraryResult.innerHTML = html;
-
-        itineraryResult.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-      }
-    });
-  }
-
-
-  function formatText(text) {
+  function formatName(text) {
     return text
       .replace(/-/g, " ")
-      .replace(/\b\w/g, letter =>
-        letter.toUpperCase()
-      );
+      .replace(/\b\w/g, (letter) => letter.toUpperCase());
   }
 
+  function generateItinerary() {
+    if (!itineraryResult) return;
 
-  // =========================
-  // SCROLL REVEAL
-  // =========================
-  const revealElements =
-    document.querySelectorAll(
-      ".reveal, .destination-card, .experience-card, .info-card"
-    );
+    const totalDays = parseInt(daysInput?.value || "7", 10);
+    const style = travelStyle?.value || "classic";
+    const budget = budgetLevel?.value || "comfort";
 
+    const route = tripRoutes[style] || tripRoutes.classic;
 
-  if ("IntersectionObserver" in window) {
+    let itineraryHTML = `
+      <div class="generated-trip">
+        <h3>${totalDays}-Day Sri Lanka Journey</h3>
 
-    const revealObserver =
-      new IntersectionObserver(
-        entries => {
+        <p>
+          Style:
+          <strong>${formatName(style)}</strong>
+          &nbsp;•&nbsp;
+          Budget:
+          <strong>${formatName(budget)}</strong>
+        </p>
 
-          entries.forEach(entry => {
+        <p style="margin-top:8px;">
+          ${budgetDescriptions[budget]}
+        </p>
 
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              revealObserver.unobserve(entry.target);
-            }
+        <div class="trip-days">
+    `;
 
-          });
+    for (let day = 1; day <= totalDays; day++) {
+      const stop = route[(day - 1) % route.length];
 
-        },
-        {
-          threshold: 0.12
-        }
-      );
+      itineraryHTML += `
+        <div class="trip-day">
+          <span>DAY ${day}</span>
 
-
-    revealElements.forEach(element => {
-      revealObserver.observe(element);
-    });
-
-  } else {
-
-    revealElements.forEach(element => {
-      element.classList.add("visible");
-    });
-
-  }
-
-
-  // =========================
-  // NAVBAR ON SCROLL
-  // =========================
-  const navbar =
-    document.querySelector(".navbar");
-
-  window.addEventListener("scroll", () => {
-
-    if (!navbar) return;
-
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
+          <div>
+            <h4>${stop.place}</h4>
+            <p>${stop.activity}</p>
+          </div>
+        </div>
+      `;
     }
 
-  });
+    itineraryHTML += `
+        </div>
 
+        <p class="planner-note">
+          This itinerary is a suggested planning guide only.
+          Check current transport, weather, opening hours and
+          official travel information before travelling.
+        </p>
+      </div>
+    `;
 
-  // =========================
-  // BACK TO TOP
-  // =========================
-  const backToTop =
-    document.querySelector(".back-to-top");
+    itineraryResult.innerHTML = itineraryHTML;
 
+    itineraryResult.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
 
-  window.addEventListener("scroll", () => {
+  if (generateTripBtn) {
+    generateTripBtn.addEventListener("click", generateItinerary);
+  }
 
+  /* =========================
+     SCROLL REVEAL
+  ========================= */
+
+  const revealElements = document.querySelectorAll(
+    ".destination-card, .experience-card, .info-card, .season-card, .emergency-card"
+  );
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries, revealObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+  } else {
+    revealElements.forEach((element) => {
+      element.classList.add("visible");
+    });
+  }
+
+  /* =========================
+     BACK TO TOP
+  ========================= */
+
+  function updateBackToTop() {
     if (!backToTop) return;
 
     if (window.scrollY > 500) {
@@ -472,38 +534,38 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       backToTop.classList.remove("show");
     }
+  }
 
-  });
-
+  updateBackToTop();
+  window.addEventListener("scroll", updateBackToTop);
 
   if (backToTop) {
-
     backToTop.addEventListener("click", () => {
-
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
-
     });
-
   }
 
+  /* =========================
+     CURRENT YEAR
+  ========================= */
 
-  // =========================
-  // CURRENT YEAR
-  // =========================
-  const yearElement =
-    document.querySelector("#currentYear");
-
-  if (yearElement) {
-    yearElement.textContent =
-      new Date().getFullYear();
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
   }
 
+  /* =========================
+     IMAGE ERROR FALLBACK
+  ========================= */
 
-  console.log(
-    "Tourism In Sri Lanka website loaded successfully 🇱🇰"
-  );
+  document.querySelectorAll("img").forEach((image) => {
+    image.addEventListener("error", () => {
+      image.style.background = "#dfe8e4";
+      image.alt = `${image.alt || "Sri Lanka"} image unavailable`;
+    });
+  });
 
+  console.log("Tourism In Sri Lanka V3 loaded 🇱🇰");
 });
