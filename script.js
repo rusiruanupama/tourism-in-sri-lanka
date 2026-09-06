@@ -1,527 +1,1340 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =========================
-  // ELEMENTS
-  // =========================
   const body = document.body;
-  const header = document.getElementById("header");
-  const loader = document.getElementById("loader");
-  const menuToggle = document.getElementById("menuToggle");
-  const nav = document.getElementById("nav");
-  const themeToggle = document.getElementById("themeToggle");
-  const langToggle = document.getElementById("langToggle");
-  const backToTop = document.getElementById("backToTop");
+
+  const loader =
+    document.getElementById("loader");
+
+  const header =
+    document.getElementById("header");
+
+  const nav =
+    document.getElementById("nav");
+
+  const menuToggle =
+    document.getElementById("menuToggle");
+
+  const themeToggle =
+    document.getElementById("themeToggle");
+
+  const langToggle =
+    document.getElementById("langToggle");
+
+  const backToTop =
+    document.getElementById("backToTop");
+
 
   // =========================
   // LOADER
   // =========================
-  window.addEventListener("load", () => {
+
+  setTimeout(() => {
+
     if (!loader) return;
 
-    setTimeout(() => {
-      loader.classList.add("hide");
+    loader.classList.add("hide");
 
-      setTimeout(() => {
-        loader.style.display = "none";
-      }, 400);
-    }, 300);
-  });
+  }, 500);
+
 
   // =========================
-  // HEADER + BACK TO TOP
+  // HEADER
   // =========================
+
   function handleScroll() {
+
     if (header) {
-      header.classList.toggle("scrolled", window.scrollY > 40);
+
+      header.classList.toggle(
+        "scrolled",
+        window.scrollY > 40
+      );
+
     }
 
     if (backToTop) {
-      backToTop.classList.toggle("show", window.scrollY > 500);
+
+      backToTop.classList.toggle(
+        "show",
+        window.scrollY > 500
+      );
+
     }
+
   }
 
-  window.addEventListener("scroll", handleScroll);
+  window.addEventListener(
+    "scroll",
+    handleScroll
+  );
+
   handleScroll();
+
 
   // =========================
   // MOBILE MENU
   // =========================
+
   if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => {
-      nav.classList.toggle("open");
-    });
+
+    menuToggle.addEventListener(
+      "click",
+      event => {
+
+        event.stopPropagation();
+
+        nav.classList.toggle("open");
+
+      }
+    );
 
     nav.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("open");
-      });
+
+      link.addEventListener(
+        "click",
+        () => {
+
+          nav.classList.remove("open");
+
+        }
+      );
+
     });
 
-    document.addEventListener("click", e => {
-      if (
-        !nav.contains(e.target) &&
-        !menuToggle.contains(e.target)
-      ) {
-        nav.classList.remove("open");
+    document.addEventListener(
+      "click",
+      event => {
+
+        if (
+          !nav.contains(event.target) &&
+          !menuToggle.contains(event.target)
+        ) {
+
+          nav.classList.remove("open");
+
+        }
+
       }
-    });
+    );
+
   }
+
 
   // =========================
   // DARK MODE
   // =========================
-  const savedTheme = localStorage.getItem("tourism-theme");
+
+  const savedTheme =
+    localStorage.getItem(
+      "tourism-theme"
+    );
 
   if (savedTheme === "dark") {
+
     body.classList.add("dark");
+
   }
 
-  function updateThemeButton() {
+  function updateThemeIcon() {
+
     if (!themeToggle) return;
 
     themeToggle.textContent =
-      body.classList.contains("dark") ? "☀️" : "🌙";
+      body.classList.contains("dark")
+        ? "☀️"
+        : "🌙";
+
   }
 
-  updateThemeButton();
+  updateThemeIcon();
 
   if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      body.classList.toggle("dark");
 
-      localStorage.setItem(
-        "tourism-theme",
-        body.classList.contains("dark") ? "dark" : "light"
-      );
+    themeToggle.addEventListener(
+      "click",
+      () => {
 
-      updateThemeButton();
-    });
+        body.classList.toggle("dark");
+
+        localStorage.setItem(
+          "tourism-theme",
+          body.classList.contains("dark")
+            ? "dark"
+            : "light"
+        );
+
+        updateThemeIcon();
+
+      }
+    );
+
   }
 
+
   // =========================
-  // LANGUAGE SWITCH
+  // LANGUAGE
   // =========================
-  let currentLanguage =
-    localStorage.getItem("tourism-language") || "en";
+
+  let language =
+    localStorage.getItem(
+      "tourism-language"
+    ) || "en";
 
   function applyLanguage(lang) {
-    currentLanguage = lang;
 
-    document.querySelectorAll("[data-en][data-si]").forEach(el => {
-      const value = el.getAttribute(`data-${lang}`);
+    language = lang;
 
-      if (value) {
-        el.textContent = value;
-      }
-    });
+    document
+      .querySelectorAll("[data-en][data-si]")
+      .forEach(element => {
+
+        const text =
+          element.getAttribute(
+            `data-${lang}`
+          );
+
+        if (text) {
+
+          element.textContent = text;
+
+        }
+
+      });
 
     if (langToggle) {
-      langToggle.textContent = lang === "en" ? "සිං" : "EN";
+
+      langToggle.textContent =
+        lang === "en"
+          ? "සිං"
+          : "EN";
+
     }
 
     const destinationSearch =
-      document.getElementById("destinationSearch");
+      document.getElementById(
+        "destinationSearch"
+      );
 
     const districtSearch =
-      document.getElementById("districtSearch");
+      document.getElementById(
+        "districtSearch"
+      );
 
     if (destinationSearch) {
+
       destinationSearch.placeholder =
         lang === "en"
           ? "Search destinations..."
           : "ගමනාන්ත සොයන්න...";
+
     }
 
     if (districtSearch) {
+
       districtSearch.placeholder =
         lang === "en"
           ? "Search a district..."
           : "දිස්ත්‍රික්කයක් සොයන්න...";
+
     }
 
-    localStorage.setItem("tourism-language", lang);
+    localStorage.setItem(
+      "tourism-language",
+      lang
+    );
+
   }
 
-  applyLanguage(currentLanguage);
+  applyLanguage(language);
 
   if (langToggle) {
-    langToggle.addEventListener("click", () => {
-      applyLanguage(currentLanguage === "en" ? "si" : "en");
-    });
+
+    langToggle.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          language === "en"
+            ? "si"
+            : "en"
+        );
+
+      }
+    );
+
   }
 
+
   // =========================
-  // DESTINATION SEARCH + FILTER
+  // DESTINATION FILTER
   // =========================
+
   const destinationSearch =
-    document.getElementById("destinationSearch");
+    document.getElementById(
+      "destinationSearch"
+    );
 
   const destinationCards =
-    [...document.querySelectorAll(".destination-card")];
+    [
+      ...document.querySelectorAll(
+        ".destination-card"
+      )
+    ];
 
   const filterButtons =
-    [...document.querySelectorAll(".filter-btn")];
+    [
+      ...document.querySelectorAll(
+        ".filter-btn"
+      )
+    ];
 
   let activeFilter = "all";
 
   function filterDestinations() {
+
     const search =
-      destinationSearch?.value.toLowerCase().trim() || "";
+      destinationSearch
+        ? destinationSearch
+            .value
+            .toLowerCase()
+            .trim()
+        : "";
 
     destinationCards.forEach(card => {
+
       const title =
-        (card.dataset.title || "").toLowerCase();
+        (card.dataset.title || "")
+          .toLowerCase();
 
       const description =
-        (card.dataset.description || "").toLowerCase();
+        (card.dataset.description || "")
+          .toLowerCase();
 
-      const category =
-        (card.dataset.category || "").toLowerCase();
+      const categories =
+        (card.dataset.category || "")
+          .toLowerCase();
 
-      const matchesSearch =
+      const searchMatch =
         title.includes(search) ||
         description.includes(search);
 
-      const matchesFilter =
+      const categoryMatch =
         activeFilter === "all" ||
-        category.includes(activeFilter);
+        categories.includes(
+          activeFilter
+        );
 
       card.style.display =
-        matchesSearch && matchesFilter ? "" : "none";
+        searchMatch && categoryMatch
+          ? ""
+          : "none";
+
     });
+
   }
 
   if (destinationSearch) {
+
     destinationSearch.addEventListener(
       "input",
       filterDestinations
     );
+
   }
 
   filterButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      filterButtons.forEach(btn =>
-        btn.classList.remove("active")
-      );
 
-      button.classList.add("active");
+    button.addEventListener(
+      "click",
+      () => {
 
-      activeFilter =
-        button.dataset.filter || "all";
+        filterButtons.forEach(btn => {
 
-      filterDestinations();
-    });
+          btn.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+        activeFilter =
+          button.dataset.filter || "all";
+
+        filterDestinations();
+
+      }
+    );
+
   });
+
 
   // =========================
   // DESTINATION MODAL
   // =========================
+
   const destinationModal =
-    document.getElementById("destinationModal");
-
-  const modalTitle =
-    document.getElementById("modalTitle");
-
-  const modalDescription =
-    document.getElementById("modalDescription");
+    document.getElementById(
+      "destinationModal"
+    );
 
   const modalImage =
-    document.getElementById("modalImage");
+    document.getElementById(
+      "modalImage"
+    );
+
+  const modalTitle =
+    document.getElementById(
+      "modalTitle"
+    );
+
+  const modalDescription =
+    document.getElementById(
+      "modalDescription"
+    );
 
   const modalClose =
-    document.getElementById("modalClose");
+    document.getElementById(
+      "modalClose"
+    );
 
   function openDestinationModal(card) {
+
     if (!destinationModal) return;
 
-    const title = card.dataset.title || "Destination";
-    const description = card.dataset.description || "";
-    const image = card.querySelector("img")?.src || "";
+    const title =
+      card.dataset.title ||
+      "Destination";
 
-    if (modalTitle) modalTitle.textContent = title;
-    if (modalDescription) modalDescription.textContent = description;
+    const description =
+      card.dataset.description || "";
 
-    if (modalImage) {
-      modalImage.src = image;
-      modalImage.alt = title;
+    const image =
+      card.querySelector("img")
+        ?.src || "";
+
+    if (modalTitle) {
+
+      modalTitle.textContent =
+        title;
+
     }
 
-    destinationModal.classList.add("active");
-    body.style.overflow = "hidden";
+    if (modalDescription) {
+
+      modalDescription.textContent =
+        description;
+
+    }
+
+    if (modalImage) {
+
+      modalImage.src = image;
+      modalImage.alt = title;
+
+    }
+
+    destinationModal
+      .classList
+      .add("active");
+
+    body.classList.add(
+      "modal-open"
+    );
+
   }
 
   function closeDestinationModal() {
+
     if (!destinationModal) return;
 
-    destinationModal.classList.remove("active");
-    body.style.overflow = "";
+    destinationModal
+      .classList
+      .remove("active");
+
+    body.classList.remove(
+      "modal-open"
+    );
+
   }
 
   destinationCards.forEach(card => {
+
     const button =
-      card.querySelector(".details-btn");
+      card.querySelector(
+        ".details-btn"
+      );
 
     if (button) {
-      button.addEventListener("click", () => {
-        openDestinationModal(card);
-      });
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          openDestinationModal(
+            card
+          );
+
+        }
+      );
+
     }
+
   });
 
-  if (modalClose) {
-    modalClose.addEventListener("click", closeDestinationModal);
-  }
+  modalClose?.addEventListener(
+    "click",
+    closeDestinationModal
+  );
 
   document
-    .querySelector("[data-close-modal]")
-    ?.addEventListener("click", closeDestinationModal);
+    .querySelector(
+      "[data-close-modal]"
+    )
+    ?.addEventListener(
+      "click",
+      closeDestinationModal
+    );
+
 
   // =========================
   // FAVORITES
   // =========================
+
   const favoritesGrid =
-    document.getElementById("favoritesGrid");
+    document.getElementById(
+      "favoritesGrid"
+    );
 
   let favorites = [];
 
   try {
+
     favorites =
       JSON.parse(
-        localStorage.getItem("tourism-favorites")
+        localStorage.getItem(
+          "tourism-favorites"
+        )
       ) || [];
+
   } catch {
+
     favorites = [];
+
   }
 
   function saveFavorites() {
+
     localStorage.setItem(
       "tourism-favorites",
       JSON.stringify(favorites)
     );
+
   }
 
   function updateFavoriteButtons() {
+
     destinationCards.forEach(card => {
-      const title = card.dataset.title || "";
-      const button = card.querySelector(".favorite-btn");
+
+      const title =
+        card.dataset.title;
+
+      const button =
+        card.querySelector(
+          ".favorite-btn"
+        );
 
       if (!button) return;
 
       const exists =
-        favorites.some(item => item.title === title);
+        favorites.some(
+          item =>
+            item.title === title
+        );
 
-      button.textContent = exists ? "♥" : "♡";
-      button.classList.toggle("active", exists);
+      button.textContent =
+        exists
+          ? "♥"
+          : "♡";
+
+      button.classList.toggle(
+        "active",
+        exists
+      );
+
     });
+
   }
 
   function renderFavorites() {
+
     if (!favoritesGrid) return;
 
     if (favorites.length === 0) {
+
       favoritesGrid.innerHTML = `
         <div class="empty-state">
           <span>♡</span>
-          <p>Add destinations to your favorites.</p>
+          <p>
+            Add destinations to your favorites.
+          </p>
         </div>
       `;
+
       return;
+
     }
 
-    favoritesGrid.innerHTML = favorites
-      .map(item => `
-        <article class="favorite-item">
-          <img src="${item.image}" alt="${item.title}">
+    favoritesGrid.innerHTML =
+      favorites
+        .map(item => `
 
-          <div class="favorite-item-content">
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
+          <article class="favorite-item">
 
-            <button
-              class="remove-favorite"
-              data-title="${item.title}"
+            <img
+              src="${item.image}"
+              alt="${item.title}"
             >
-              Remove
-            </button>
-          </div>
-        </article>
-      `)
-      .join("");
+
+            <div
+              class="favorite-item-content"
+            >
+
+              <h3>
+                ${item.title}
+              </h3>
+
+              <p>
+                ${item.description}
+              </p>
+
+              <button
+                class="remove-favorite"
+                data-title="${item.title}"
+              >
+                Remove
+              </button>
+
+            </div>
+
+          </article>
+
+        `)
+        .join("");
 
     favoritesGrid
-      .querySelectorAll(".remove-favorite")
+      .querySelectorAll(
+        ".remove-favorite"
+      )
       .forEach(button => {
-        button.addEventListener("click", () => {
-          const title = button.dataset.title;
 
-          favorites =
-            favorites.filter(item => item.title !== title);
+        button.addEventListener(
+          "click",
+          () => {
 
-          saveFavorites();
-          renderFavorites();
-          updateFavoriteButtons();
-        });
+            favorites =
+              favorites.filter(
+                item =>
+                  item.title !==
+                  button.dataset.title
+              );
+
+            saveFavorites();
+
+            renderFavorites();
+
+            updateFavoriteButtons();
+
+          }
+        );
+
       });
+
   }
 
   destinationCards.forEach(card => {
-    const favoriteButton =
-      card.querySelector(".favorite-btn");
 
-    if (!favoriteButton) return;
+    const button =
+      card.querySelector(
+        ".favorite-btn"
+      );
 
-    favoriteButton.addEventListener("click", () => {
-      const title = card.dataset.title || "";
-      const description = card.dataset.description || "";
-      const image = card.querySelector("img")?.src || "";
+    if (!button) return;
 
-      const exists =
-        favorites.some(item => item.title === title);
+    button.addEventListener(
+      "click",
+      () => {
 
-      if (exists) {
-        favorites =
-          favorites.filter(item => item.title !== title);
-      } else {
-        favorites.push({
-          title,
-          description,
-          image
-        });
+        const title =
+          card.dataset.title;
+
+        const description =
+          card.dataset.description;
+
+        const image =
+          card.querySelector("img")
+            ?.src || "";
+
+        const exists =
+          favorites.some(
+            item =>
+              item.title === title
+          );
+
+        if (exists) {
+
+          favorites =
+            favorites.filter(
+              item =>
+                item.title !== title
+            );
+
+        } else {
+
+          favorites.push({
+            title,
+            description,
+            image
+          });
+
+        }
+
+        saveFavorites();
+
+        renderFavorites();
+
+        updateFavoriteButtons();
+
       }
+    );
 
-      saveFavorites();
-      renderFavorites();
-      updateFavoriteButtons();
-    });
   });
 
   renderFavorites();
+
   updateFavoriteButtons();
 
+
   // =========================
-  // DISTRICT SEARCH + MODAL
+  // DISTRICT DATA
   // =========================
-  const districtSearch =
-    document.getElementById("districtSearch");
 
-  const districtCards =
-    [...document.querySelectorAll(".district-card")];
+  const districtData = {
 
-  const districtModal =
-    document.getElementById("districtModal");
+    Ampara: {
+      province: "Eastern Province",
+      description:
+        "A diverse eastern district known for beaches, wildlife, lagoons and cultural sites.",
+      attractions: [
+        "Arugam Bay",
+        "Kumana National Park",
+        "Lahugala",
+        "Muhudu Maha Viharaya"
+      ]
+    },
 
-  const districtModalTitle =
-    document.getElementById("districtModalTitle");
+    Anuradhapura: {
+      province:
+        "North Central Province",
+      description:
+        "One of Sri Lanka's most important ancient capitals.",
+      attractions: [
+        "Sri Maha Bodhi",
+        "Ruwanwelisaya",
+        "Mihintale",
+        "Isurumuniya"
+      ]
+    },
 
-  const districtModalDescription =
-    document.getElementById("districtModalDescription");
+    Badulla: {
+      province: "Uva Province",
+      description:
+        "Mountain landscapes, waterfalls and famous highland destinations.",
+      attractions: [
+        "Ella",
+        "Nine Arches Bridge",
+        "Dunhinda Falls",
+        "Little Adam's Peak"
+      ]
+    },
 
-  const districtModalClose =
-    document.getElementById("districtModalClose");
+    Batticaloa: {
+      province: "Eastern Province",
+      description:
+        "Eastern coastal district known for lagoons and beaches.",
+      attractions: [
+        "Batticaloa Lagoon",
+        "Kallady Beach",
+        "Batticaloa Fort",
+        "Pasikuda Area"
+      ]
+    },
 
-  const districtInfo = {
-    Ampara: "Eastern beaches, lagoons, wildlife and cultural attractions.",
-    Anuradhapura: "Ancient city famous for stupas, temples and sacred sites.",
-    Badulla: "Highlands, waterfalls and beautiful mountain landscapes.",
-    Batticaloa: "Eastern beaches, lagoons and cultural attractions.",
-    Colombo: "Sri Lanka's commercial capital with shopping, food and city attractions.",
-    Galle: "Historic Galle Fort and beautiful southern beaches.",
-    Gampaha: "Urban centres, wetlands and easy access to Colombo.",
-    Hambantota: "Wildlife parks and southern coastal scenery.",
-    Jaffna: "Northern culture, historic sites, islands and unique food.",
-    Kalutara: "Beaches, rivers, temples and coastal resorts.",
-    Kandy: "Cultural capital and home of the Temple of the Tooth.",
-    Kegalle: "Green landscapes, plantations and waterfalls.",
-    Kilinochchi: "Reservoirs and peaceful northern landscapes.",
-    Kurunegala: "Rocky landscapes and historic attractions.",
-    Mannar: "Coastal scenery, islands and birdlife.",
-    Matale: "Dambulla, spice gardens and mountain scenery.",
-    Matara: "Southern beaches and coastal attractions.",
-    Monaragala: "Forests, mountains and archaeological locations.",
-    Mullaitivu: "Quiet beaches, lagoons and natural scenery.",
-    "Nuwara Eliya": "Tea estates, cool climate and highland scenery.",
-    Polonnaruwa: "Ancient royal city with historic ruins.",
-    Puttalam: "Kalpitiya, lagoons, beaches and nature reserves.",
-    Ratnapura: "Gem city, waterfalls and gateway to Adam's Peak.",
-    Trincomalee: "Beaches, natural harbour and marine attractions.",
-    Vavuniya: "Northern cultural sites and reservoirs."
+    Colombo: {
+      province:
+        "Western Province",
+      description:
+        "Sri Lanka's commercial capital and largest urban tourism centre.",
+      attractions: [
+        "Galle Face Green",
+        "Lotus Tower",
+        "Independence Square",
+        "Colombo National Museum"
+      ]
+    },
+
+    Galle: {
+      province:
+        "Southern Province",
+      description:
+        "Historic coastal district famous for colonial heritage and beaches.",
+      attractions: [
+        "Galle Fort",
+        "Unawatuna",
+        "Jungle Beach",
+        "Hikkaduwa"
+      ]
+    },
+
+    Gampaha: {
+      province:
+        "Western Province",
+      description:
+        "Western district with coastal areas, wetlands and urban attractions.",
+      attractions: [
+        "Negombo Beach",
+        "Negombo Lagoon",
+        "Muthurajawela",
+        "Kelaniya Temple"
+      ]
+    },
+
+    Hambantota: {
+      province:
+        "Southern Province",
+      description:
+        "Wildlife and coastal landscapes in southern Sri Lanka.",
+      attractions: [
+        "Yala National Park",
+        "Bundala",
+        "Tissamaharama",
+        "Kataragama Area"
+      ]
+    },
+
+    Jaffna: {
+      province:
+        "Northern Province",
+      description:
+        "Northern cultural centre known for history, islands and food.",
+      attractions: [
+        "Jaffna Fort",
+        "Nallur Temple",
+        "Delft Island",
+        "Point Pedro"
+      ]
+    },
+
+    Kalutara: {
+      province:
+        "Western Province",
+      description:
+        "Coastal district with beaches, rivers and temples.",
+      attractions: [
+        "Kalutara Bodhiya",
+        "Beruwala",
+        "Bentota Area",
+        "Richmond Castle"
+      ]
+    },
+
+    Kandy: {
+      province:
+        "Central Province",
+      description:
+        "Sri Lanka's historic hill capital and cultural centre.",
+      attractions: [
+        "Temple of the Tooth",
+        "Kandy Lake",
+        "Peradeniya Gardens",
+        "Udawattakele"
+      ]
+    },
+
+    Kegalle: {
+      province:
+        "Sabaragamuwa Province",
+      description:
+        "Green landscapes, forests and cultural attractions.",
+      attractions: [
+        "Pinnawala",
+        "Belilena Cave",
+        "Alagalla",
+        "Kitulgala Area"
+      ]
+    },
+
+    Kilinochchi: {
+      province:
+        "Northern Province",
+      description:
+        "Northern district with reservoirs and peaceful landscapes.",
+      attractions: [
+        "Iranamadu Tank",
+        "Kilinochchi War Memorial",
+        "Elephant Pass",
+        "Northern Countryside"
+      ]
+    },
+
+    Kurunegala: {
+      province:
+        "North Western Province",
+      description:
+        "Historic north-western district surrounded by rocky landscapes.",
+      attractions: [
+        "Athugala",
+        "Yapahuwa",
+        "Ridi Viharaya",
+        "Kurunegala Lake"
+      ]
+    },
+
+    Mannar: {
+      province:
+        "Northern Province",
+      description:
+        "Island and coastal landscapes famous for birdlife and history.",
+      attractions: [
+        "Mannar Fort",
+        "Adam's Bridge Area",
+        "Baobab Tree",
+        "Talaimannar"
+      ]
+    },
+
+    Matale: {
+      province:
+        "Central Province",
+      description:
+        "Central district with heritage sites, mountains and spice gardens.",
+      attractions: [
+        "Dambulla Cave Temple",
+        "Knuckles Range",
+        "Nalanda Gedige",
+        "Spice Gardens"
+      ]
+    },
+
+    Matara: {
+      province:
+        "Southern Province",
+      description:
+        "Southern coastal district known for beaches and historic locations.",
+      attractions: [
+        "Mirissa",
+        "Polhena Beach",
+        "Dondra Head",
+        "Matara Fort"
+      ]
+    },
+
+    Monaragala: {
+      province:
+        "Uva Province",
+      description:
+        "Large rural district with archaeology, forests and mountains.",
+      attractions: [
+        "Buduruwagala",
+        "Maligawila",
+        "Gal Oya Area",
+        "Yudaganawa"
+      ]
+    },
+
+    Mullaitivu: {
+      province:
+        "Northern Province",
+      description:
+        "Quiet northern coastline with lagoons and natural scenery.",
+      attractions: [
+        "Mullaitivu Beach",
+        "Nanthi Kadal",
+        "Lagoons",
+        "Northern Coast"
+      ]
+    },
+
+    "Nuwara Eliya": {
+      province:
+        "Central Province",
+      description:
+        "Sri Lanka's famous highland district with tea estates and cool weather.",
+      attractions: [
+        "Gregory Lake",
+        "Horton Plains",
+        "World's End",
+        "Tea Estates"
+      ]
+    },
+
+    Polonnaruwa: {
+      province:
+        "North Central Province",
+      description:
+        "Ancient royal capital filled with archaeological monuments.",
+      attractions: [
+        "Gal Vihara",
+        "Royal Palace",
+        "Parakrama Samudra",
+        "Vatadage"
+      ]
+    },
+
+    Puttalam: {
+      province:
+        "North Western Province",
+      description:
+        "Coastal district known for lagoons, marine life and nature.",
+      attractions: [
+        "Kalpitiya",
+        "Wilpattu Area",
+        "Puttalam Lagoon",
+        "Dutch Bay"
+      ]
+    },
+
+    Ratnapura: {
+      province:
+        "Sabaragamuwa Province",
+      description:
+        "Sri Lanka's gem district and gateway to mountain adventures.",
+      attractions: [
+        "Adam's Peak",
+        "Sinharaja Area",
+        "Bopath Ella",
+        "Gem Museums"
+      ]
+    },
+
+    Trincomalee: {
+      province:
+        "Eastern Province",
+      description:
+        "Famous eastern coastal destination with beaches and natural harbour.",
+      attractions: [
+        "Nilaveli Beach",
+        "Pigeon Island",
+        "Koneswaram Temple",
+        "Fort Frederick"
+      ]
+    },
+
+    Vavuniya: {
+      province:
+        "Northern Province",
+      description:
+        "Northern district with historic and cultural attractions.",
+      attractions: [
+        "Vavuniya Museum",
+        "Reservoirs",
+        "Ancient Sites",
+        "Northern Landscapes"
+      ]
+    }
+
   };
 
+
+  // =========================
+  // MAP EXPLORER
+  // =========================
+
+  const mapDistrictSelect =
+    document.getElementById(
+      "mapDistrictSelect"
+    );
+
+  const mapResult =
+    document.getElementById(
+      "mapResult"
+    );
+
+  function showDistrictResult(
+    districtName
+  ) {
+
+    if (!mapResult) return;
+
+    const data =
+      districtData[districtName];
+
+    if (!data) return;
+
+    mapResult.innerHTML = `
+
+      <div class="district-result">
+
+        <div
+          class="district-result-top"
+        >
+
+          <h3>
+            ${districtName}
+          </h3>
+
+          <span
+            class="province-badge"
+          >
+            ${data.province}
+          </span>
+
+        </div>
+
+        <p
+          class="district-description"
+        >
+          ${data.description}
+        </p>
+
+        <div class="attraction-list">
+
+          ${data.attractions
+            .map(
+              attraction => `
+                <div
+                  class="attraction-item"
+                >
+                  📍 ${attraction}
+                </div>
+              `
+            )
+            .join("")}
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+  mapDistrictSelect?.addEventListener(
+    "change",
+    () => {
+
+      if (
+        mapDistrictSelect.value
+      ) {
+
+        showDistrictResult(
+          mapDistrictSelect.value
+        );
+
+      }
+
+    }
+  );
+
+
+  // =========================
+  // DISTRICT GRID
+  // =========================
+
+  const districtSearch =
+    document.getElementById(
+      "districtSearch"
+    );
+
+  const districtCards =
+    [
+      ...document.querySelectorAll(
+        ".district-card"
+      )
+    ];
+
   if (districtSearch) {
-    districtSearch.addEventListener("input", () => {
-      const search =
-        districtSearch.value.toLowerCase().trim();
 
-      districtCards.forEach(card => {
-        const name =
-          card.textContent.toLowerCase();
+    districtSearch.addEventListener(
+      "input",
+      () => {
 
-        card.style.display =
-          name.includes(search) ? "" : "none";
-      });
-    });
+        const search =
+          districtSearch.value
+            .toLowerCase()
+            .trim();
+
+        districtCards.forEach(card => {
+
+          const name =
+            card.textContent
+              .toLowerCase();
+
+          card.style.display =
+            name.includes(search)
+              ? ""
+              : "none";
+
+        });
+
+      }
+    );
+
   }
 
-  function openDistrict(name) {
-    if (!districtModal) return;
 
-    if (districtModalTitle) {
-      districtModalTitle.textContent = name;
-    }
+  // =========================
+  // DISTRICT MODAL
+  // =========================
 
-    if (districtModalDescription) {
-      districtModalDescription.textContent =
-        districtInfo[name] ||
-        `Explore ${name} District in Sri Lanka.`;
-    }
+  const districtModal =
+    document.getElementById(
+      "districtModal"
+    );
 
-    districtModal.classList.add("active");
-    body.style.overflow = "hidden";
+  const districtModalTitle =
+    document.getElementById(
+      "districtModalTitle"
+    );
+
+  const districtModalDescription =
+    document.getElementById(
+      "districtModalDescription"
+    );
+
+  const districtModalClose =
+    document.getElementById(
+      "districtModalClose"
+    );
+
+  function openDistrictModal(
+    districtName
+  ) {
+
+    const data =
+      districtData[districtName];
+
+    if (
+      !districtModal ||
+      !data
+    ) return;
+
+    districtModalTitle.textContent =
+      districtName;
+
+    districtModalDescription.innerHTML = `
+
+      <strong>
+        ${data.province}
+      </strong>
+
+      <br><br>
+
+      ${data.description}
+
+      <br><br>
+
+      <strong>
+        Popular attractions:
+      </strong>
+
+      <br>
+
+      ${data.attractions.join(" • ")}
+
+    `;
+
+    districtModal
+      .classList
+      .add("active");
+
+    body.classList.add(
+      "modal-open"
+    );
+
   }
 
-  function closeDistrict() {
+  function closeDistrictModal() {
+
     if (!districtModal) return;
 
-    districtModal.classList.remove("active");
-    body.style.overflow = "";
+    districtModal
+      .classList
+      .remove("active");
+
+    body.classList.remove(
+      "modal-open"
+    );
+
   }
 
   districtCards.forEach(card => {
-    card.addEventListener("click", () => {
-      openDistrict(card.textContent.trim());
-    });
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        const districtName =
+          card.textContent.trim();
+
+        openDistrictModal(
+          districtName
+        );
+
+      }
+    );
+
   });
 
-  if (districtModalClose) {
-    districtModalClose.addEventListener("click", closeDistrict);
-  }
+  districtModalClose?.addEventListener(
+    "click",
+    closeDistrictModal
+  );
 
   document
-    .querySelector("[data-close-district]")
-    ?.addEventListener("click", closeDistrict);
+    .querySelector(
+      "[data-close-district]"
+    )
+    ?.addEventListener(
+      "click",
+      closeDistrictModal
+    );
+
 
   // =========================
   // TRIP PLANNER
   // =========================
+
   const daysRange =
-    document.getElementById("daysRange");
+    document.getElementById(
+      "daysRange"
+    );
 
   const daysOutput =
-    document.getElementById("daysOutput");
+    document.getElementById(
+      "daysOutput"
+    );
 
   const travelStyle =
-    document.getElementById("travelStyle");
+    document.getElementById(
+      "travelStyle"
+    );
 
   const budgetLevel =
-    document.getElementById("budgetLevel");
+    document.getElementById(
+      "budgetLevel"
+    );
 
   const generateTrip =
-    document.getElementById("generateTrip");
+    document.getElementById(
+      "generateTrip"
+    );
 
   const plannerResult =
-    document.getElementById("plannerResult");
+    document.getElementById(
+      "plannerResult"
+    );
 
   const routes = {
+
     classic: [
       "Colombo",
       "Sigiriya",
@@ -569,39 +1382,71 @@ document.addEventListener("DOMContentLoaded", () => {
       "Arugam Bay",
       "Yala"
     ]
+
   };
 
   const styleNames = {
-    classic: "Classic Highlights",
-    nature: "Nature & Wildlife",
-    beach: "Beaches & Coast",
-    culture: "History & Culture",
-    adventure: "Adventure"
+
+    classic:
+      "Classic Highlights",
+
+    nature:
+      "Nature & Wildlife",
+
+    beach:
+      "Beaches & Coast",
+
+    culture:
+      "History & Culture",
+
+    adventure:
+      "Adventure"
+
   };
 
   const budgets = {
-    value: "Budget-friendly accommodation and local transport.",
-    comfort: "Comfortable hotels and flexible transport.",
-    premium: "Premium hotels and private transport."
+
+    value:
+      "Budget-friendly accommodation and local transport.",
+
+    comfort:
+      "Comfortable hotels and flexible transport.",
+
+    premium:
+      "Premium hotels and private transport."
+
   };
 
   function updateDays() {
-    if (!daysRange || !daysOutput) return;
 
-    const days = Number(daysRange.value);
+    if (
+      !daysRange ||
+      !daysOutput
+    ) return;
+
+    const days =
+      Number(daysRange.value);
 
     daysOutput.textContent =
-      `${days} ${days === 1 ? "Day" : "Days"}`;
+      `${days} ${
+        days === 1
+          ? "Day"
+          : "Days"
+      }`;
+
   }
 
-  if (daysRange) {
-    daysRange.addEventListener("input", updateDays);
-  }
+  daysRange?.addEventListener(
+    "input",
+    updateDays
+  );
 
   updateDays();
 
-  if (generateTrip) {
-    generateTrip.addEventListener("click", () => {
+  generateTrip?.addEventListener(
+    "click",
+    () => {
+
       if (
         !daysRange ||
         !travelStyle ||
@@ -609,85 +1454,147 @@ document.addEventListener("DOMContentLoaded", () => {
         !plannerResult
       ) return;
 
-      const days = Number(daysRange.value);
-      const style = travelStyle.value;
-      const budget = budgetLevel.value;
+      const days =
+        Number(daysRange.value);
+
+      const style =
+        travelStyle.value;
+
+      const budget =
+        budgetLevel.value;
 
       const route =
-        routes[style] || routes.classic;
+        routes[style] ||
+        routes.classic;
 
-      let html = "";
+      let itineraryHTML = "";
 
-      for (let day = 1; day <= days; day++) {
+      for (
+        let day = 1;
+        day <= days;
+        day++
+      ) {
+
         const place =
-          route[(day - 1) % route.length];
+          route[
+            (day - 1) %
+            route.length
+          ];
 
-        html += `
+        itineraryHTML += `
+
           <div class="itinerary-day">
+
             <div class="day-number">
-              Day ${day}
+              DAY ${day}
             </div>
 
             <div>
-              <h4>${place}</h4>
+
+              <h4>
+                ${place}
+              </h4>
+
               <p>
-                Explore ${place}, visit local attractions
+                Explore ${place},
+                visit local attractions
                 and enjoy your Sri Lanka journey.
               </p>
+
             </div>
+
           </div>
+
         `;
+
       }
 
       plannerResult.innerHTML = `
+
         <div class="itinerary-summary">
+
           <h3>
-            ${days}-Day ${styleNames[style]} Trip
+            ${days}-Day
+            ${styleNames[style]}
+            Trip
           </h3>
 
-          <p>${budgets[budget]}</p>
+          <p>
+            ${budgets[budget]}
+          </p>
+
         </div>
 
         <div class="itinerary-list">
-          ${html}
+
+          ${itineraryHTML}
+
         </div>
+
       `;
-    });
-  }
+
+    }
+  );
+
 
   // =========================
   // BACK TO TOP
   // =========================
-  if (backToTop) {
-    backToTop.addEventListener("click", () => {
+
+  backToTop?.addEventListener(
+    "click",
+    () => {
+
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
-    });
-  }
 
-  // =========================
-  // ESC CLOSE MODALS
-  // =========================
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-      closeDestinationModal();
-      closeDistrict();
     }
-  });
+  );
+
 
   // =========================
-  // YEAR
+  // ESC MODALS
   // =========================
-  const currentYear =
-    document.getElementById("currentYear");
 
-  if (currentYear) {
-    currentYear.textContent =
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        closeDestinationModal();
+
+        closeDistrictModal();
+
+      }
+
+    }
+  );
+
+
+  // =========================
+  // CURRENT YEAR
+  // =========================
+
+  const year =
+    document.getElementById(
+      "currentYear"
+    );
+
+  if (year) {
+
+    year.textContent =
       new Date().getFullYear();
+
   }
 
-  console.log("Tourism In Sri Lanka V4 READY 🇱🇰");
+
+  console.log(
+    "Tourism In Sri Lanka V5 READY 🇱🇰"
+  );
 
 });
