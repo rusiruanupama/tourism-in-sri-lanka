@@ -2007,3 +2007,1222 @@ console.log(
   );
 
 });
+/* =========================================================
+   V7 DESTINATION TRAVEL GUIDE
+   ========================================================= */
+
+const destinationGuideData = {
+
+  "Sigiriya": {
+    district: "Matale",
+    province: "Central Province",
+    category: "Heritage / UNESCO",
+    bestTime: "January to April is usually a comfortable period for visiting, especially early in the morning.",
+    description:
+      "Sigiriya is one of Sri Lanka's most famous historic landmarks. The ancient rock fortress rises dramatically above the surrounding plains and is known for its archaeological remains, landscaped gardens, defensive structures, frescoes and panoramic summit views. The site is closely connected with the reign of King Kashyapa and today remains one of the country's most important cultural attractions.",
+
+    highlights: [
+      "Ancient Rock Fortress",
+      "Water Gardens",
+      "Frescoes",
+      "Mirror Wall",
+      "Lion's Paw Entrance",
+      "Panoramic Summit Views"
+    ],
+
+    tips: [
+      "Visit early in the morning to avoid strong midday heat.",
+      "Wear comfortable shoes because the climb includes many steps.",
+      "Carry drinking water.",
+      "Allow enough time to explore both the gardens and the summit."
+    ],
+
+    nearby: [
+      "Pidurangala",
+      "Dambulla",
+      "Minneriya National Park",
+      "Habarana"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya%20Sri%20lanka.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya%20Rock%20Fortress.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya%20Gardens.jpg"
+    ]
+  },
+
+
+  "Ella": {
+    district: "Badulla",
+    province: "Uva Province",
+    category: "Nature / Highlands",
+    bestTime: "January to March often offers clearer conditions for hiking and sightseeing.",
+    description:
+      "Ella is a small mountain town in Sri Lanka's central highlands, surrounded by tea estates, green valleys, waterfalls and dramatic viewpoints. It is especially popular with travellers who enjoy hiking, railway journeys and cooler mountain scenery. The area combines beautiful landscapes with easy access to several famous attractions.",
+
+    highlights: [
+      "Nine Arches Bridge",
+      "Little Adam's Peak",
+      "Ella Rock",
+      "Ravana Falls",
+      "Tea Estates",
+      "Scenic Railway"
+    ],
+
+    tips: [
+      "Start hikes early before the weather becomes warmer.",
+      "Wear footwear with good grip during wet weather.",
+      "Check train schedules in advance.",
+      "Keep rain protection with you because highland weather can change quickly."
+    ],
+
+    nearby: [
+      "Bandarawela",
+      "Haputale",
+      "Ravana Falls",
+      "Badulla"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Nine%20Arches%20Bridge%20in%20Ella.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ella%20Sri%20Lanka.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Little%20Adam%27s%20Peak%20Sri%20Lanka.jpg"
+    ]
+  },
+
+
+  "Kandy": {
+    district: "Kandy",
+    province: "Central Province",
+    category: "Culture / Heritage",
+    bestTime: "December to April is generally suitable for sightseeing, although Kandy can be visited throughout the year.",
+    description:
+      "Kandy is one of Sri Lanka's most important cultural cities and the country's historic hill capital. Surrounded by green hills, the city is centred around Kandy Lake and is home to the Temple of the Sacred Tooth Relic. Kandy also provides access to gardens, museums, forest reserves and traditional cultural experiences.",
+
+    highlights: [
+      "Temple of the Tooth",
+      "Kandy Lake",
+      "Royal Botanical Gardens",
+      "Udawattakele",
+      "Cultural Performances",
+      "Historic City Centre"
+    ],
+
+    tips: [
+      "Dress respectfully when visiting religious sites.",
+      "Remove footwear where required at temples.",
+      "Allow extra travel time because city traffic can become busy.",
+      "Visit the lake area in the morning or evening for a relaxed walk."
+    ],
+
+    nearby: [
+      "Peradeniya",
+      "Kadugannawa",
+      "Pilimathalawa",
+      "Knuckles Region"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20tooth%20sri%20lanka.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Kandy%20Lake.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Royal%20Botanical%20Gardens%20Peradeniya.jpg"
+    ]
+  },
+
+
+  "Galle": {
+    district: "Galle",
+    province: "Southern Province",
+    category: "Heritage / Coast",
+    bestTime: "December to April is often ideal for exploring the southern coast.",
+    description:
+      "Galle is a historic coastal city in southern Sri Lanka. Its best-known attraction is Galle Fort, a fortified old town with colonial-era architecture, narrow streets, museums, cafes, shops and sea views. The city combines cultural heritage with easy access to several popular beaches.",
+
+    highlights: [
+      "Galle Fort",
+      "Fort Ramparts",
+      "Lighthouse",
+      "Historic Streets",
+      "Museums",
+      "Southern Coast"
+    ],
+
+    tips: [
+      "Walk around the fort near sunset for cooler weather and sea views.",
+      "Wear light clothing during daytime visits.",
+      "Explore the smaller streets inside the fort, not only the main road.",
+      "Keep enough time for both the fort and nearby beaches."
+    ],
+
+    nearby: [
+      "Unawatuna",
+      "Jungle Beach",
+      "Hikkaduwa",
+      "Weligama"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/GALLE%20FORT.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Galle%20Lighthouse.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Galle%20Fort%20Sri%20Lanka.jpg"
+    ]
+  },
+
+
+  "Mirissa": {
+    district: "Matara",
+    province: "Southern Province",
+    category: "Beach / Coast",
+    bestTime: "December to April usually provides favourable conditions on the south coast.",
+    description:
+      "Mirissa is a popular beach destination on Sri Lanka's southern coast. It is known for its curved sandy beach, tropical scenery, ocean viewpoints and relaxed atmosphere. The surrounding coast also provides access to several other beaches and coastal towns.",
+
+    highlights: [
+      "Mirissa Beach",
+      "Coconut Tree Hill",
+      "Parrot Rock",
+      "Ocean Views",
+      "Southern Coast",
+      "Sunset Spots"
+    ],
+
+    tips: [
+      "Use sun protection during daytime beach visits.",
+      "Check sea conditions before swimming.",
+      "Visit viewpoints in the morning or near sunset.",
+      "Respect warning signs and local safety advice near the ocean."
+    ],
+
+    nearby: [
+      "Weligama",
+      "Matara",
+      "Polhena Beach",
+      "Dondra Head"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mirissa%20beach,%20Srilanka.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mirissa%20Sri%20Lanka.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Coconut%20Tree%20Hill%20Mirissa.jpg"
+    ]
+  },
+
+
+  "Nuwara Eliya": {
+    district: "Nuwara Eliya",
+    province: "Central Province",
+    category: "Nature / Highlands",
+    bestTime: "January to April is popular for clearer mountain weather, while temperatures remain cooler than many lowland areas.",
+    description:
+      "Nuwara Eliya is a highland city surrounded by tea estates, mountains and cool-climate scenery. Often associated with Sri Lanka's tea country, the area features lakes, gardens, waterfalls and access to Horton Plains National Park. Its cool weather makes it very different from the tropical lowlands.",
+
+    highlights: [
+      "Gregory Lake",
+      "Tea Estates",
+      "Horton Plains",
+      "World's End",
+      "Waterfalls",
+      "Cool Climate"
+    ],
+
+    tips: [
+      "Bring a light jacket because mornings and evenings can be cool.",
+      "Start Horton Plains visits very early.",
+      "Carry rain protection.",
+      "Allow time for tea-estate viewpoints and scenic drives."
+    ],
+
+    nearby: [
+      "Horton Plains",
+      "Ambewela",
+      "Hakgala",
+      "Ramboda"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Nuwara-Eliya.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Gregory%20Lake%20Nuwara%20Eliya.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Tea%20Plantation%20Nuwara%20Eliya.jpg"
+    ]
+  },
+
+
+  "Yala National Park": {
+    district: "Hambantota",
+    province: "Southern Province",
+    category: "Wildlife / Nature",
+    bestTime: "Wildlife viewing varies through the year, so checking current park conditions before visiting is useful.",
+    description:
+      "Yala National Park is one of Sri Lanka's best-known wildlife areas. The landscape includes dry forests, grasslands, wetlands, rocky areas and coastal environments. Visitors usually explore the park on guided safari drives while observing wildlife from a safe distance.",
+
+    highlights: [
+      "Safari Drives",
+      "Leopards",
+      "Elephants",
+      "Birdlife",
+      "Dry Forest",
+      "Coastal Landscapes"
+    ],
+
+    tips: [
+      "Use an authorised safari vehicle or guide.",
+      "Never approach or feed wild animals.",
+      "Keep noise low while observing wildlife.",
+      "Follow park rules and instructions from guides."
+    ],
+
+    nearby: [
+      "Tissamaharama",
+      "Kataragama",
+      "Bundala National Park",
+      "Kirinda"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Yala%20National%20Park,%20Sri%20Lanka.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Yala%20National%20Park.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Sri%20Lankan%20Elephant%20Yala.jpg"
+    ]
+  },
+
+
+  "Anuradhapura": {
+    district: "Anuradhapura",
+    province: "North Central Province",
+    category: "Heritage / Sacred City",
+    bestTime: "The dry season is convenient for outdoor exploration, and early mornings are usually more comfortable.",
+    description:
+      "Anuradhapura is one of Sri Lanka's most important ancient cities and a major centre of Buddhist heritage. The archaeological area contains enormous stupas, monasteries, reservoirs, ruins and sacred sites spread across a large landscape. It played a major role in the island's early history and remains an important place of worship.",
+
+    highlights: [
+      "Sri Maha Bodhi",
+      "Ruwanwelisaya",
+      "Mihintale",
+      "Isurumuniya",
+      "Ancient Reservoirs",
+      "Historic Monasteries"
+    ],
+
+    tips: [
+      "Dress respectfully when entering sacred areas.",
+      "The ancient city is large, so transport can be useful.",
+      "Carry water during hot weather.",
+      "Avoid walking on archaeological structures."
+    ],
+
+    nearby: [
+      "Mihintale",
+      "Wilpattu Area",
+      "Ritigala",
+      "Kala Wewa"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Anuradhapura%20in%20Sri%20Lanka.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Ruwanwelisaya%20Anuradhapura.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Jaya%20Sri%20Maha%20Bodhi.jpg"
+    ]
+  },
+
+
+  "Polonnaruwa": {
+    district: "Polonnaruwa",
+    province: "North Central Province",
+    category: "Heritage / Ancient City",
+    bestTime: "Early mornings and late afternoons are usually more comfortable for exploring the archaeological area.",
+    description:
+      "Polonnaruwa is one of Sri Lanka's best-preserved ancient capitals. The archaeological city includes palace ruins, temples, stone carvings, religious monuments and historic water-management structures. Many attractions are spread across a large area, making the site suitable for a half-day or full-day visit.",
+
+    highlights: [
+      "Gal Vihara",
+      "Royal Palace",
+      "Vatadage",
+      "Parakrama Samudra",
+      "Ancient Temples",
+      "Stone Sculpture"
+    ],
+
+    tips: [
+      "Start early to avoid the strongest heat.",
+      "Wear comfortable footwear.",
+      "Bring drinking water.",
+      "Respect religious areas and archaeological remains."
+    ],
+
+    nearby: [
+      "Minneriya",
+      "Kaudulla",
+      "Medirigiriya",
+      "Sigiriya"
+    ],
+
+    images: [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Polonnaruwa.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Gal%20Vihara%20Polonnaruwa.jpg",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Polonnaruwa%20Vatadage.jpg"
+    ]
+  }
+
+};
+
+
+/* =========================================================
+   GET V7 MODAL ELEMENTS
+   ========================================================= */
+
+const v7DestinationModal =
+  document.getElementById("destinationModal");
+
+const v7ModalClose =
+  document.getElementById("modalClose");
+
+const v7ModalImage =
+  document.getElementById("modalImage");
+
+const v7ModalTitle =
+  document.getElementById("modalTitle");
+
+const v7ModalCategory =
+  document.getElementById("modalCategory");
+
+const v7ModalLocation =
+  document.getElementById("modalLocation");
+
+const v7ModalDescription =
+  document.getElementById("modalDescription");
+
+const v7ModalFacts =
+  document.getElementById("modalFacts");
+
+const v7ModalHighlights =
+  document.getElementById("modalHighlights");
+
+const v7ModalGallery =
+  document.getElementById("modalGallery");
+
+const v7ModalBestTime =
+  document.getElementById("modalBestTime");
+
+const v7ModalTips =
+  document.getElementById("modalTips");
+
+const v7ModalNearby =
+  document.getElementById("modalNearby");
+
+const v7GuideFavoriteBtn =
+  document.getElementById("guideFavoriteBtn");
+
+const v7GuideDistrictBtn =
+  document.getElementById("guideDistrictBtn");
+
+
+let currentGuideDestination = null;
+
+
+/* =========================================================
+   HTML HELPERS
+   ========================================================= */
+
+function createGuideChip(text) {
+
+  return `
+    <span class="guide-chip">
+      ${text}
+    </span>
+  `;
+
+}
+
+
+function createGuideFact(label, value) {
+
+  return `
+    <div class="guide-fact">
+
+      <span>
+        ${label}
+      </span>
+
+      <strong>
+        ${value}
+      </strong>
+
+    </div>
+  `;
+
+}
+
+
+/* =========================================================
+   OPEN DESTINATION GUIDE
+   ========================================================= */
+
+function openDestinationGuide(destinationName) {
+
+  const data =
+    destinationGuideData[destinationName];
+
+  if (!data) {
+    return;
+  }
+
+
+  currentGuideDestination =
+    destinationName;
+
+
+  const destinationCard =
+    [...document.querySelectorAll(".destination-card")]
+      .find(card =>
+        card.dataset.title === destinationName
+      );
+
+
+  let mainImage =
+    data.images[0];
+
+
+  if (destinationCard) {
+
+    const cardImage =
+      destinationCard.querySelector("img");
+
+    if (cardImage) {
+      mainImage =
+        cardImage.src;
+    }
+
+  }
+
+
+  /* =========================
+     HERO
+     ========================= */
+
+  if (v7ModalImage) {
+
+    v7ModalImage.src =
+      mainImage;
+
+    v7ModalImage.alt =
+      destinationName;
+
+  }
+
+
+  if (v7ModalTitle) {
+    v7ModalTitle.textContent =
+      destinationName;
+  }
+
+
+  if (v7ModalCategory) {
+    v7ModalCategory.textContent =
+      data.category;
+  }
+
+
+  if (v7ModalLocation) {
+
+    v7ModalLocation.textContent =
+      `📍 ${data.district} District • ${data.province}`;
+
+  }
+
+
+  if (v7ModalDescription) {
+
+    v7ModalDescription.textContent =
+      data.description;
+
+  }
+
+
+  /* =========================
+     FACTS
+     ========================= */
+
+  if (v7ModalFacts) {
+
+    v7ModalFacts.innerHTML =
+
+      createGuideFact(
+        "District",
+        data.district
+      )
+
+      +
+
+      createGuideFact(
+        "Province",
+        data.province
+      )
+
+      +
+
+      createGuideFact(
+        "Category",
+        data.category
+      )
+
+      +
+
+      createGuideFact(
+        "Country",
+        "Sri Lanka 🇱🇰"
+      );
+
+  }
+
+
+  /* =========================
+     HIGHLIGHTS
+     ========================= */
+
+  if (v7ModalHighlights) {
+
+    v7ModalHighlights.innerHTML =
+      data.highlights
+        .map(createGuideChip)
+        .join("");
+
+  }
+
+
+  /* =========================
+     GALLERY
+     ========================= */
+
+  if (v7ModalGallery) {
+
+    v7ModalGallery.innerHTML =
+      data.images
+        .map((image, index) => {
+
+          return `
+
+            <button
+              class="guide-gallery-item"
+              type="button"
+              data-image="${image}"
+              aria-label="Open ${destinationName} photo ${index + 1}"
+            >
+
+              <img
+                src="${image}"
+                alt="${destinationName} photo ${index + 1}"
+                loading="lazy"
+              >
+
+            </button>
+
+          `;
+
+        })
+        .join("");
+
+  }
+
+
+  /* =========================
+     BEST TIME
+     ========================= */
+
+  if (v7ModalBestTime) {
+
+    v7ModalBestTime.textContent =
+      data.bestTime;
+
+  }
+
+
+  /* =========================
+     TRAVEL TIPS
+     ========================= */
+
+  if (v7ModalTips) {
+
+    v7ModalTips.innerHTML =
+      data.tips
+        .map(tip => {
+
+          return `
+            <li>
+              ${tip}
+            </li>
+          `;
+
+        })
+        .join("");
+
+  }
+
+
+  /* =========================
+     NEARBY PLACES
+     ========================= */
+
+  if (v7ModalNearby) {
+
+    v7ModalNearby.innerHTML =
+      data.nearby
+        .map(createGuideChip)
+        .join("");
+
+  }
+
+
+  updateGuideFavoriteButton();
+
+
+  /* =========================
+     OPEN MODAL
+     ========================= */
+
+  if (v7DestinationModal) {
+
+    v7DestinationModal.classList.add(
+      "active"
+    );
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+}
+
+
+/* =========================================================
+   VIEW DETAILS BUTTONS
+   ========================================================= */
+
+document
+  .querySelectorAll(".destination-card")
+  .forEach(card => {
+
+    const detailsButton =
+      card.querySelector(".details-btn");
+
+    if (!detailsButton) {
+      return;
+    }
+
+
+    /*
+      Clone removes any old View Details click listener.
+      This prevents the old V5 modal from fighting V7.
+    */
+
+    const newButton =
+      detailsButton.cloneNode(true);
+
+    detailsButton.replaceWith(
+      newButton
+    );
+
+
+    newButton.addEventListener(
+      "click",
+      event => {
+
+        event.preventDefault();
+
+        openDestinationGuide(
+          card.dataset.title
+        );
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   CLOSE GUIDE
+   ========================================================= */
+
+function closeDestinationGuideV7() {
+
+  if (!v7DestinationModal) {
+    return;
+  }
+
+  v7DestinationModal.classList.remove(
+    "active"
+  );
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+if (v7ModalClose) {
+
+  v7ModalClose.addEventListener(
+    "click",
+    closeDestinationGuideV7
+  );
+
+}
+
+
+document
+  .querySelectorAll("[data-close-modal]")
+  .forEach(element => {
+
+    element.addEventListener(
+      "click",
+      closeDestinationGuideV7
+    );
+
+  });
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Escape") {
+
+      closeDestinationGuideV7();
+
+      closeGuideLightbox();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   GUIDE FAVORITES
+   ========================================================= */
+
+function getSavedFavoritesV7() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(
+        "tourismFavorites"
+      )
+    ) || [];
+
+  } catch (error) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveFavoritesV7(favorites) {
+
+  localStorage.setItem(
+    "tourismFavorites",
+    JSON.stringify(favorites)
+  );
+
+}
+
+
+function updateGuideFavoriteButton() {
+
+  if (
+    !v7GuideFavoriteBtn ||
+    !currentGuideDestination
+  ) {
+    return;
+  }
+
+
+  const favorites =
+    getSavedFavoritesV7();
+
+
+  const saved =
+    favorites.includes(
+      currentGuideDestination
+    );
+
+
+  v7GuideFavoriteBtn.textContent =
+    saved
+      ? "♥ Saved"
+      : "♡ Save Favorite";
+
+}
+
+
+if (v7GuideFavoriteBtn) {
+
+  v7GuideFavoriteBtn.addEventListener(
+    "click",
+    () => {
+
+      if (!currentGuideDestination) {
+        return;
+      }
+
+
+      let favorites =
+        getSavedFavoritesV7();
+
+
+      if (
+        favorites.includes(
+          currentGuideDestination
+        )
+      ) {
+
+        favorites =
+          favorites.filter(
+            place =>
+              place !== currentGuideDestination
+          );
+
+      } else {
+
+        favorites.push(
+          currentGuideDestination
+        );
+
+      }
+
+
+      saveFavoritesV7(
+        favorites
+      );
+
+
+      updateGuideFavoriteButton();
+
+
+      /*
+        Sync existing favorite heart if present
+      */
+
+      document
+        .querySelectorAll(".destination-card")
+        .forEach(card => {
+
+          if (
+            card.dataset.title !==
+            currentGuideDestination
+          ) {
+            return;
+          }
+
+
+          const favoriteButton =
+            card.querySelector(
+              ".favorite-btn"
+            );
+
+
+          if (!favoriteButton) {
+            return;
+          }
+
+
+          const isSaved =
+            favorites.includes(
+              currentGuideDestination
+            );
+
+
+          favoriteButton.textContent =
+            isSaved
+              ? "♥"
+              : "♡";
+
+          favoriteButton.classList.toggle(
+            "active",
+            isSaved
+          );
+
+        });
+
+
+      /*
+        Try to use existing V5/V6 favorites renderer
+      */
+
+      if (
+        typeof renderFavorites ===
+        "function"
+      ) {
+
+        renderFavorites();
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   EXPLORE DISTRICT BUTTON
+   ========================================================= */
+
+if (v7GuideDistrictBtn) {
+
+  v7GuideDistrictBtn.addEventListener(
+    "click",
+    () => {
+
+      if (!currentGuideDestination) {
+        return;
+      }
+
+
+      const data =
+        destinationGuideData[
+          currentGuideDestination
+        ];
+
+
+      if (!data) {
+        return;
+      }
+
+
+      closeDestinationGuideV7();
+
+
+      const mapSection =
+        document.getElementById(
+          "map"
+        );
+
+
+      if (mapSection) {
+
+        mapSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+
+
+      setTimeout(() => {
+
+        if (
+          typeof selectDistrictV6 ===
+          "function"
+        ) {
+
+          selectDistrictV6(
+            data.district
+          );
+
+        } else if (
+          typeof showDistrictResult ===
+          "function"
+        ) {
+
+          showDistrictResult(
+            data.district
+          );
+
+        }
+
+      }, 500);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   PHOTO LIGHTBOX
+   ========================================================= */
+
+const guideLightbox =
+  document.createElement("div");
+
+
+guideLightbox.className =
+  "guide-lightbox";
+
+
+guideLightbox.innerHTML = `
+
+  <button
+    class="guide-lightbox-close"
+    type="button"
+    aria-label="Close photo"
+  >
+    ×
+  </button>
+
+  <img
+    src=""
+    alt="Destination photo"
+  >
+
+`;
+
+
+document.body.appendChild(
+  guideLightbox
+);
+
+
+const lightboxImage =
+  guideLightbox.querySelector("img");
+
+
+const lightboxClose =
+  guideLightbox.querySelector(
+    ".guide-lightbox-close"
+  );
+
+
+function openGuideLightbox(imageURL) {
+
+  if (!imageURL) {
+    return;
+  }
+
+
+  lightboxImage.src =
+    imageURL;
+
+
+  guideLightbox.classList.add(
+    "active"
+  );
+
+}
+
+
+function closeGuideLightbox() {
+
+  guideLightbox.classList.remove(
+    "active"
+  );
+
+}
+
+
+document.addEventListener(
+  "click",
+  event => {
+
+    const galleryButton =
+      event.target.closest(
+        ".guide-gallery-item"
+      );
+
+
+    if (!galleryButton) {
+      return;
+    }
+
+
+    openGuideLightbox(
+      galleryButton.dataset.image
+    );
+
+  }
+);
+
+
+if (lightboxClose) {
+
+  lightboxClose.addEventListener(
+    "click",
+    closeGuideLightbox
+  );
+
+}
+
+
+guideLightbox.addEventListener(
+  "click",
+  event => {
+
+    if (
+      event.target ===
+      guideLightbox
+    ) {
+
+      closeGuideLightbox();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   IMAGE FALLBACK
+   ========================================================= */
+
+document.addEventListener(
+  "error",
+  event => {
+
+    if (
+      event.target.tagName !== "IMG"
+    ) {
+      return;
+    }
+
+
+    const image =
+      event.target;
+
+
+    if (
+      image.dataset.fallbackUsed ===
+      "true"
+    ) {
+      return;
+    }
+
+
+    image.dataset.fallbackUsed =
+      "true";
+
+
+    /*
+      If a gallery image fails,
+      use the destination hero image where possible.
+    */
+
+    if (
+      currentGuideDestination &&
+      destinationGuideData[
+        currentGuideDestination
+      ]
+    ) {
+
+      image.src =
+        destinationGuideData[
+          currentGuideDestination
+        ].images[0];
+
+    }
+
+  },
+
+  true
+);
+
+
+/* =========================================================
+   V7 READY
+   ========================================================= */
+
+console.log(
+  "Tourism In Sri Lanka V7 Travel Guide READY 🇱🇰"
+);
