@@ -1,4 +1,669 @@
 /* =========================================================
+   V6 UPGRADE — INTERACTIVE MAP + MOTION + POLISH
+   ========================================================= */
+
+.v6-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 24px;
+}
+
+.v6-hero-badges span {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(10px);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================
+   V6 MAP LAYOUT
+   ========================= */
+
+.v6-map-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(320px, 0.65fr);
+
+  gap: 26px;
+
+  align-items: stretch;
+}
+
+.v6-map-card,
+.map-selector-card {
+  background: var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 24px;
+
+  box-shadow:
+    var(--shadow);
+}
+
+.v6-map-card {
+  padding: 20px;
+
+  overflow: hidden;
+}
+
+.v6-map-toolbar {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 16px;
+
+  margin-bottom: 12px;
+}
+
+.map-live-dot {
+  display: inline-block;
+
+  width: 9px;
+  height: 9px;
+
+  margin-right: 8px;
+
+  border-radius: 50%;
+
+  background:
+    var(--primary);
+
+  box-shadow:
+    0 0 0 6px
+    rgba(22, 148, 71, 0.12);
+}
+
+.map-reset-btn {
+  padding:
+    8px 13px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 10px;
+
+  background:
+    var(--alt-bg);
+
+  color:
+    var(--text);
+
+  font-weight: 700;
+
+  transition:
+    0.2s ease;
+}
+
+.map-reset-btn:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    var(--primary);
+
+  color:
+    white;
+
+  border-color:
+    var(--primary);
+}
+
+/* =========================
+   SRI LANKA VISUAL MAP
+   ========================= */
+
+.sri-lanka-map {
+  position: relative;
+
+  width:
+    min(100%, 610px);
+
+  aspect-ratio:
+    0.72;
+
+  min-height: 650px;
+
+  margin:
+    0 auto;
+
+  isolation: isolate;
+}
+
+.island-shape {
+  position: absolute;
+
+  inset:
+    3% 12% 2%;
+
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      circle at 50% 12%,
+      rgba(255, 255, 255, 0.35),
+      transparent 28%
+    ),
+    linear-gradient(
+      155deg,
+      rgba(22, 148, 71, 0.22),
+      rgba(243, 182, 31, 0.16)
+    );
+
+  border:
+    2px solid
+    rgba(22, 148, 71, 0.32);
+
+  clip-path:
+    polygon(
+      48% 0%,
+      58% 5%,
+      65% 13%,
+      70% 23%,
+      73% 34%,
+      82% 47%,
+      87% 59%,
+      85% 72%,
+      78% 83%,
+      66% 91%,
+      53% 100%,
+      42% 96%,
+      34% 87%,
+      27% 78%,
+      21% 66%,
+      18% 55%,
+      20% 44%,
+      26% 34%,
+      31% 23%,
+      37% 12%
+    );
+
+  filter:
+    drop-shadow(
+      0 22px 30px
+      rgba(0, 0, 0, 0.12)
+    );
+}
+
+/* =========================
+   DISTRICT BUTTONS
+   ========================= */
+
+.map-district {
+  position: absolute;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 2;
+
+  padding:
+    6px 8px;
+
+  border:
+    1px solid
+    rgba(22, 148, 71, 0.24);
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  color:
+    #163421;
+
+  box-shadow:
+    0 5px 14px
+    rgba(0, 0, 0, 0.08);
+
+  font-size:
+    clamp(
+      8px,
+      1.25vw,
+      11px
+    );
+
+  font-weight: 800;
+
+  white-space:
+    nowrap;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+body.dark
+.map-district {
+  background:
+    rgba(24, 34, 29, 0.94);
+
+  color:
+    #eaf7ef;
+}
+
+.map-district:hover,
+.map-district.active {
+  transform:
+    translate(-50%, -50%)
+    scale(1.1);
+
+  background:
+    var(--primary);
+
+  color:
+    white;
+
+  box-shadow:
+    0 8px 22px
+    rgba(22, 148, 71, 0.28);
+
+  z-index: 5;
+}
+
+/* =========================
+   DISTRICT POSITIONS
+   ========================= */
+
+.d-jaffna {
+  left: 49%;
+  top: 5%;
+}
+
+.d-kilinochchi {
+  left: 49%;
+  top: 12%;
+}
+
+.d-mullaitivu {
+  left: 62%;
+  top: 17%;
+}
+
+.d-mannar {
+  left: 33%;
+  top: 20%;
+}
+
+.d-vavuniya {
+  left: 49%;
+  top: 23%;
+}
+
+.d-anuradhapura {
+  left: 43%;
+  top: 33%;
+}
+
+.d-trincomalee {
+  left: 68%;
+  top: 31%;
+}
+
+.d-puttalam {
+  left: 27%;
+  top: 38%;
+}
+
+.d-polonnaruwa {
+  left: 57%;
+  top: 40%;
+}
+
+.d-batticaloa {
+  left: 72%;
+  top: 45%;
+}
+
+.d-kurunegala {
+  left: 37%;
+  top: 47%;
+}
+
+.d-matale {
+  left: 49%;
+  top: 48%;
+}
+
+.d-kandy {
+  left: 48%;
+  top: 56%;
+}
+
+.d-kegalle {
+  left: 37%;
+  top: 57%;
+}
+
+.d-gampaha {
+  left: 27%;
+  top: 55%;
+}
+
+.d-colombo {
+  left: 23%;
+  top: 62%;
+}
+
+.d-nuwaraeliya {
+  left: 51%;
+  top: 63%;
+}
+
+.d-ampara {
+  left: 70%;
+  top: 59%;
+}
+
+.d-badulla {
+  left: 59%;
+  top: 67%;
+}
+
+.d-kalutara {
+  left: 27%;
+  top: 70%;
+}
+
+.d-ratnapura {
+  left: 43%;
+  top: 71%;
+}
+
+.d-monaragala {
+  left: 61%;
+  top: 76%;
+}
+
+.d-galle {
+  left: 35%;
+  top: 86%;
+}
+
+.d-matara {
+  left: 47%;
+  top: 89%;
+}
+
+.d-hambantota {
+  left: 62%;
+  top: 87%;
+}
+
+/* =========================
+   MAP TEXT + SIDE PANEL
+   ========================= */
+
+.map-note {
+  margin-top: 8px;
+
+  text-align: center;
+
+  color:
+    var(--muted);
+
+  font-size: 12px;
+}
+
+.v6-map-side {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.map-selector-card {
+  padding: 20px;
+}
+
+.map-selector-card label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  font-weight: 800;
+}
+
+.v6-result {
+  flex: 1;
+
+  min-height:
+    460px;
+
+  border:
+    1px solid
+    var(--border);
+}
+
+/* =========================
+   RESULT ANIMATION
+   ========================= */
+
+.district-result {
+  animation:
+    v6ResultIn
+    0.35s ease
+    both;
+}
+
+@keyframes v6ResultIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+.district-result
+.attraction-item {
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.district-result
+.attraction-item:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(22, 148, 71, 0.15);
+}
+
+/* =========================
+   SCROLL REVEAL
+   ========================= */
+
+.reveal {
+  opacity: 0;
+
+  transform:
+    translateY(24px);
+
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+
+.map-district:focus-visible,
+.filter-btn:focus-visible,
+.details-btn:focus-visible,
+.favorite-btn:focus-visible,
+.btn:focus-visible,
+.icon-btn:focus-visible,
+.menu-btn:focus-visible,
+.district-card:focus-visible,
+.map-reset-btn:focus-visible {
+
+  outline:
+    3px solid
+    var(--secondary);
+
+  outline-offset:
+    3px;
+}
+
+/* =========================
+   PREMIUM CARD MOTION
+   ========================= */
+
+.quick-card,
+.destination-card,
+.experience-card,
+.info-card,
+.favorite-item {
+  will-change:
+    transform;
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media
+(max-width: 1000px) {
+
+  .v6-map-layout {
+    grid-template-columns:
+      1fr;
+  }
+
+  .v6-map-side {
+    display: grid;
+
+    grid-template-columns:
+      0.75fr 1.25fr;
+
+    align-items:
+      stretch;
+  }
+
+  .v6-result {
+    min-height:
+      320px;
+  }
+
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media
+(max-width: 700px) {
+
+  .v6-map-card {
+    padding:
+      14px;
+  }
+
+  .sri-lanka-map {
+    min-height:
+      560px;
+  }
+
+  .v6-map-side {
+    grid-template-columns:
+      1fr;
+  }
+
+  .map-district {
+    padding:
+      5px 6px;
+
+    font-size:
+      8px;
+  }
+
+  .v6-hero-badges {
+    gap:
+      6px;
+  }
+
+  .v6-hero-badges span {
+    font-size:
+      10px;
+  }
+
+}
+
+/* =========================
+   SMALL PHONE
+   ========================= */
+
+@media
+(max-width: 430px) {
+
+  .sri-lanka-map {
+    min-height:
+      510px;
+  }
+
+  .map-district {
+    font-size:
+      7px;
+
+    padding:
+      4px 5px;
+  }
+
+}
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media
+(prefers-reduced-motion: reduce) {
+
+  .reveal,
+  .district-result,
+  .map-district,
+  .destination-card,
+  .quick-card {
+
+    transition:
+      none !important;
+
+    animation:
+      none !important;
+  }
+
+}
+/* =========================================================
    V7 — RICH DESTINATION TRAVEL GUIDE
    ========================================================= */
 
