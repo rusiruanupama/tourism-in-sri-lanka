@@ -1138,7 +1138,416 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // DISTRICT GRID
   // =========================
+// =========================
+// V6 INTERACTIVE MAP
+// =========================
 
+const visualDistrictButtons = [
+  ...document.querySelectorAll(".map-district")
+];
+
+const mapResetBtn =
+  document.getElementById("mapResetBtn");
+
+
+function selectDistrictV6(districtName) {
+
+  if (
+    !districtName ||
+    !districtData[districtName]
+  ) {
+    return;
+  }
+
+  // Highlight selected district
+  visualDistrictButtons.forEach(button => {
+
+    button.classList.toggle(
+      "active",
+      button.dataset.district === districtName
+    );
+
+  });
+
+
+  // Update select menu
+  if (mapDistrictSelect) {
+
+    mapDistrictSelect.value =
+      districtName;
+
+  }
+
+
+  // Show district information
+  showDistrictResult(
+    districtName
+  );
+
+}
+
+
+/* =========================
+   MAP DISTRICT BUTTONS
+   ========================= */
+
+visualDistrictButtons.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      const district =
+        button.dataset.district;
+
+      selectDistrictV6(
+        district
+      );
+
+    }
+  );
+
+});
+
+
+/* =========================
+   SELECT MENU SYNC
+   ========================= */
+
+if (mapDistrictSelect) {
+
+  mapDistrictSelect.addEventListener(
+    "change",
+    () => {
+
+      const selected =
+        mapDistrictSelect.value;
+
+      visualDistrictButtons.forEach(
+        button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.district === selected
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   RESET MAP
+   ========================= */
+
+if (mapResetBtn) {
+
+  mapResetBtn.addEventListener(
+    "click",
+    () => {
+
+      // Remove active state
+      visualDistrictButtons.forEach(
+        button => {
+
+          button.classList.remove(
+            "active"
+          );
+
+        }
+      );
+
+
+      // Reset select
+      if (mapDistrictSelect) {
+
+        mapDistrictSelect.value = "";
+
+      }
+
+
+      // Reset result area
+      if (mapResult) {
+
+        mapResult.innerHTML = `
+
+          <div class="map-placeholder">
+
+            <span>
+              🗺️
+            </span>
+
+            <h3>
+              Explore Sri Lanka
+            </h3>
+
+            <p>
+              Select a district to see its province,
+              travel highlights and popular attractions.
+            </p>
+
+          </div>
+
+        `;
+
+      }
+
+    }
+  );
+
+}
+
+
+// =========================
+// V6 SCROLL REVEAL
+// =========================
+
+const revealElements = [
+
+  ...document.querySelectorAll(
+
+    `
+    .section-head,
+    .quick-card,
+    .destination-card,
+    .experience-card,
+    .info-card,
+    .district-card,
+    .planner-form,
+    .planner-result,
+    .v6-map-card,
+    .v6-map-side
+    `
+
+  )
+
+];
+
+
+// Add reveal class
+revealElements.forEach(
+  element => {
+
+    element.classList.add(
+      "reveal"
+    );
+
+  }
+);
+
+
+// Check browser support
+if (
+  "IntersectionObserver" in window
+) {
+
+  const revealObserver =
+    new IntersectionObserver(
+
+      entries => {
+
+        entries.forEach(
+          entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          }
+        );
+
+      },
+
+      {
+
+        threshold: 0.08,
+
+        rootMargin:
+          "0px 0px -35px 0px"
+
+      }
+
+    );
+
+
+  revealElements.forEach(
+    element => {
+
+      revealObserver.observe(
+        element
+      );
+
+    }
+  );
+
+} else {
+
+  // Fallback for old browsers
+  revealElements.forEach(
+    element => {
+
+      element.classList.add(
+        "visible"
+      );
+
+    }
+  );
+
+}
+
+
+// =========================
+// V6 MAP KEYBOARD SUPPORT
+// =========================
+
+visualDistrictButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+
+          event.preventDefault();
+
+          selectDistrictV6(
+            button.dataset.district
+          );
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+// =========================
+// V6 ACTIVE MAP SYNC
+// =========================
+
+function syncMapDistrict(
+  districtName
+) {
+
+  visualDistrictButtons.forEach(
+    button => {
+
+      button.classList.toggle(
+
+        "active",
+
+        button.dataset.district ===
+          districtName
+
+      );
+
+    }
+  );
+
+}
+
+
+// =========================
+// V6 DISTRICT GRID → MAP
+// =========================
+
+document
+  .querySelectorAll(
+    ".district-card"
+  )
+  .forEach(
+    card => {
+
+      card.addEventListener(
+        "click",
+        () => {
+
+          const districtName =
+            card.textContent.trim();
+
+          syncMapDistrict(
+            districtName
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+// =========================
+// V6 MAP TOOLTIP
+// =========================
+
+visualDistrictButtons.forEach(
+  button => {
+
+    const district =
+      button.dataset.district;
+
+    const data =
+      districtData[district];
+
+    if (!data) {
+      return;
+    }
+
+    button.title =
+      `${district} • ${data.province}`;
+
+  }
+);
+
+
+// =========================
+// V6 INITIAL STATE
+// =========================
+
+visualDistrictButtons.forEach(
+  button => {
+
+    button.setAttribute(
+      "type",
+      "button"
+    );
+
+    button.setAttribute(
+      "aria-label",
+      `Explore ${button.dataset.district} District`
+    );
+
+  }
+);
+
+
+// =========================
+// V6 READY
+// =========================
+
+console.log(
+  "Tourism In Sri Lanka V6 READY 🇱🇰"
+);
   const districtSearch =
     document.getElementById(
       "districtSearch"
