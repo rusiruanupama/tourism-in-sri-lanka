@@ -1,2262 +1,625 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --primary: #169447;
-  --primary-dark: #0d6e35;
-  --secondary: #f3b61f;
-
-  --bg: #ffffff;
-  --alt-bg: #f5f8f6;
-  --card: #ffffff;
-
-  --text: #17211c;
-  --muted: #647069;
-
-  --border: rgba(0, 0, 0, 0.1);
-
-  --shadow:
-    0 15px 40px rgba(0, 0, 0, 0.08);
-
-  --radius: 20px;
-
-  --container: 1180px;
-}
-
-body.dark {
-  --bg: #0e1512;
-  --alt-bg: #121b17;
-  --card: #18221d;
-
-  --text: #f4f7f5;
-  --muted: #abb8b1;
-
-  --border: rgba(255, 255, 255, 0.1);
-
-  --shadow:
-    0 15px 45px rgba(0, 0, 0, 0.35);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Inter", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
-img {
-  display: block;
-  width: 100%;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button,
-input,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-.container {
-  width: min(
-    calc(100% - 40px),
-    var(--container)
-  );
-
-  margin: auto;
-}
-
-/* LOADER */
-
-.loader {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-
-  background: #ffffff;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-
-  gap: 18px;
-
-  transition:
-    opacity 0.4s ease,
-    visibility 0.4s ease;
-}
-
-body.dark .loader {
-  background: #0e1512;
-}
-
-.loader.hide {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.loader-ring {
-  width: 48px;
-  height: 48px;
-
-  border-radius: 50%;
-
-  border: 5px solid #dfe7e2;
-  border-top-color: var(--primary);
-
-  animation:
-    spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* HEADER */
-
-.header {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-
-  z-index: 1000;
-
-  transition: 0.3s ease;
-}
-
-.header.scrolled {
-  background:
-    rgba(255, 255, 255, 0.94);
-
-  backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 5px 30px rgba(0, 0, 0, 0.08);
-}
-
-body.dark .header.scrolled {
-  background:
-    rgba(14, 21, 18, 0.94);
-}
-
-.nav-wrap {
-  height: 78px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 25px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-
-  font-weight: 800;
-  font-size: 18px;
-
-  color: white;
-}
-
-.header.scrolled .logo {
-  color: var(--text);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-
-  gap: 22px;
-}
-
-.nav a {
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-
-  transition: 0.2s ease;
-}
-
-.nav a:hover {
-  color: #ffd75e;
-}
-
-.header.scrolled .nav a {
-  color: var(--text);
-}
-
-.nav-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.icon-btn {
-  width: 42px;
-  height: 42px;
-
-  border: 1px solid
-    rgba(255,255,255,0.35);
-
-  border-radius: 50%;
-
-  background:
-    rgba(255,255,255,0.15);
-
-  color: white;
-
-  display: grid;
-  place-items: center;
-}
-
-.header.scrolled .icon-btn {
-  color: var(--text);
-  background: var(--card);
-  border-color: var(--border);
-}
-
-.menu-btn {
-  display: none;
-
-  width: 42px;
-  height: 42px;
-
-  border: none;
-  border-radius: 10px;
-
-  background:
-    rgba(255,255,255,0.15);
-}
-
-.menu-btn span {
-  display: block;
-
-  width: 20px;
-  height: 2px;
-
-  margin: 4px auto;
-
-  background: white;
-}
-
-.header.scrolled .menu-btn span {
-  background: var(--text);
-}
-
-/* HERO */
-
-.hero {
-  min-height: 100vh;
-
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  color: white;
-
-  background:
-    url("https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya%20Sri%20lanka.jpg")
-    center / cover no-repeat;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0, 20, 10, 0.82),
-      rgba(0, 20, 10, 0.42)
-    );
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-
-  padding-top: 90px;
-
-  max-width: 900px;
-}
-
-.eyebrow {
-  display: inline-block;
-
-  margin-bottom: 13px;
-
-  color: var(--secondary);
-
-  font-size: 13px;
-  font-weight: 800;
-
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.hero h1 {
-  max-width: 760px;
-
-  font-family:
-    "Playfair Display", serif;
-
-  font-size:
-    clamp(48px, 7vw, 88px);
-
-  line-height: 1;
-}
-
-.hero p {
-  max-width: 680px;
-
-  margin-top: 25px;
-
-  font-size: 18px;
-
-  color:
-    rgba(255,255,255,0.88);
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 14px;
-
-  margin-top: 30px;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 48px;
-
-  padding: 0 22px;
-
-  border: none;
-  border-radius: 12px;
-
-  font-weight: 700;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.primary-btn {
-  background: var(--primary);
-  color: white;
-
-  box-shadow:
-    0 10px 25px
-    rgba(22,148,71,0.28);
-}
-
-.primary-btn:hover {
-  background: var(--primary-dark);
-}
-
-.secondary-btn {
-  background: var(--card);
-  color: var(--text);
-
-  border: 1px solid var(--border);
-}
-
-.glass-btn {
-  background:
-    rgba(255,255,255,0.14);
-
-  border:
-    1px solid
-    rgba(255,255,255,0.3);
-
-  color: white;
-
-  backdrop-filter: blur(10px);
-}
-
-.hero-stats {
-  display: flex;
-  gap: 40px;
-
-  margin-top: 50px;
-}
-
-.hero-stats div {
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-stats strong {
-  font-size: 28px;
-}
-
-.hero-stats span {
-  color:
-    rgba(255,255,255,0.75);
-
-  font-size: 13px;
-}
-
-/* SECTIONS */
-
-.section {
-  padding: 90px 0;
-}
-
-.alt-section {
-  background: var(--alt-bg);
-}
-
-.section-head {
-  text-align: center;
-
-  max-width: 750px;
-
-  margin:
-    0 auto 45px;
-}
-
-.section-head h2 {
-  font-family:
-    "Playfair Display", serif;
-
-  font-size:
-    clamp(34px, 5vw, 48px);
-
-  line-height: 1.15;
-}
-
-.section-head p {
-  margin-top: 15px;
-
-  color: var(--muted);
-}
-
-/* QUICK */
-
-.quick-tools {
-  position: relative;
-  z-index: 5;
-
-  margin-top: -55px;
-}
-
-.quick-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 20px;
-}
-
-.quick-card {
-  padding: 28px;
-
-  background: var(--card);
-
-  border-radius: var(--radius);
-
-  box-shadow: var(--shadow);
-
-  transition: 0.25s ease;
-}
-
-.quick-card:hover {
-  transform: translateY(-6px);
-}
-
-.quick-card > span {
-  font-size: 35px;
-}
-
-.quick-card h3 {
-  margin-top: 10px;
-}
-
-.quick-card p {
-  color: var(--muted);
-
-  margin-top: 5px;
-}
-
-/* DESTINATION TOOLS */
-
-.destination-tools {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 30px;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-
-  width: min(100%, 400px);
-
-  padding: 0 15px;
-
-  border: 1px solid var(--border);
-
-  border-radius: 12px;
-
-  background: var(--card);
-}
-
-.search-box input {
-  width: 100%;
-
-  min-height: 48px;
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-  color: var(--text);
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 8px;
-}
-
-.filter-btn {
-  padding: 10px 16px;
-
-  border-radius: 30px;
-
-  border: 1px solid var(--border);
-
-  background: var(--card);
-  color: var(--text);
-
-  font-weight: 600;
-}
-
-.filter-btn.active {
-  background: var(--primary);
-  color: white;
-
-  border-color: var(--primary);
-}
-
-/* DESTINATION CARDS */
-
-.destination-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 25px;
-}
-
-.destination-card {
-  overflow: hidden;
-
-  background: var(--card);
-
-  border-radius: var(--radius);
-
-  box-shadow: var(--shadow);
-
-  transition: 0.3s ease;
-}
-
-.destination-card:hover {
-  transform: translateY(-7px);
-}
-
-.card-image {
-  height: 230px;
-
-  position: relative;
-  overflow: hidden;
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  transition: 0.4s ease;
-}
-
-.destination-card:hover img {
-  transform: scale(1.06);
-}
-
-.favorite-btn {
-  position: absolute;
-
-  top: 14px;
-  right: 14px;
-
-  width: 42px;
-  height: 42px;
-
-  border-radius: 50%;
-
-  border: none;
-
-  background:
-    rgba(255,255,255,0.94);
-
-  color: #d9234a;
-
-  font-size: 24px;
-
-  display: grid;
-  place-items: center;
-}
-
-.favorite-btn.active {
-  background: #d9234a;
-  color: white;
-}
-
-.card-content {
-  padding: 22px;
-}
-
-.tag {
-  display: inline-block;
-
-  padding: 5px 10px;
-
-  border-radius: 30px;
-
-  background:
-    rgba(22,148,71,0.12);
-
-  color: var(--primary);
-
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.card-content h3 {
-  margin-top: 12px;
-
-  font-size: 22px;
-}
-
-.card-content p {
-  margin-top: 8px;
-
-  color: var(--muted);
-}
-
-.details-btn {
-  margin-top: 18px;
-
-  border: none;
-
-  background: transparent;
-  color: var(--primary);
-
-  font-weight: 700;
-}
-
-/* MAP EXPLORER */
-
-.map-explorer {
-  display: grid;
-
-  grid-template-columns:
-    0.75fr 1.25fr;
-
-  gap: 30px;
-}
-
-.map-panel,
-.map-result {
-  padding: 35px;
-
-  border-radius: 24px;
-
-  background: var(--card);
-
-  box-shadow: var(--shadow);
-}
-
-.map-panel {
-  text-align: center;
-}
-
-.map-icon {
-  font-size: 75px;
-}
-
-.map-panel h3 {
-  font-size: 26px;
-
-  margin-top: 8px;
-}
-
-.map-panel p {
-  color: var(--muted);
-
-  margin:
-    10px 0 25px;
-}
-
-#mapDistrictSelect,
-#districtSearch,
-.planner-form select {
-  width: 100%;
-
-  min-height: 50px;
-
-  padding: 0 15px;
-
-  border-radius: 12px;
-
-  border:
-    1px solid var(--border);
-
-  background: var(--card);
-  color: var(--text);
-
-  outline: none;
-}
-
-.map-result {
-  min-height: 360px;
-
-  display: flex;
-  align-items: center;
-}
-
-.map-placeholder {
-  width: 100%;
-  text-align: center;
-}
-
-.map-placeholder span {
-  font-size: 70px;
-}
-
-.map-placeholder h3 {
-  margin-top: 15px;
-
-  font-size: 28px;
-}
-
-.map-placeholder p {
-  color: var(--muted);
-
-  margin-top: 8px;
-}
-
-.district-result {
-  width: 100%;
-}
-
-.district-result-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 18px;
-}
-
-.district-result h3 {
-  font-family:
-    "Playfair Display", serif;
-
-  font-size: 34px;
-}
-
-.province-badge {
-  padding: 7px 14px;
-
-  border-radius: 30px;
-
-  background:
-    rgba(22,148,71,0.12);
-
-  color: var(--primary);
-
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.district-description {
-  color: var(--muted);
-
-  margin-bottom: 20px;
-}
-
-.attraction-list {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 12px;
-}
-
-.attraction-item {
-  padding: 14px 16px;
-
-  border-radius: 12px;
-
-  background:
-    rgba(22,148,71,0.09);
-
-  font-weight: 600;
-}
-
-/* DISTRICTS */
-
-.district-search-wrap {
-  max-width: 500px;
-
-  margin:
-    0 auto 30px;
-}
-
-.district-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(5, 1fr);
-
-  gap: 12px;
-}
-
-.district-card {
-  min-height: 58px;
-
-  padding: 10px;
-
-  border-radius: 13px;
-
-  border: 1px solid var(--border);
-
-  background: var(--card);
-  color: var(--text);
-
-  font-weight: 700;
-
-  transition: 0.2s ease;
-}
-
-.district-card:hover {
-  background: var(--primary);
-  color: white;
-
-  transform: translateY(-3px);
-}
-
-/* FAVORITES */
-
-.favorites-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 20px;
-}
-
-.empty-state {
-  grid-column: 1 / -1;
-
-  padding: 45px;
-
-  border-radius: var(--radius);
-
-  background: var(--card);
-
-  text-align: center;
-}
-
-.empty-state span {
-  font-size: 50px;
-}
-
-.empty-state p {
-  color: var(--muted);
-}
-
-.favorite-item {
-  overflow: hidden;
-
-  border-radius: var(--radius);
-
-  background: var(--card);
-
-  box-shadow: var(--shadow);
-}
-
-.favorite-item img {
-  height: 180px;
-
-  object-fit: cover;
-}
-
-.favorite-item-content {
-  padding: 18px;
-}
-
-.favorite-item-content p {
-  color: var(--muted);
-
-  font-size: 14px;
-
-  margin-top: 7px;
-}
-
-.remove-favorite {
-  margin-top: 15px;
-
-  padding: 9px 14px;
-
-  border: none;
-
-  border-radius: 9px;
-
-  background: #da304e;
-  color: white;
-
-  font-weight: 700;
-}
-
-/* PLANNER */
-
-.planner-layout {
-  display: grid;
-
-  grid-template-columns:
-    0.75fr 1.25fr;
-
-  gap: 30px;
-}
-
-.planner-form,
-.planner-result {
-  padding: 30px;
-
-  border-radius: var(--radius);
-
-  background: var(--card);
-
-  box-shadow: var(--shadow);
-}
-
-.planner-form label {
-  display: block;
-
-  margin:
-    0 0 8px;
-
-  font-weight: 700;
-}
-
-.planner-form label:not(:first-child) {
-  margin-top: 22px;
-}
-
-.planner-form label strong {
-  float: right;
-
-  color: var(--primary);
-}
-
-#daysRange {
-  width: 100%;
-
-  accent-color: var(--primary);
-}
-
-.full-btn {
-  width: 100%;
-
-  margin-top: 28px;
-}
-
-.planner-result {
-  min-height: 400px;
-}
-
-.planner-placeholder {
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-}
-
-.planner-placeholder span {
-  font-size: 65px;
-}
-
-.planner-placeholder p {
-  color: var(--muted);
-
-  margin-top: 8px;
-}
-
-.itinerary-summary {
-  padding-bottom: 20px;
-
-  border-bottom:
-    1px solid var(--border);
-}
-
-.itinerary-summary p {
-  color: var(--muted);
-
-  margin-top: 5px;
-}
-
-.itinerary-list {
-  margin-top: 20px;
-}
-
-.itinerary-day {
-  display: grid;
-
-  grid-template-columns:
-    70px 1fr;
-
-  gap: 15px;
-
-  padding: 15px 0;
-
-  border-bottom:
-    1px solid var(--border);
-}
-
-.day-number {
-  color: var(--primary);
-
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.itinerary-day p {
-  color: var(--muted);
-
-  font-size: 14px;
-}
-
-/* EXPERIENCE + INFO */
-
-.experience-grid,
-.info-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 20px;
-}
-
-.info-grid {
-  grid-template-columns:
-    repeat(4, 1fr);
-}
-
-.experience-card,
-.info-card {
-  padding: 28px;
-
-  border-radius: var(--radius);
-
-  background: var(--card);
-
-  box-shadow: var(--shadow);
-}
-
-.experience-card > span,
-.info-card > span {
-  font-size: 38px;
-}
-
-.experience-card h3,
-.info-card h3 {
-  margin-top: 13px;
-}
-
-.experience-card p,
-.info-card p {
-  color: var(--muted);
-
-  margin-top: 6px;
-}
-
-/* EMERGENCY */
-
-.emergency-section {
-  background:
-    linear-gradient(
-      135deg,
-      #0b6231,
-      #14884a
-    );
-
-  color: white;
-}
-
-.light-head h2 {
-  color: white;
-}
-
-.emergency-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 16px;
-}
-
-.emergency-card {
-  padding: 28px;
-
-  border-radius: var(--radius);
-
-  text-align: center;
-
-  background:
-    rgba(255,255,255,0.13);
-
-  border:
-    1px solid
-    rgba(255,255,255,0.18);
-
-  backdrop-filter: blur(8px);
-
-  transition: 0.2s ease;
-}
-
-.emergency-card:hover {
-  transform: translateY(-5px);
-
-  background:
-    rgba(255,255,255,0.19);
-}
-
-.emergency-card span {
-  font-size: 34px;
-}
-
-.emergency-card strong {
-  display: block;
-
-  margin-top: 5px;
-
-  font-size: 25px;
-}
-
-/* RESOURCES */
-
-.resource-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 30px;
-
-  padding: 40px;
-
-  border-radius: 24px;
-
-  background: var(--alt-bg);
-}
-
-.resource-buttons {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 10px;
-}
-
-/* MODAL */
-
-.modal {
-  position: fixed;
-  inset: 0;
-
-  z-index: 5000;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition: 0.25s ease;
-}
-
-.modal.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-overlay {
-  position: absolute;
-  inset: 0;
-
-  background:
-    rgba(0,0,0,0.68);
-
-  backdrop-filter: blur(5px);
-}
-
-.modal-content {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  transform:
-    translate(-50%, -45%);
-
-  width:
-    min(calc(100% - 30px), 650px);
-
-  max-height: 90vh;
-
-  overflow: auto;
-
-  border-radius: 22px;
-
-  background: var(--card);
-
-  box-shadow:
-    0 25px 80px rgba(0,0,0,0.35);
-
-  transition: 0.25s ease;
-}
-
-.modal.active .modal-content {
-  transform:
-    translate(-50%, -50%);
-}
-
-.modal-content > img {
-  height: 320px;
-
-  object-fit: cover;
-}
-
-.modal-body {
-  padding: 28px;
-}
-
-.modal-body h2 {
-  margin-top: 12px;
-
-  font-size: 32px;
-}
-
-.modal-body p {
-  color: var(--muted);
-
-  margin-top: 10px;
-}
-
-.modal-close {
-  position: absolute;
-
-  top: 15px;
-  right: 15px;
-
-  z-index: 5;
-
-  width: 42px;
-  height: 42px;
-
-  border-radius: 50%;
-
-  border: none;
-
-  background: white;
-  color: #111;
-
-  font-size: 25px;
-}
-
-/* FOOTER */
-
-.footer {
-  padding-top: 60px;
-
-  background: #09120d;
-  color: white;
-}
-
-.footer-grid {
-  display: flex;
-  justify-content: space-between;
-
-  gap: 30px;
-}
-
-.footer-logo {
-  color: white;
-}
-
-.footer p {
-  margin-top: 10px;
-
-  color:
-    rgba(255,255,255,0.6);
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-
-  gap: 10px;
-}
-
-.footer-bottom {
-  margin-top: 40px;
-
-  padding: 20px 0;
-
-  border-top:
-    1px solid
-    rgba(255,255,255,0.1);
-
-  color:
-    rgba(255,255,255,0.55);
-
-  font-size: 13px;
-}
-
-/* BACK TOP */
-
-.back-to-top {
-  position: fixed;
-
-  right: 20px;
-  bottom: 20px;
-
-  z-index: 1500;
-
-  width: 48px;
-  height: 48px;
-
-  border: none;
-
-  border-radius: 50%;
-
-  background: var(--primary);
-  color: white;
-
-  font-size: 22px;
-
-  opacity: 0;
-  visibility: hidden;
-
-  transform:
-    translateY(15px);
-
-  transition: 0.25s ease;
-}
-
-.back-to-top.show {
-  opacity: 1;
-  visibility: visible;
-
-  transform: none;
-}
-
-/* MOBILE */
-
-@media (max-width: 1000px) {
-
-  .menu-btn {
-    display: block;
-  }
-
-  .nav {
-    position: fixed;
-
-    top: 78px;
-    left: 20px;
-    right: 20px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    padding: 20px;
-
-    border-radius: 18px;
-
-    background: var(--card);
-
-    box-shadow: var(--shadow);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transform:
-      translateY(-15px);
-
-    transition: 0.25s ease;
-  }
-
-  .nav.open {
-    opacity: 1;
-    visibility: visible;
-
-    transform: none;
-  }
-
-  .nav a,
-  .header.scrolled .nav a {
-    color: var(--text);
-
-    padding: 9px;
-  }
-
-  .destination-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
-
-  .district-grid {
-    grid-template-columns:
-      repeat(3, 1fr);
-  }
-
-  .map-explorer,
-  .planner-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .info-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
-
-}
-
-@media (max-width: 700px) {
-
-  .container {
-    width:
-      min(calc(100% - 28px), var(--container));
-  }
-
-  .nav-wrap {
-    height: 70px;
-  }
-
-  .logo {
-    font-size: 15px;
-  }
-
-  .nav {
-    top: 70px;
-  }
-
-  .hero {
-    min-height: 850px;
-  }
-
-  .hero h1 {
-    font-size: 50px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  .hero-stats {
-    gap: 20px;
-
-    flex-wrap: wrap;
-  }
-
-  .quick-grid,
-  .destination-grid,
-  .favorites-grid,
-  .experience-grid,
-  .info-grid,
-  .emergency-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .quick-tools {
-    margin-top: -30px;
-  }
-
-  .section {
-    padding: 70px 0;
-  }
-
-  .destination-tools {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search-box {
-    width: 100%;
-  }
-
-  .filters {
-    justify-content: center;
-  }
-
-  .district-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
-
-  .map-panel,
-  .map-result,
-  .planner-form,
-  .planner-result {
-    padding: 22px;
-  }
-
-  .attraction-list {
-    grid-template-columns: 1fr;
-  }
-
-  .district-result-top {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .resource-box,
-  .footer-grid {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .modal-content > img {
-    height: 220px;
-  }
-
-}
-
-@media (max-width: 420px) {
-
-  .hero h1 {
-    font-size: 42px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-  }
-
-  .hero-buttons .btn {
-    width: 100%;
-  }
-
-  .district-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .icon-btn {
-    width: 38px;
-    height: 38px;
-  }
-
-}
 /* =========================================================
-   V6 UPGRADE — INTERACTIVE MAP + MOTION + POLISH
+   V7 — RICH DESTINATION TRAVEL GUIDE
    ========================================================= */
 
-.v6-hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 24px;
+.destination-guide-content {
+  width: min(100% - 30px, 980px);
+  max-height: 92vh;
+
+  overflow-y: auto;
+
+  padding: 0;
+
+  border-radius: 26px;
 }
 
-.v6-hero-badges span {
-  padding: 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.10);
-  backdrop-filter: blur(10px);
-  font-size: 12px;
-  font-weight: 700;
-}
 
 /* =========================
-   V6 MAP LAYOUT
+   GUIDE HERO
    ========================= */
 
-.v6-map-layout {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1.35fr)
-    minmax(320px, 0.65fr);
+.guide-hero {
+  position: relative;
 
-  gap: 26px;
-
-  align-items: stretch;
-}
-
-.v6-map-card,
-.map-selector-card {
-  background: var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 24px;
-
-  box-shadow:
-    var(--shadow);
-}
-
-.v6-map-card {
-  padding: 20px;
+  min-height: 380px;
+  height: 380px;
 
   overflow: hidden;
+
+  border-radius:
+    26px 26px 0 0;
 }
 
-.v6-map-toolbar {
+.guide-hero > img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.guide-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.82),
+      rgba(0, 0, 0, 0.12) 60%
+    );
+}
+
+.guide-hero-text {
+  position: absolute;
+
+  left: 30px;
+  right: 80px;
+  bottom: 28px;
+
+  color: white;
+
+  z-index: 2;
+}
+
+.guide-hero-text h2 {
+  margin-top: 10px;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(
+      32px,
+      5vw,
+      50px
+    );
+
+  line-height: 1.08;
+}
+
+.guide-hero-text p {
+  margin-top: 8px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.9
+    );
+
+  font-size: 15px;
+}
+
+
+/* =========================
+   GUIDE BODY
+   ========================= */
+
+.guide-body {
+  padding: 28px;
+}
+
+.guide-section {
+  margin-bottom: 27px;
+}
+
+.guide-section-title {
   display: flex;
 
-  justify-content: space-between;
   align-items: center;
 
-  gap: 16px;
+  gap: 10px;
 
   margin-bottom: 12px;
 }
 
-.map-live-dot {
-  display: inline-block;
-
-  width: 9px;
-  height: 9px;
-
-  margin-right: 8px;
-
-  border-radius: 50%;
-
-  background:
-    var(--primary);
-
-  box-shadow:
-    0 0 0 6px
-    rgba(22, 148, 71, 0.12);
+.guide-section-title span {
+  font-size: 20px;
 }
 
-.map-reset-btn {
-  padding:
-    8px 13px;
+.guide-section-title h3 {
+  margin: 0;
 
-  border:
-    1px solid var(--border);
-
-  border-radius: 10px;
-
-  background:
-    var(--alt-bg);
-
-  color:
-    var(--text);
-
-  font-weight: 700;
-
-  transition:
-    0.2s ease;
+  font-size: 19px;
 }
 
-.map-reset-btn:hover {
-  transform:
-    translateY(-2px);
+.guide-section > p {
+  color: var(--muted);
 
-  background:
-    var(--primary);
-
-  color:
-    white;
-
-  border-color:
-    var(--primary);
+  line-height: 1.85;
 }
+
 
 /* =========================
-   SRI LANKA VISUAL MAP
+   QUICK FACTS
    ========================= */
 
-.sri-lanka-map {
-  position: relative;
+.guide-facts {
+  display: grid;
 
-  width:
-    min(100%, 610px);
+  grid-template-columns:
+    repeat(4, 1fr);
 
-  aspect-ratio:
-    0.72;
+  gap: 12px;
 
-  min-height: 650px;
-
-  margin:
-    0 auto;
-
-  isolation: isolate;
+  margin-bottom: 28px;
 }
 
-.island-shape {
-  position: absolute;
-
-  inset:
-    3% 12% 2%;
-
-  z-index: -1;
-
-  background:
-    radial-gradient(
-      circle at 50% 12%,
-      rgba(255, 255, 255, 0.35),
-      transparent 28%
-    ),
-    linear-gradient(
-      155deg,
-      rgba(22, 148, 71, 0.22),
-      rgba(243, 182, 31, 0.16)
-    );
-
-  border:
-    2px solid
-    rgba(22, 148, 71, 0.32);
-
-  clip-path:
-    polygon(
-      48% 0%,
-      58% 5%,
-      65% 13%,
-      70% 23%,
-      73% 34%,
-      82% 47%,
-      87% 59%,
-      85% 72%,
-      78% 83%,
-      66% 91%,
-      53% 100%,
-      42% 96%,
-      34% 87%,
-      27% 78%,
-      21% 66%,
-      18% 55%,
-      20% 44%,
-      26% 34%,
-      31% 23%,
-      37% 12%
-    );
-
-  filter:
-    drop-shadow(
-      0 22px 30px
-      rgba(0, 0, 0, 0.12)
-    );
-}
-
-/* =========================
-   DISTRICT BUTTONS
-   ========================= */
-
-.map-district {
-  position: absolute;
-
-  transform:
-    translate(-50%, -50%);
-
-  z-index: 2;
-
-  padding:
-    6px 8px;
+.guide-fact {
+  padding: 16px;
 
   border:
     1px solid
-    rgba(22, 148, 71, 0.24);
+    var(--border);
+
+  border-radius: 16px;
+
+  background:
+    var(--alt-bg);
+}
+
+.guide-fact span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color:
+    var(--muted);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing:
+    0.06em;
+}
+
+.guide-fact strong {
+  font-size: 14px;
+}
+
+
+/* =========================
+   HIGHLIGHT CHIPS
+   ========================= */
+
+.guide-chip-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+}
+
+.guide-chip {
+  padding:
+    8px 12px;
+
+  border:
+    1px solid
+    rgba(
+      22,
+      148,
+      71,
+      0.18
+    );
 
   border-radius:
     999px;
 
   background:
-    rgba(255, 255, 255, 0.92);
-
-  color:
-    #163421;
-
-  box-shadow:
-    0 5px 14px
-    rgba(0, 0, 0, 0.08);
-
-  font-size:
-    clamp(
-      8px,
-      1.25vw,
-      11px
+    rgba(
+      22,
+      148,
+      71,
+      0.10
     );
 
-  font-weight: 800;
+  color:
+    var(--text);
 
-  white-space:
-    nowrap;
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   PHOTO GALLERY
+   ========================= */
+
+.guide-gallery {
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr 1fr;
+
+  gap: 10px;
+}
+
+.guide-gallery button {
+  height: 170px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  background:
+    var(--alt-bg);
+
+  cursor: pointer;
+}
+
+.guide-gallery button:first-child {
+  height: 350px;
+
+  grid-row:
+    span 2;
+}
+
+.guide-gallery img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
 
   transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.35s ease;
 }
 
-body.dark
-.map-district {
-  background:
-    rgba(24, 34, 29, 0.94);
-
-  color:
-    #eaf7ef;
-}
-
-.map-district:hover,
-.map-district.active {
+.guide-gallery button:hover img {
   transform:
-    translate(-50%, -50%)
-    scale(1.1);
-
-  background:
-    var(--primary);
-
-  color:
-    white;
-
-  box-shadow:
-    0 8px 22px
-    rgba(22, 148, 71, 0.28);
-
-  z-index: 5;
+    scale(1.045);
 }
+
 
 /* =========================
-   DISTRICT POSITIONS
+   BEST TIME + TIPS
    ========================= */
 
-.d-jaffna {
-  left: 49%;
-  top: 5%;
-}
+.guide-two-column {
+  display: grid;
 
-.d-kilinochchi {
-  left: 49%;
-  top: 12%;
-}
-
-.d-mullaitivu {
-  left: 62%;
-  top: 17%;
-}
-
-.d-mannar {
-  left: 33%;
-  top: 20%;
-}
-
-.d-vavuniya {
-  left: 49%;
-  top: 23%;
-}
-
-.d-anuradhapura {
-  left: 43%;
-  top: 33%;
-}
-
-.d-trincomalee {
-  left: 68%;
-  top: 31%;
-}
-
-.d-puttalam {
-  left: 27%;
-  top: 38%;
-}
-
-.d-polonnaruwa {
-  left: 57%;
-  top: 40%;
-}
-
-.d-batticaloa {
-  left: 72%;
-  top: 45%;
-}
-
-.d-kurunegala {
-  left: 37%;
-  top: 47%;
-}
-
-.d-matale {
-  left: 49%;
-  top: 48%;
-}
-
-.d-kandy {
-  left: 48%;
-  top: 56%;
-}
-
-.d-kegalle {
-  left: 37%;
-  top: 57%;
-}
-
-.d-gampaha {
-  left: 27%;
-  top: 55%;
-}
-
-.d-colombo {
-  left: 23%;
-  top: 62%;
-}
-
-.d-nuwaraeliya {
-  left: 51%;
-  top: 63%;
-}
-
-.d-ampara {
-  left: 70%;
-  top: 59%;
-}
-
-.d-badulla {
-  left: 59%;
-  top: 67%;
-}
-
-.d-kalutara {
-  left: 27%;
-  top: 70%;
-}
-
-.d-ratnapura {
-  left: 43%;
-  top: 71%;
-}
-
-.d-monaragala {
-  left: 61%;
-  top: 76%;
-}
-
-.d-galle {
-  left: 35%;
-  top: 86%;
-}
-
-.d-matara {
-  left: 47%;
-  top: 89%;
-}
-
-.d-hambantota {
-  left: 62%;
-  top: 87%;
-}
-
-/* =========================
-   MAP TEXT + SIDE PANEL
-   ========================= */
-
-.map-note {
-  margin-top: 8px;
-
-  text-align: center;
-
-  color:
-    var(--muted);
-
-  font-size: 12px;
-}
-
-.v6-map-side {
-  display: flex;
-
-  flex-direction: column;
+  grid-template-columns:
+    1fr 1fr;
 
   gap: 18px;
+
+  margin-bottom: 28px;
 }
 
-.map-selector-card {
+.guide-panel {
   padding: 20px;
-}
 
-.map-selector-card label {
-  display: block;
-
-  margin-bottom: 9px;
-
-  font-weight: 800;
-}
-
-.v6-result {
-  flex: 1;
-
-  min-height:
-    460px;
+  margin-bottom: 0;
 
   border:
     1px solid
     var(--border);
-}
 
-/* =========================
-   RESULT ANIMATION
-   ========================= */
-
-.district-result {
-  animation:
-    v6ResultIn
-    0.35s ease
-    both;
-}
-
-@keyframes v6ResultIn {
-
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0);
-  }
-
-}
-
-.district-result
-.attraction-item {
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
-
-.district-result
-.attraction-item:hover {
-  transform:
-    translateY(-2px);
+  border-radius: 18px;
 
   background:
-    rgba(22, 148, 71, 0.15);
+    var(--alt-bg);
 }
+
+.guide-list {
+  display: grid;
+
+  gap: 10px;
+
+  padding-left: 19px;
+
+  color:
+    var(--muted);
+}
+
+.guide-list li {
+  line-height: 1.65;
+}
+
 
 /* =========================
-   SCROLL REVEAL
+   NEARBY PLACES
    ========================= */
 
-.reveal {
-  opacity: 0;
-
-  transform:
-    translateY(24px);
-
-  transition:
-    opacity 0.65s ease,
-    transform 0.65s ease;
+.nearby-list .guide-chip {
+  cursor: default;
 }
 
-.reveal.visible {
-  opacity: 1;
-
-  transform:
-    translateY(0);
-}
 
 /* =========================
-   ACCESSIBILITY
+   GUIDE ACTIONS
    ========================= */
 
-.map-district:focus-visible,
-.filter-btn:focus-visible,
-.details-btn:focus-visible,
-.favorite-btn:focus-visible,
-.btn:focus-visible,
-.icon-btn:focus-visible,
-.menu-btn:focus-visible,
-.district-card:focus-visible,
-.map-reset-btn:focus-visible {
+.guide-actions {
+  display: flex;
 
-  outline:
-    3px solid
-    var(--secondary);
+  flex-wrap: wrap;
 
-  outline-offset:
-    3px;
+  gap: 12px;
+
+  padding-top: 5px;
 }
+
+.guide-actions .btn {
+  min-width: 180px;
+
+  flex: 1;
+}
+
 
 /* =========================
-   PREMIUM CARD MOTION
+   GALLERY LIGHTBOX
    ========================= */
 
-.quick-card,
-.destination-card,
-.experience-card,
-.info-card,
-.favorite-item {
-  will-change:
-    transform;
+.guide-lightbox {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100000;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.92
+    );
+
+  backdrop-filter:
+    blur(8px);
 }
+
+.guide-lightbox.active {
+  display: flex;
+}
+
+.guide-lightbox img {
+  max-width: 94vw;
+  max-height: 88vh;
+
+  object-fit: contain;
+
+  border-radius: 16px;
+}
+
+.guide-lightbox-close {
+  position: absolute;
+
+  top: 18px;
+  right: 22px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 36px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   MODAL SCROLLBAR
+   ========================= */
+
+.destination-guide-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.destination-guide-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.destination-guide-content::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+
+  background:
+    rgba(
+      120,
+      120,
+      120,
+      0.35
+    );
+}
+
+
+/* =========================
+   DARK MODE POLISH
+   ========================= */
+
+body.dark .guide-fact,
+body.dark .guide-panel {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.035
+    );
+}
+
+body.dark .guide-chip {
+  border-color:
+    rgba(
+      74,
+      203,
+      121,
+      0.22
+    );
+
+  background:
+    rgba(
+      74,
+      203,
+      121,
+      0.10
+    );
+}
+
 
 /* =========================
    TABLET
    ========================= */
 
-@media
-(max-width: 1000px) {
+@media (max-width: 850px) {
 
-  .v6-map-layout {
+  .guide-facts {
     grid-template-columns:
-      1fr;
+      1fr 1fr;
   }
 
-  .v6-map-side {
-    display: grid;
-
+  .guide-gallery {
     grid-template-columns:
-      0.75fr 1.25fr;
-
-    align-items:
-      stretch;
+      1fr 1fr;
   }
 
-  .v6-result {
-    min-height:
-      320px;
+  .guide-gallery button:first-child {
+    grid-column:
+      1 / -1;
+
+    grid-row: auto;
+
+    height: 280px;
+  }
+
+  .guide-gallery button {
+    height: 180px;
   }
 
 }
+
 
 /* =========================
    MOBILE
    ========================= */
 
-@media
-(max-width: 700px) {
+@media (max-width: 650px) {
 
-  .v6-map-card {
+  .destination-guide-content {
+    width:
+      min(
+        100% - 14px,
+        980px
+      );
+
+    max-height: 95vh;
+
+    border-radius: 20px;
+  }
+
+  .guide-hero {
+    min-height: 285px;
+    height: 285px;
+
+    border-radius:
+      20px 20px 0 0;
+  }
+
+  .guide-hero > img {
+    min-height: 285px;
+    height: 285px;
+  }
+
+  .guide-hero-text {
+    left: 18px;
+    right: 55px;
+    bottom: 18px;
+  }
+
+  .guide-hero-text h2 {
+    font-size:
+      clamp(
+        27px,
+        9vw,
+        38px
+      );
+  }
+
+  .guide-body {
     padding:
-      14px;
+      20px 17px 24px;
   }
 
-  .sri-lanka-map {
-    min-height:
-      560px;
+  .guide-facts {
+    grid-template-columns:
+      1fr 1fr;
   }
 
-  .v6-map-side {
+  .guide-gallery {
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .guide-gallery button:first-child {
+    grid-column:
+      1 / -1;
+
+    height: 230px;
+  }
+
+  .guide-gallery button {
+    height: 145px;
+  }
+
+  .guide-two-column {
     grid-template-columns:
       1fr;
   }
 
-  .map-district {
-    padding:
-      5px 6px;
-
-    font-size:
-      8px;
-  }
-
-  .v6-hero-badges {
-    gap:
-      6px;
-  }
-
-  .v6-hero-badges span {
-    font-size:
-      10px;
+  .guide-actions .btn {
+    flex:
+      1 1 100%;
   }
 
 }
+
 
 /* =========================
-   SMALL PHONE
+   SMALL PHONES
    ========================= */
 
-@media
-(max-width: 430px) {
+@media (max-width: 420px) {
 
-  .sri-lanka-map {
-    min-height:
-      510px;
+  .guide-facts {
+    grid-template-columns:
+      1fr;
   }
 
-  .map-district {
-    font-size:
-      7px;
+  .guide-gallery {
+    grid-template-columns:
+      1fr;
+  }
 
-    padding:
-      4px 5px;
+  .guide-gallery button,
+  .guide-gallery button:first-child {
+    height: 210px;
+
+    grid-column: auto;
   }
 
 }
+
 
 /* =========================
    REDUCED MOTION
@@ -2265,17 +628,8 @@ body.dark
 @media
 (prefers-reduced-motion: reduce) {
 
-  .reveal,
-  .district-result,
-  .map-district,
-  .destination-card,
-  .quick-card {
-
-    transition:
-      none !important;
-
-    animation:
-      none !important;
+  .guide-gallery img {
+    transition: none;
   }
 
 }
