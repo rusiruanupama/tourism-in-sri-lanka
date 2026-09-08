@@ -1,1414 +1,1485 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Explore Sri Lanka with destinations, districts, trip planning, travel tips and emergency information.">
 
-  <meta
-    name="description"
-    content="Explore Sri Lanka with destinations, districts, trip planning, travel tips and emergency information."
-  >
+<title>Tourism In Sri Lanka</title>
 
-  <title>Tourism In Sri Lanka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- LOADER -->
-  <div id="loader" class="loader">
-    <div class="loader-ring"></div>
-    <p>Loading Sri Lanka...</p>
-  </div>
+<!-- LOADER -->
+<div id="loader" class="loader">
+  <div class="loader-ring"></div>
+  <p>Loading Sri Lanka...</p>
+</div>
 
-  <!-- HEADER -->
-  <header class="header" id="header">
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container nav-wrap">
 
-    <div class="container nav-wrap">
+    <a href="#home" class="logo">
+      <span>🇱🇰</span>
+      <span>Tourism In Sri Lanka</span>
+    </a>
 
-      <a href="#home" class="logo">
-        <span>🇱🇰</span>
-        <span>Tourism In Sri Lanka</span>
+    <nav class="nav" id="nav">
+
+      <a href="#home"
+         data-en="Home"
+         data-si="මුල් පිටුව">
+        Home
       </a>
 
-      <nav class="nav" id="nav">
-
-        <a
-          href="#home"
-          data-en="Home"
-          data-si="මුල් පිටුව"
-        >
-          Home
-        </a>
-
-        <a
-          href="#destinations"
-          data-en="Destinations"
-          data-si="ගමනාන්ත"
-        >
-          Destinations
-        </a>
-
-        <a
-          href="#map"
-          data-en="Explore"
-          data-si="ගවේෂණය"
-        >
-          Explore
-        </a>
-
-        <a
-          href="#districts"
-          data-en="Districts"
-          data-si="දිස්ත්‍රික්ක"
-        >
-          Districts
-        </a>
-
-        <a
-          href="#planner"
-          data-en="Trip Planner"
-          data-si="සංචාර සැලසුම"
-        >
-          Trip Planner
-        </a>
-
-        <a
-          href="#travel-info"
-          data-en="Travel Info"
-          data-si="සංචාර තොරතුරු"
-        >
-          Travel Info
-        </a>
-
-      </nav>
-
-      <div class="nav-actions">
-
-        <button
-          id="langToggle"
-          class="icon-btn"
-          aria-label="Change language"
-        >
-          සිං
-        </button>
-
-        <button
-          id="themeToggle"
-          class="icon-btn"
-          aria-label="Toggle dark mode"
-        >
-          🌙
-        </button>
-
-        <button
-          id="menuToggle"
-          class="menu-btn"
-          aria-label="Open menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-      </div>
-
-    </div>
-
-  </header>
-
-  <main>
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-
-      <div class="hero-overlay"></div>
-
-      <div class="container hero-content">
-
-        <span class="eyebrow">
-          Pearl of the Indian Ocean
-        </span>
-
-        <h1
-          data-en="Discover the Wonder of Sri Lanka"
-          data-si="ශ්‍රී ලංකාවේ අසිරිය සොයා යන්න"
-        >
-          Discover the Wonder of Sri Lanka
-        </h1>
-
-        <p
-          data-en="Explore ancient cities, golden beaches, wildlife, mountains and unforgettable culture."
-          data-si="පුරාණ නගර, රන්වන් වෙරළ, වනජීවීන්, කඳුකරය සහ අමතක නොවන සංස්කෘතිය සොයා බලන්න."
-        >
-          Explore ancient cities, golden beaches, wildlife,
-          mountains and unforgettable culture.
-        </p>
-
-        <div class="hero-buttons">
-
-          <a
-            href="#destinations"
-            class="btn primary-btn"
-            data-en="Explore Destinations"
-            data-si="ගමනාන්ත බලන්න"
-          >
-            Explore Destinations
-          </a>
-
-          <a
-            href="#planner"
-            class="btn glass-btn"
-            data-en="Plan My Trip"
-            data-si="මගේ සංචාරය සැලසුම් කරන්න"
-          >
-            Plan My Trip
-          </a>
-
-        </div>
-
-        <div class="hero-stats">
-
-          <div>
-            <strong>25</strong>
-            <span>Districts</span>
-          </div>
-
-          <div>
-            <strong>9</strong>
-            <span>Provinces</span>
-          </div>
-
-          <div>
-            <strong>8</strong>
-            <span>UNESCO Sites</span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- QUICK TOOLS -->
-    <section class="quick-tools">
-
-      <div class="container quick-grid">
-
-        <a href="#planner" class="quick-card">
-          <span>🧭</span>
-          <h3>Trip Planner</h3>
-          <p>Build your Sri Lanka itinerary.</p>
-        </a>
-
-        <a href="#map" class="quick-card">
-          <span>🗺️</span>
-          <h3>District Explorer</h3>
-          <p>Discover attractions across Sri Lanka.</p>
-        </a>
-
-        <a href="#emergency" class="quick-card">
-          <span>🚨</span>
-          <h3>Emergency Help</h3>
-          <p>Important travel emergency numbers.</p>
-        </a>
-
-      </div>
-
-    </section>
-
-    <!-- DESTINATIONS -->
-    <section class="section" id="destinations">
-
-      <div class="container">
-
-        <div class="section-head">
-
-          <span class="eyebrow">
-            Top Places
-          </span>
-
-          <h2
-            data-en="Popular Destinations"
-            data-si="ප්‍රසිද්ධ ගමනාන්ත"
-          >
-            Popular Destinations
-          </h2>
-
-          <p>
-            Search and discover some of Sri Lanka's
-            most popular destinations.
-          </p>
-
-        </div>
-
-        <div class="destination-tools">
-
-          <div class="search-box">
-            <span>🔎</span>
-
-            <input
-              id="destinationSearch"
-              type="text"
-              placeholder="Search destinations..."
-            >
-          </div>
-
-          <div class="filters">
-
-            <button
-              class="filter-btn active"
-              data-filter="all"
-            >
-              All
-            </button>
-
-            <button
-              class="filter-btn"
-              data-filter="heritage"
-            >
-              Heritage
-            </button>
-
-            <button
-              class="filter-btn"
-              data-filter="nature"
-            >
-              Nature
-            </button>
-
-            <button
-              class="filter-btn"
-              data-filter="beach"
-            >
-              Beach
-            </button>
-
-            <button
-              class="filter-btn"
-              data-filter="wildlife"
-            >
-              Wildlife
-            </button>
-
-          </div>
-
-        </div>
-
-        <div class="destination-grid">
-
-          <!-- SIGIRIYA -->
-          <article
-            class="destination-card"
-            data-category="heritage"
-            data-title="Sigiriya"
-            data-description="Ancient rock fortress, gardens and panoramic views."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya%20Sri%20lanka.jpg"
-                alt="Sigiriya"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Heritage
-              </span>
-
-              <h3>Sigiriya</h3>
-
-              <p>
-                Ancient rock fortress, gardens
-                and panoramic views.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-          <!-- ELLA -->
-          <article
-            class="destination-card"
-            data-category="nature"
-            data-title="Ella"
-            data-description="Green mountains, waterfalls and scenic railway journeys."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/Nine%20Arches%20Bridge%20in%20Ella.jpg"
-                alt="Ella"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Nature
-              </span>
-
-              <h3>Ella</h3>
-
-              <p>
-                Green mountains, waterfalls and
-                scenic railway journeys.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-          <!-- KANDY -->
-          <article
-            class="destination-card"
-            data-category="heritage"
-            data-title="Kandy"
-            data-description="Cultural city surrounded by hills and home to the Temple of the Tooth."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20tooth%20sri%20lanka.jpg"
-                alt="Kandy"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Culture
-              </span>
-
-              <h3>Kandy</h3>
-
-              <p>
-                Cultural city surrounded by hills.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-          <!-- GALLE -->
-          <article
-            class="destination-card"
-            data-category="heritage beach"
-            data-title="Galle"
-            data-description="Historic fort, colonial streets and beautiful southern coastline."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/GALLE%20FORT.jpg"
-                alt="Galle"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Heritage
-              </span>
-
-              <h3>Galle</h3>
-
-              <p>
-                Historic fort and beautiful
-                southern coastline.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-          <!-- MIRISSA -->
-          <article
-            class="destination-card"
-            data-category="beach"
-            data-title="Mirissa"
-            data-description="Tropical beach, ocean views and popular coastal experiences."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/Mirissa%20beach,%20Srilanka.jpg"
-                alt="Mirissa"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Beach
-              </span>
-
-              <h3>Mirissa</h3>
-
-              <p>
-                Tropical beach and beautiful
-                ocean views.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-          <!-- NUWARA ELIYA -->
-          <article
-            class="destination-card"
-            data-category="nature"
-            data-title="Nuwara Eliya"
-            data-description="Tea estates, cool climate and beautiful highland scenery."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/Nuwara-Eliya.jpg"
-                alt="Nuwara Eliya"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Highlands
-              </span>
-
-              <h3>Nuwara Eliya</h3>
-
-              <p>
-                Tea estates and beautiful
-                highland scenery.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-          <!-- YALA -->
-          <article
-            class="destination-card"
-            data-category="wildlife nature"
-            data-title="Yala National Park"
-            data-description="Famous national park with wildlife, forests and beautiful natural landscapes."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/Yala%20National%20Park,%20Sri%20Lanka.jpg"
-                alt="Yala National Park"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Wildlife
-              </span>
-
-              <h3>Yala National Park</h3>
-
-              <p>
-                Wildlife and beautiful
-                natural landscapes.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-          <!-- ANURADHAPURA -->
-          <article
-            class="destination-card"
-            data-category="heritage"
-            data-title="Anuradhapura"
-            data-description="Ancient stupas, sacred sites and centuries of Sri Lankan history."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/Anuradhapura%20in%20Sri%20Lanka.jpg"
-                alt="Anuradhapura"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Heritage
-              </span>
-
-              <h3>Anuradhapura</h3>
-
-              <p>
-                Ancient stupas and sacred
-                historic sites.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-          <!-- POLONNARUWA -->
-          <article
-            class="destination-card"
-            data-category="heritage"
-            data-title="Polonnaruwa"
-            data-description="Ancient ruins, monuments and one of Sri Lanka's historic capitals."
-          >
-
-            <div class="card-image">
-
-              <img
-                src="https://commons.wikimedia.org/wiki/Special:FilePath/Polonnaruwa.jpg"
-                alt="Polonnaruwa"
-              >
-
-              <button class="favorite-btn">
-                ♡
-              </button>
-
-            </div>
-
-            <div class="card-content">
-
-              <span class="tag">
-                Heritage
-              </span>
-
-              <h3>Polonnaruwa</h3>
-
-              <p>
-                Ancient ruins and historic
-                monuments.
-              </p>
-
-              <button class="details-btn">
-                View Details →
-              </button>
-
-            </div>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- V5 DISTRICT EXPLORER -->
-    <section class="section alt-section" id="map">
-
-      <div class="container">
-
-        <div class="section-head">
-
-          <span class="eyebrow">
-            Explore Sri Lanka
-          </span>
-
-          <h2
-            data-en="Interactive District Explorer"
-            data-si="ශ්‍රී ලංකා දිස්ත්‍රික් ගවේෂකය"
-          >
-            Interactive District Explorer
-          </h2>
-
-          <p>
-            Select a district and discover
-            attractions and travel highlights.
-          </p>
-
-        </div>
-
-        <div class="map-explorer">
-
-          <div class="map-panel">
-
-            <div class="map-icon">
-              🇱🇰
-            </div>
-
-            <h3>
-              Select a District
-            </h3>
-
-            <p>
-              Choose any Sri Lankan district
-              from the list below.
-            </p>
-
-            <select id="mapDistrictSelect">
-
-              <option value="">
-                Choose District...
-              </option>
-
-              <option>Ampara</option>
-              <option>Anuradhapura</option>
-              <option>Badulla</option>
-              <option>Batticaloa</option>
-              <option>Colombo</option>
-              <option>Galle</option>
-              <option>Gampaha</option>
-              <option>Hambantota</option>
-              <option>Jaffna</option>
-              <option>Kalutara</option>
-              <option>Kandy</option>
-              <option>Kegalle</option>
-              <option>Kilinochchi</option>
-              <option>Kurunegala</option>
-              <option>Mannar</option>
-              <option>Matale</option>
-              <option>Matara</option>
-              <option>Monaragala</option>
-              <option>Mullaitivu</option>
-              <option>Nuwara Eliya</option>
-              <option>Polonnaruwa</option>
-              <option>Puttalam</option>
-              <option>Ratnapura</option>
-              <option>Trincomalee</option>
-              <option>Vavuniya</option>
-
-            </select>
-
-          </div>
-
-          <div
-            class="map-result"
-            id="mapResult"
-          >
-
-            <div class="map-placeholder">
-
-              <span>🗺️</span>
-
-              <h3>
-                Explore Sri Lanka
-              </h3>
-
-              <p>
-                Select a district to see
-                attractions and travel information.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- 25 DISTRICTS -->
-    <section class="section" id="districts">
-
-      <div class="container">
-
-        <div class="section-head">
-
-          <span class="eyebrow">
-            25 Districts
-          </span>
-
-          <h2>
-            Explore All Districts
-          </h2>
-
-        </div>
-
-        <div class="district-search-wrap">
-
-          <input
-            id="districtSearch"
-            type="text"
-            placeholder="Search a district..."
-          >
-
-        </div>
-
-        <div class="district-grid">
-
-          <button class="district-card">Ampara</button>
-          <button class="district-card">Anuradhapura</button>
-          <button class="district-card">Badulla</button>
-          <button class="district-card">Batticaloa</button>
-          <button class="district-card">Colombo</button>
-          <button class="district-card">Galle</button>
-          <button class="district-card">Gampaha</button>
-          <button class="district-card">Hambantota</button>
-          <button class="district-card">Jaffna</button>
-          <button class="district-card">Kalutara</button>
-          <button class="district-card">Kandy</button>
-          <button class="district-card">Kegalle</button>
-          <button class="district-card">Kilinochchi</button>
-          <button class="district-card">Kurunegala</button>
-          <button class="district-card">Mannar</button>
-          <button class="district-card">Matale</button>
-          <button class="district-card">Matara</button>
-          <button class="district-card">Monaragala</button>
-          <button class="district-card">Mullaitivu</button>
-          <button class="district-card">Nuwara Eliya</button>
-          <button class="district-card">Polonnaruwa</button>
-          <button class="district-card">Puttalam</button>
-          <button class="district-card">Ratnapura</button>
-          <button class="district-card">Trincomalee</button>
-          <button class="district-card">Vavuniya</button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- FAVORITES -->
-    <section
-      class="section alt-section"
-      id="favorites"
-    >
-
-      <div class="container">
-
-        <div class="section-head">
-
-          <span class="eyebrow">
-            Saved Places
-          </span>
-
-          <h2>
-            My Favorites
-          </h2>
-
-        </div>
-
-        <div
-          id="favoritesGrid"
-          class="favorites-grid"
-        >
-
-          <div class="empty-state">
-
-            <span>♡</span>
-
-            <p>
-              Add destinations to your favorites.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- TRIP PLANNER -->
-    <section
-      class="section planner-section"
-      id="planner"
-    >
-
-      <div class="container">
-
-        <div class="section-head">
-
-          <span class="eyebrow">
-            Smart Planner
-          </span>
-
-          <h2>
-            Plan Your Sri Lanka Trip
-          </h2>
-
-        </div>
-
-        <div class="planner-layout">
-
-          <div class="planner-form">
-
-            <label for="daysRange">
-
-              Number of Days
-
-              <strong id="daysOutput">
-                7 Days
-              </strong>
-
-            </label>
-
-            <input
-              id="daysRange"
-              type="range"
-              min="2"
-              max="14"
-              value="7"
-            >
-
-            <label for="travelStyle">
-              Travel Style
-            </label>
-
-            <select id="travelStyle">
-
-              <option value="classic">
-                Classic Highlights
-              </option>
-
-              <option value="nature">
-                Nature & Wildlife
-              </option>
-
-              <option value="beach">
-                Beaches & Coast
-              </option>
-
-              <option value="culture">
-                History & Culture
-              </option>
-
-              <option value="adventure">
-                Adventure
-              </option>
-
-            </select>
-
-            <label for="budgetLevel">
-              Budget
-            </label>
-
-            <select id="budgetLevel">
-
-              <option value="value">
-                Value
-              </option>
-
-              <option
-                value="comfort"
-                selected
-              >
-                Comfort
-              </option>
-
-              <option value="premium">
-                Premium
-              </option>
-
-            </select>
-
-            <button
-              id="generateTrip"
-              class="btn primary-btn full-btn"
-            >
-              Generate My Trip
-            </button>
-
-          </div>
-
-          <div
-            class="planner-result"
-            id="plannerResult"
-          >
-
-            <div class="planner-placeholder">
-
-              <span>🧳</span>
-
-              <h3>
-                Your itinerary will appear here
-              </h3>
-
-              <p>
-                Choose your preferences and
-                generate a trip.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- EXPERIENCES -->
-    <section class="section alt-section">
-
-      <div class="container">
-
-        <div class="section-head">
-
-          <span class="eyebrow">
-            Things To Do
-          </span>
-
-          <h2>
-            Unforgettable Experiences
-          </h2>
-
-        </div>
-
-        <div class="experience-grid">
-
-          <div class="experience-card">
-            <span>🐘</span>
-            <h3>Wildlife</h3>
-            <p>Discover Sri Lanka's national parks.</p>
-          </div>
-
-          <div class="experience-card">
-            <span>🏄</span>
-            <h3>Surf & Beaches</h3>
-            <p>Explore tropical beaches.</p>
-          </div>
-
-          <div class="experience-card">
-            <span>🚂</span>
-            <h3>Scenic Railways</h3>
-            <p>Travel through beautiful highlands.</p>
-          </div>
-
-          <div class="experience-card">
-            <span>🏛️</span>
-            <h3>Ancient Heritage</h3>
-            <p>Explore ancient cities and temples.</p>
-          </div>
-
-          <div class="experience-card">
-            <span>🍛</span>
-            <h3>Sri Lankan Food</h3>
-            <p>Discover traditional local flavours.</p>
-          </div>
-
-          <div class="experience-card">
-            <span>🥾</span>
-            <h3>Adventure</h3>
-            <p>Hike mountains and waterfalls.</p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- TRAVEL INFO -->
-    <section
-      class="section"
-      id="travel-info"
-    >
-
-      <div class="container">
-
-        <div class="section-head">
-
-          <span class="eyebrow">
-            Travel Essentials
-          </span>
-
-          <h2>
-            Useful Travel Information
-          </h2>
-
-        </div>
-
-        <div class="info-grid">
-
-          <div class="info-card">
-            <span>🛂</span>
-            <h3>Visa & Entry</h3>
-            <p>
-              Check official entry requirements
-              before travelling.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <span>🚌</span>
-            <h3>Transport</h3>
-            <p>
-              Trains, buses, taxis and private
-              vehicles are available.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <span>💵</span>
-            <h3>Currency</h3>
-            <p>
-              Sri Lankan Rupee (LKR).
-            </p>
-          </div>
-
-          <div class="info-card">
-            <span>📶</span>
-            <h3>Connectivity</h3>
-            <p>
-              Mobile data and Wi-Fi are widely
-              available.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- EMERGENCY -->
-    <section
-      class="section emergency-section"
-      id="emergency"
-    >
-
-      <div class="container">
-
-        <div class="section-head light-head">
-
-          <span class="eyebrow">
-            Important Numbers
-          </span>
-
-          <h2>
-            Emergency Information
-          </h2>
-
-        </div>
-
-        <div class="emergency-grid">
-
-          <a
-            href="tel:1912"
-            class="emergency-card"
-          >
-            <span>☎️</span>
-            <p>Tourism Hotline</p>
-            <strong>1912</strong>
-          </a>
-
-          <a
-            href="tel:119"
-            class="emergency-card"
-          >
-            <span>👮</span>
-            <p>Police Emergency</p>
-            <strong>119</strong>
-          </a>
-
-          <a
-            href="tel:1990"
-            class="emergency-card"
-          >
-            <span>🚑</span>
-            <p>Suwa Seriya</p>
-            <strong>1990</strong>
-          </a>
-
-          <a
-            href="tel:110"
-            class="emergency-card"
-          >
-            <span>🚒</span>
-            <p>Fire & Rescue</p>
-            <strong>110</strong>
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- OFFICIAL -->
-    <section class="section">
-
-      <div class="container resource-box">
-
-        <div>
-
-          <span class="eyebrow">
-            Official Resources
-          </span>
-
-          <h2>
-            Plan with trusted information
-          </h2>
-
-          <p>
-            Visit Sri Lanka's official tourism
-            websites for current information.
-          </p>
-
-        </div>
-
-        <div class="resource-buttons">
-
-          <a
-            href="https://www.srilanka.travel/"
-            target="_blank"
-            rel="noopener"
-            class="btn primary-btn"
-          >
-            Sri Lanka Tourism
-          </a>
-
-          <a
-            href="https://www.sltda.gov.lk/en"
-            target="_blank"
-            rel="noopener"
-            class="btn secondary-btn"
-          >
-            SLTDA
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- DESTINATION MODAL -->
-  <div
-    class="modal"
-    id="destinationModal"
-  >
-
-    <div
-      class="modal-overlay"
-      data-close-modal
-    ></div>
-
-    <div class="modal-content">
-
-      <button
-        class="modal-close"
-        id="modalClose"
-      >
-        ×
+      <a href="#destinations"
+         data-en="Destinations"
+         data-si="ගමනාන්ත">
+        Destinations
+      </a>
+
+      <a href="#map"
+         data-en="Explore"
+         data-si="ගවේෂණය">
+        Explore
+      </a>
+
+      <a href="#districts"
+         data-en="Districts"
+         data-si="දිස්ත්‍රික්ක">
+        Districts
+      </a>
+
+      <a href="#planner"
+         data-en="Trip Planner"
+         data-si="සංචාර සැලසුම">
+        Trip Planner
+      </a>
+
+      <a href="#travel-info"
+         data-en="Travel Info"
+         data-si="සංචාර තොරතුරු">
+        Travel Info
+      </a>
+
+    </nav>
+
+    <div class="nav-actions">
+
+      <button id="langToggle"
+              class="icon-btn"
+              aria-label="Change language">
+        සිං
       </button>
 
-      <img
-        id="modalImage"
-        src=""
-        alt=""
-      >
+      <button id="themeToggle"
+              class="icon-btn"
+              aria-label="Toggle dark mode">
+        🌙
+      </button>
 
-      <div class="modal-body">
-
-        <span class="tag">
-          Sri Lanka
-        </span>
-
-        <h2 id="modalTitle">
-          Destination
-        </h2>
-
-        <p id="modalDescription"></p>
-
-      </div>
+      <button id="menuToggle"
+              class="menu-btn"
+              aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
     </div>
 
   </div>
+</header>
 
-  <!-- DISTRICT MODAL -->
-  <div
-    class="modal"
-    id="districtModal"
-  >
+<main>
 
-    <div
-      class="modal-overlay"
-      data-close-district
-    ></div>
+<!-- HERO -->
+<section class="hero" id="home">
 
-    <div class="modal-content">
+  <div class="hero-overlay"></div>
 
-      <button
-        class="modal-close"
-        id="districtModalClose"
-      >
-        ×
-      </button>
+  <div class="container hero-content">
 
-      <div class="modal-body">
+    <span class="eyebrow">
+      Pearl of the Indian Ocean
+    </span>
 
-        <span class="tag">
-          District Explorer
-        </span>
+    <h1
+      data-en="Discover the Wonder of Sri Lanka"
+      data-si="ශ්‍රී ලංකාවේ අසිරිය සොයා යන්න">
+      Discover the Wonder of Sri Lanka
+    </h1>
 
-        <h2 id="districtModalTitle">
-          District
-        </h2>
+    <p
+      data-en="Explore ancient cities, golden beaches, wildlife, mountains and unforgettable culture."
+      data-si="පුරාණ නගර, රන්වන් වෙරළ, වනජීවීන්, කඳුකරය සහ අමතක නොවන සංස්කෘතිය සොයා බලන්න.">
+      Explore ancient cities, golden beaches,
+      wildlife, mountains and unforgettable culture.
+    </p>
 
-        <p id="districtModalDescription"></p>
+    <div class="v6-hero-badges">
+      <span>⚡ V6 Interactive</span>
+      <span>🗺️ 25 Districts</span>
+      <span>❤️ Save Favorites</span>
+    </div>
 
-      </div>
+    <div class="hero-buttons">
+
+      <a href="#destinations"
+         class="btn primary-btn"
+         data-en="Explore Destinations"
+         data-si="ගමනාන්ත බලන්න">
+        Explore Destinations
+      </a>
+
+      <a href="#planner"
+         class="btn glass-btn"
+         data-en="Plan My Trip"
+         data-si="මගේ සංචාරය සැලසුම් කරන්න">
+        Plan My Trip
+      </a>
 
     </div>
 
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-
-    <div class="container footer-grid">
+    <div class="hero-stats">
 
       <div>
+        <strong>25</strong>
+        <span>Districts</span>
+      </div>
 
-        <a
-          href="#home"
-          class="logo footer-logo"
-        >
-          🇱🇰 Tourism In Sri Lanka
-        </a>
+      <div>
+        <strong>9</strong>
+        <span>Provinces</span>
+      </div>
+
+      <div>
+        <strong>8</strong>
+        <span>UNESCO Sites</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- QUICK TOOLS -->
+<section class="quick-tools">
+
+  <div class="container quick-grid">
+
+    <a href="#planner" class="quick-card">
+      <span>🧭</span>
+      <h3>Trip Planner</h3>
+      <p>Build your Sri Lanka itinerary.</p>
+    </a>
+
+    <a href="#map" class="quick-card">
+      <span>🗺️</span>
+      <h3>District Explorer</h3>
+      <p>Discover attractions across Sri Lanka.</p>
+    </a>
+
+    <a href="#emergency" class="quick-card">
+      <span>🚨</span>
+      <h3>Emergency Help</h3>
+      <p>Important travel emergency numbers.</p>
+    </a>
+
+  </div>
+
+</section>
+
+<!-- DESTINATIONS -->
+<section class="section" id="destinations">
+
+<div class="container">
+
+  <div class="section-head">
+
+    <span class="eyebrow">
+      Top Places
+    </span>
+
+    <h2
+      data-en="Popular Destinations"
+      data-si="ප්‍රසිද්ධ ගමනාන්ත">
+      Popular Destinations
+    </h2>
+
+    <p>
+      Search and discover some of Sri Lanka's
+      most popular destinations.
+    </p>
+
+  </div>
+
+  <div class="destination-tools">
+
+    <div class="search-box">
+      <span>🔎</span>
+
+      <input
+        id="destinationSearch"
+        type="text"
+        placeholder="Search destinations...">
+    </div>
+
+    <div class="filters">
+
+      <button class="filter-btn active"
+              data-filter="all">
+        All
+      </button>
+
+      <button class="filter-btn"
+              data-filter="heritage">
+        Heritage
+      </button>
+
+      <button class="filter-btn"
+              data-filter="nature">
+        Nature
+      </button>
+
+      <button class="filter-btn"
+              data-filter="beach">
+        Beach
+      </button>
+
+      <button class="filter-btn"
+              data-filter="wildlife">
+        Wildlife
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="destination-grid">
+
+    <!-- SIGIRIYA -->
+    <article
+      class="destination-card"
+      data-category="heritage"
+      data-title="Sigiriya"
+      data-description="Ancient rock fortress, gardens and panoramic views.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya%20Sri%20lanka.jpg"
+          alt="Sigiriya">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Heritage</span>
+
+        <h3>Sigiriya</h3>
 
         <p>
-          Discover, explore and plan your
-          Sri Lankan journey.
+          Ancient rock fortress, gardens
+          and panoramic views.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+    <!-- ELLA -->
+    <article
+      class="destination-card"
+      data-category="nature"
+      data-title="Ella"
+      data-description="Green mountains, waterfalls and scenic railway journeys.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Nine%20Arches%20Bridge%20in%20Ella.jpg"
+          alt="Ella">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Nature</span>
+
+        <h3>Ella</h3>
+
+        <p>
+          Green mountains, waterfalls and
+          scenic railway journeys.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+    <!-- KANDY -->
+    <article
+      class="destination-card"
+      data-category="heritage"
+      data-title="Kandy"
+      data-description="Cultural city surrounded by hills and home to the Temple of the Tooth.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20tooth%20sri%20lanka.jpg"
+          alt="Kandy">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Culture</span>
+
+        <h3>Kandy</h3>
+
+        <p>
+          Cultural city surrounded by hills.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+    <!-- GALLE -->
+    <article
+      class="destination-card"
+      data-category="heritage beach"
+      data-title="Galle"
+      data-description="Historic fort, colonial streets and beautiful southern coastline.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/GALLE%20FORT.jpg"
+          alt="Galle">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Heritage</span>
+
+        <h3>Galle</h3>
+
+        <p>
+          Historic fort and beautiful
+          southern coastline.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+    <!-- MIRISSA -->
+    <article
+      class="destination-card"
+      data-category="beach"
+      data-title="Mirissa"
+      data-description="Tropical beach, ocean views and popular coastal experiences.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Mirissa%20beach,%20Srilanka.jpg"
+          alt="Mirissa">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Beach</span>
+
+        <h3>Mirissa</h3>
+
+        <p>
+          Tropical beach and beautiful ocean views.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+    <!-- NUWARA ELIYA -->
+    <article
+      class="destination-card"
+      data-category="nature"
+      data-title="Nuwara Eliya"
+      data-description="Tea estates, cool climate and beautiful highland scenery.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Nuwara-Eliya.jpg"
+          alt="Nuwara Eliya">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Highlands</span>
+
+        <h3>Nuwara Eliya</h3>
+
+        <p>
+          Tea estates and beautiful highland scenery.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+    <!-- YALA -->
+    <article
+      class="destination-card"
+      data-category="wildlife nature"
+      data-title="Yala National Park"
+      data-description="Famous national park with wildlife, forests and beautiful natural landscapes.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Yala%20National%20Park,%20Sri%20Lanka.jpg"
+          alt="Yala National Park">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Wildlife</span>
+
+        <h3>Yala National Park</h3>
+
+        <p>
+          Wildlife and beautiful natural landscapes.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+    <!-- ANURADHAPURA -->
+    <article
+      class="destination-card"
+      data-category="heritage"
+      data-title="Anuradhapura"
+      data-description="Ancient stupas, sacred sites and centuries of Sri Lankan history.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Anuradhapura%20in%20Sri%20Lanka.jpg"
+          alt="Anuradhapura">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Heritage</span>
+
+        <h3>Anuradhapura</h3>
+
+        <p>
+          Ancient stupas and sacred historic sites.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+    <!-- POLONNARUWA -->
+    <article
+      class="destination-card"
+      data-category="heritage"
+      data-title="Polonnaruwa"
+      data-description="Ancient ruins, monuments and one of Sri Lanka's historic capitals.">
+
+      <div class="card-image">
+
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Polonnaruwa.jpg"
+          alt="Polonnaruwa">
+
+        <button class="favorite-btn">♡</button>
+
+      </div>
+
+      <div class="card-content">
+
+        <span class="tag">Heritage</span>
+
+        <h3>Polonnaruwa</h3>
+
+        <p>
+          Ancient ruins and historic monuments.
+        </p>
+
+        <button class="details-btn">
+          View Details →
+        </button>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- V6 INTERACTIVE DISTRICT MAP -->
+<section class="section alt-section" id="map">
+
+<div class="container">
+
+  <div class="section-head reveal">
+
+    <span class="eyebrow">
+      V6 • Explore Sri Lanka
+    </span>
+
+    <h2
+      data-en="Interactive Sri Lanka District Map"
+      data-si="අන්තර්ක්‍රියාකාරී ශ්‍රී ලංකා දිස්ත්‍රික් සිතියම">
+      Interactive Sri Lanka District Map
+    </h2>
+
+    <p>
+      Tap a district on the visual map or use the selector
+      to discover its province and popular attractions.
+    </p>
+
+  </div>
+
+  <div class="v6-map-layout">
+
+    <div class="v6-map-card reveal">
+
+      <div class="v6-map-toolbar">
+
+        <div>
+          <span class="map-live-dot"></span>
+          <strong>25 District Explorer</strong>
+        </div>
+
+        <button
+          class="map-reset-btn"
+          id="mapResetBtn"
+          type="button">
+          Reset
+        </button>
+
+      </div>
+
+      <div
+        class="sri-lanka-map"
+        id="sriLankaMap"
+        aria-label="Interactive Sri Lanka district explorer">
+
+        <div class="island-shape" aria-hidden="true"></div>
+
+        <button class="map-district d-jaffna"
+                data-district="Jaffna">
+          Jaffna
+        </button>
+
+        <button class="map-district d-kilinochchi"
+                data-district="Kilinochchi">
+          Kilinochchi
+        </button>
+
+        <button class="map-district d-mullaitivu"
+                data-district="Mullaitivu">
+          Mullaitivu
+        </button>
+
+        <button class="map-district d-mannar"
+                data-district="Mannar">
+          Mannar
+        </button>
+
+        <button class="map-district d-vavuniya"
+                data-district="Vavuniya">
+          Vavuniya
+        </button>
+
+        <button class="map-district d-anuradhapura"
+                data-district="Anuradhapura">
+          Anuradhapura
+        </button>
+
+        <button class="map-district d-trincomalee"
+                data-district="Trincomalee">
+          Trincomalee
+        </button>
+
+        <button class="map-district d-puttalam"
+                data-district="Puttalam">
+          Puttalam
+        </button>
+
+        <button class="map-district d-polonnaruwa"
+                data-district="Polonnaruwa">
+          Polonnaruwa
+        </button>
+
+        <button class="map-district d-batticaloa"
+                data-district="Batticaloa">
+          Batticaloa
+        </button>
+
+        <button class="map-district d-kurunegala"
+                data-district="Kurunegala">
+          Kurunegala
+        </button>
+
+        <button class="map-district d-matale"
+                data-district="Matale">
+          Matale
+        </button>
+
+        <button class="map-district d-kandy"
+                data-district="Kandy">
+          Kandy
+        </button>
+
+        <button class="map-district d-kegalle"
+                data-district="Kegalle">
+          Kegalle
+        </button>
+
+        <button class="map-district d-gampaha"
+                data-district="Gampaha">
+          Gampaha
+        </button>
+
+        <button class="map-district d-colombo"
+                data-district="Colombo">
+          Colombo
+        </button>
+
+        <button class="map-district d-nuwaraeliya"
+                data-district="Nuwara Eliya">
+          Nuwara Eliya
+        </button>
+
+        <button class="map-district d-ampara"
+                data-district="Ampara">
+          Ampara
+        </button>
+
+        <button class="map-district d-badulla"
+                data-district="Badulla">
+          Badulla
+        </button>
+
+        <button class="map-district d-kalutara"
+                data-district="Kalutara">
+          Kalutara
+        </button>
+
+        <button class="map-district d-ratnapura"
+                data-district="Ratnapura">
+          Ratnapura
+        </button>
+
+        <button class="map-district d-monaragala"
+                data-district="Monaragala">
+          Monaragala
+        </button>
+
+        <button class="map-district d-galle"
+                data-district="Galle">
+          Galle
+        </button>
+
+        <button class="map-district d-matara"
+                data-district="Matara">
+          Matara
+        </button>
+
+        <button class="map-district d-hambantota"
+                data-district="Hambantota">
+          Hambantota
+        </button>
+
+      </div>
+
+      <p class="map-note">
+        Visual explorer • district buttons are arranged
+        geographically for easy browsing.
+      </p>
+
+    </div>
+
+    <div class="v6-map-side reveal">
+
+      <div class="map-selector-card">
+
+        <label for="mapDistrictSelect">
+          Choose a district
+        </label>
+
+        <select id="mapDistrictSelect">
+
+          <option value="">
+            Choose District...
+          </option>
+
+          <option>Ampara</option>
+          <option>Anuradhapura</option>
+          <option>Badulla</option>
+          <option>Batticaloa</option>
+          <option>Colombo</option>
+          <option>Galle</option>
+          <option>Gampaha</option>
+          <option>Hambantota</option>
+          <option>Jaffna</option>
+          <option>Kalutara</option>
+          <option>Kandy</option>
+          <option>Kegalle</option>
+          <option>Kilinochchi</option>
+          <option>Kurunegala</option>
+          <option>Mannar</option>
+          <option>Matale</option>
+          <option>Matara</option>
+          <option>Monaragala</option>
+          <option>Mullaitivu</option>
+          <option>Nuwara Eliya</option>
+          <option>Polonnaruwa</option>
+          <option>Puttalam</option>
+          <option>Ratnapura</option>
+          <option>Trincomalee</option>
+          <option>Vavuniya</option>
+
+        </select>
+
+      </div>
+
+      <div
+        class="map-result v6-result"
+        id="mapResult">
+
+        <div class="map-placeholder">
+
+          <span>🗺️</span>
+
+          <h3>
+            Explore Sri Lanka
+          </h3>
+
+          <p>
+            Select a district to see its province,
+            travel highlights and popular attractions.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- ALL DISTRICTS -->
+<section class="section" id="districts">
+
+<div class="container">
+
+  <div class="section-head">
+
+    <span class="eyebrow">
+      25 Districts
+    </span>
+
+    <h2>
+      Explore All Districts
+    </h2>
+
+  </div>
+
+  <div class="district-search-wrap">
+
+    <input
+      id="districtSearch"
+      type="text"
+      placeholder="Search a district...">
+
+  </div>
+
+  <div class="district-grid">
+
+    <button class="district-card">Ampara</button>
+    <button class="district-card">Anuradhapura</button>
+    <button class="district-card">Badulla</button>
+    <button class="district-card">Batticaloa</button>
+    <button class="district-card">Colombo</button>
+
+    <button class="district-card">Galle</button>
+    <button class="district-card">Gampaha</button>
+    <button class="district-card">Hambantota</button>
+    <button class="district-card">Jaffna</button>
+    <button class="district-card">Kalutara</button>
+
+    <button class="district-card">Kandy</button>
+    <button class="district-card">Kegalle</button>
+    <button class="district-card">Kilinochchi</button>
+    <button class="district-card">Kurunegala</button>
+    <button class="district-card">Mannar</button>
+
+    <button class="district-card">Matale</button>
+    <button class="district-card">Matara</button>
+    <button class="district-card">Monaragala</button>
+    <button class="district-card">Mullaitivu</button>
+    <button class="district-card">Nuwara Eliya</button>
+
+    <button class="district-card">Polonnaruwa</button>
+    <button class="district-card">Puttalam</button>
+    <button class="district-card">Ratnapura</button>
+    <button class="district-card">Trincomalee</button>
+    <button class="district-card">Vavuniya</button>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- FAVORITES -->
+<section class="section alt-section" id="favorites">
+
+<div class="container">
+
+  <div class="section-head">
+
+    <span class="eyebrow">
+      Saved Places
+    </span>
+
+    <h2>
+      My Favorites
+    </h2>
+
+  </div>
+
+  <div id="favoritesGrid"
+       class="favorites-grid">
+
+    <div class="empty-state">
+
+      <span>♡</span>
+
+      <p>
+        Add destinations to your favorites.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- TRIP PLANNER -->
+<section class="section planner-section" id="planner">
+
+<div class="container">
+
+  <div class="section-head">
+
+    <span class="eyebrow">
+      Smart Planner
+    </span>
+
+    <h2>
+      Plan Your Sri Lanka Trip
+    </h2>
+
+  </div>
+
+  <div class="planner-layout">
+
+    <div class="planner-form">
+
+      <label for="daysRange">
+
+        Number of Days
+
+        <strong id="daysOutput">
+          7 Days
+        </strong>
+
+      </label>
+
+      <input
+        id="daysRange"
+        type="range"
+        min="2"
+        max="14"
+        value="7">
+
+      <label for="travelStyle">
+        Travel Style
+      </label>
+
+      <select id="travelStyle">
+
+        <option value="classic">
+          Classic Highlights
+        </option>
+
+        <option value="nature">
+          Nature & Wildlife
+        </option>
+
+        <option value="beach">
+          Beaches & Coast
+        </option>
+
+        <option value="culture">
+          History & Culture
+        </option>
+
+        <option value="adventure">
+          Adventure
+        </option>
+
+      </select>
+
+      <label for="budgetLevel">
+        Budget
+      </label>
+
+      <select id="budgetLevel">
+
+        <option value="value">
+          Value
+        </option>
+
+        <option value="comfort" selected>
+          Comfort
+        </option>
+
+        <option value="premium">
+          Premium
+        </option>
+
+      </select>
+
+      <button
+        id="generateTrip"
+        class="btn primary-btn full-btn">
+        Generate My Trip
+      </button>
+
+    </div>
+
+    <div
+      class="planner-result"
+      id="plannerResult">
+
+      <div class="planner-placeholder">
+
+        <span>🧳</span>
+
+        <h3>
+          Your itinerary will appear here
+        </h3>
+
+        <p>
+          Choose your preferences and generate a trip.
         </p>
 
       </div>
 
-      <div class="footer-links">
+    </div>
 
-        <a href="#destinations">
-          Destinations
-        </a>
+  </div>
 
-        <a href="#map">
-          Explorer
-        </a>
+</div>
 
-        <a href="#planner">
-          Trip Planner
-        </a>
+</section>
 
-        <a href="#emergency">
-          Emergency
-        </a>
+<!-- EXPERIENCES -->
+<section class="section alt-section">
 
-      </div>
+<div class="container">
+
+  <div class="section-head">
+
+    <span class="eyebrow">
+      Things To Do
+    </span>
+
+    <h2>
+      Unforgettable Experiences
+    </h2>
+
+  </div>
+
+  <div class="experience-grid">
+
+    <div class="experience-card">
+      <span>🐘</span>
+      <h3>Wildlife</h3>
+      <p>Discover Sri Lanka's national parks.</p>
+    </div>
+
+    <div class="experience-card">
+      <span>🏄</span>
+      <h3>Surf & Beaches</h3>
+      <p>Explore tropical beaches.</p>
+    </div>
+
+    <div class="experience-card">
+      <span>🚂</span>
+      <h3>Scenic Railways</h3>
+      <p>Travel through beautiful highlands.</p>
+    </div>
+
+    <div class="experience-card">
+      <span>🏛️</span>
+      <h3>Ancient Heritage</h3>
+      <p>Explore ancient cities and temples.</p>
+    </div>
+
+    <div class="experience-card">
+      <span>🍛</span>
+      <h3>Sri Lankan Food</h3>
+      <p>Discover traditional local flavours.</p>
+    </div>
+
+    <div class="experience-card">
+      <span>🥾</span>
+      <h3>Adventure</h3>
+      <p>Hike mountains and waterfalls.</p>
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- TRAVEL INFO -->
+<section class="section" id="travel-info">
+
+<div class="container">
+
+  <div class="section-head">
+
+    <span class="eyebrow">
+      Travel Essentials
+    </span>
+
+    <h2>
+      Useful Travel Information
+    </h2>
+
+  </div>
+
+  <div class="info-grid">
+
+    <div class="info-card">
+
+      <span>🛂</span>
+
+      <h3>
+        Visa & Entry
+      </h3>
+
+      <p>
+        Check official entry requirements
+        before travelling.
+      </p>
 
     </div>
 
-    <div class="container footer-bottom">
+    <div class="info-card">
 
-      ©
-      <span id="currentYear"></span>
-      Tourism In Sri Lanka.
+      <span>🚌</span>
+
+      <h3>
+        Transport
+      </h3>
+
+      <p>
+        Trains, buses, taxis and private
+        vehicles are available.
+      </p>
 
     </div>
 
-  </footer>
+    <div class="info-card">
 
-  <button
-    id="backToTop"
-    class="back-to-top"
-    aria-label="Back to top"
-  >
-    ↑
-  </button>
+      <span>💵</span>
 
-  <script src="script.js"></script>
+      <h3>
+        Currency
+      </h3>
+
+      <p>
+        Sri Lankan Rupee (LKR).
+      </p>
+
+    </div>
+
+    <div class="info-card">
+
+      <span>📶</span>
+
+      <h3>
+        Connectivity
+      </h3>
+
+      <p>
+        Mobile data and Wi-Fi are widely available.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- EMERGENCY -->
+<section
+  class="section emergency-section"
+  id="emergency">
+
+<div class="container">
+
+  <div class="section-head light-head">
+
+    <span class="eyebrow">
+      Important Numbers
+    </span>
+
+    <h2>
+      Emergency Information
+    </h2>
+
+  </div>
+
+  <div class="emergency-grid">
+
+    <a href="tel:1912"
+       class="emergency-card">
+
+      <span>☎️</span>
+
+      <p>
+        Tourism Hotline
+      </p>
+
+      <strong>
+        1912
+      </strong>
+
+    </a>
+
+    <a href="tel:119"
+       class="emergency-card">
+
+      <span>👮</span>
+
+      <p>
+        Police Emergency
+      </p>
+
+      <strong>
+        119
+      </strong>
+
+    </a>
+
+    <a href="tel:1990"
+       class="emergency-card">
+
+      <span>🚑</span>
+
+      <p>
+        Suwa Seriya
+      </p>
+
+      <strong>
+        1990
+      </strong>
+
+    </a>
+
+    <a href="tel:110"
+       class="emergency-card">
+
+      <span>🚒</span>
+
+      <p>
+        Fire & Rescue
+      </p>
+
+      <strong>
+        110
+      </strong>
+
+    </a>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- OFFICIAL RESOURCES -->
+<section class="section">
+
+<div class="container resource-box">
+
+  <div>
+
+    <span class="eyebrow">
+      Official Resources
+    </span>
+
+    <h2>
+      Plan with trusted information
+    </h2>
+
+    <p>
+      Visit Sri Lanka's official tourism
+      websites for current information.
+    </p>
+
+  </div>
+
+  <div class="resource-buttons">
+
+    <a
+      href="https://www.srilanka.travel/"
+      target="_blank"
+      rel="noopener"
+      class="btn primary-btn">
+      Sri Lanka Tourism
+    </a>
+
+    <a
+      href="https://www.sltda.gov.lk/en"
+      target="_blank"
+      rel="noopener"
+      class="btn secondary-btn">
+      SLTDA
+    </a>
+
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- DESTINATION MODAL -->
+<div class="modal" id="destinationModal">
+
+  <div
+    class="modal-overlay"
+    data-close-modal>
+  </div>
+
+  <div class="modal-content">
+
+    <button
+      class="modal-close"
+      id="modalClose">
+      ×
+    </button>
+
+    <img
+      id="modalImage"
+      src=""
+      alt="">
+
+    <div class="modal-body">
+
+      <span class="tag">
+        Sri Lanka
+      </span>
+
+      <h2 id="modalTitle">
+        Destination
+      </h2>
+
+      <p id="modalDescription"></p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- DISTRICT MODAL -->
+<div class="modal" id="districtModal">
+
+  <div
+    class="modal-overlay"
+    data-close-district>
+  </div>
+
+  <div class="modal-content">
+
+    <button
+      class="modal-close"
+      id="districtModalClose">
+      ×
+    </button>
+
+    <div class="modal-body">
+
+      <span class="tag">
+        District Explorer
+      </span>
+
+      <h2 id="districtModalTitle">
+        District
+      </h2>
+
+      <p id="districtModalDescription"></p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="container footer-grid">
+
+  <div>
+
+    <a
+      href="#home"
+      class="logo footer-logo">
+      🇱🇰 Tourism In Sri Lanka
+    </a>
+
+    <p>
+      Discover, explore and plan your
+      Sri Lankan journey.
+    </p>
+
+  </div>
+
+  <div class="footer-links">
+
+    <a href="#destinations">
+      Destinations
+    </a>
+
+    <a href="#map">
+      Explorer
+    </a>
+
+    <a href="#planner">
+      Trip Planner
+    </a>
+
+    <a href="#emergency">
+      Emergency
+    </a>
+
+  </div>
+
+</div>
+
+<div class="container footer-bottom">
+
+  © <span id="currentYear"></span>
+  Tourism In Sri Lanka.
+
+</div>
+
+</footer>
+
+<button
+  id="backToTop"
+  class="back-to-top"
+  aria-label="Back to top">
+  ↑
+</button>
+
+<script src="script.js"></script>
 
 </body>
 </html>
